@@ -113,6 +113,7 @@
         	android:layout_height="wrap_content"
         	android:padding="1dp"
         	android:text="Percentage of required miles provided by credit card sign-up bonus: "
+        	android:id="@+id/card_percentage_of_miles_text"
         	/>
     	<TextView 
         	android:layout_width="wrap_content"

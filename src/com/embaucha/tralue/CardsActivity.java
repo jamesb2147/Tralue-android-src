@@ -1,6 +1,8 @@
 package com.embaucha.tralue;
 
 import com.flurry.android.FlurryAgent;
+import com.testflightapp.lib.TestFlight;
+
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -31,15 +33,15 @@ public class CardsActivity extends Fragment implements OnItemClickListener {
 	}
 	
 	private void populateCursor() {
-		System.out.println("MainActivity.sort: " + MainActivity.sort);
+		TestFlight.log("MainActivity.sort: " + MainActivity.sort);
 		
 		while (!rodb.isOpen()) {
-			System.out.println("DB is not open.");
+			TestFlight.log("DB is not open.");
 			//if (rodb.isDbLockedByOtherThreads()) {
-			//	System.out.println("DB is locked by another thread.");
+			//	TestFlight.log("DB is locked by another thread.");
 			//}
 			//if (rodb.isDbLockedByCurrentThread()) {
-			//	System.out.println("DB is locked by current thread.");
+			//	TestFlight.log("DB is locked by current thread.");
 			//}
 			
 			refreshDB();
@@ -75,7 +77,7 @@ public class CardsActivity extends Fragment implements OnItemClickListener {
 		
 		switch (MainActivity.sort) {
 		case R.id.total_bonus_value_radio: {
-			System.out.println("Sort is total_bonus_value_radio");
+			TestFlight.log("Sort is total_bonus_value_radio");
 			query += " ORDER BY maximum_bonus_value DESC";
 			//cursor = rodb.rawQuery("SELECT *, spend_bonus * points_value + first_purchase_bonus * points_value AS maximum_bonus_value FROM providers INNER JOIN point_values ON providers.points_program=point_values.points_program ORDER BY maximum_bonus_value DESC", null);
 			cursor = rodb.rawQuery(query, null);
@@ -85,14 +87,14 @@ public class CardsActivity extends Fragment implements OnItemClickListener {
 			break;
 		}
 		case R.id.net_bonus_value_radio: {
-			System.out.println("Sort is net_bonus_value_radio");
+			TestFlight.log("Sort is net_bonus_value_radio");
 			query += " ORDER BY max_bonus_less_annual_fee DESC";
 			cursor = rodb.rawQuery(query, null);
 			
 			break;
 		}
 		case R.id.annual_value_of_keeping_card_radio: {
-			System.out.println("Sort is annual_value_of_keeping_card_radio");
+			TestFlight.log("Sort is annual_value_of_keeping_card_radio");
 			query += " ORDER BY value_of_keeping_card DESC";
 			//cursor = rodb.rawQuery("SELECT *, points_per_dollar_spent_general_spend * points_value * planned_spend_per_month * 12 / 100 - annual_fee AS value_of_keeping_card FROM providers INNER JOIN point_values ON providers.points_program=point_values.points_program ORDER BY value_of_keeping_card DESC", null);
 			cursor = rodb.rawQuery(query, null);
@@ -102,7 +104,7 @@ public class CardsActivity extends Fragment implements OnItemClickListener {
 		case R.id.alphabetical_radio: {
 			query += " ORDER BY providers.name";
 			//cursor = rodb.rawQuery("SELECT * FROM providers INNER JOIN point_values ON providers.points_program=point_values.points_program ORDER BY providers.name", null);
-			System.out.println("Sort is alphabetical_radio");
+			TestFlight.log("Sort is alphabetical_radio");
 			cursor = rodb.rawQuery(query, null);
 			
 			break;
@@ -110,7 +112,7 @@ public class CardsActivity extends Fragment implements OnItemClickListener {
 		case R.id.first_purchase_bonus_value_radio: {
 			query += " ORDER BY first_purchase_bonus_value DESC";
 			//cursor = rodb.rawQuery("SELECT *, first_purchase_bonus * points_value AS 'first_purchase_bonus_value' FROM providers INNER JOIN point_values ON providers.points_program=point_values.points_program ORDER BY first_purchase_bonus_value DESC", null);
-			System.out.println("Sort is first_purchase_bonus_value_radio");
+			TestFlight.log("Sort is first_purchase_bonus_value_radio");
 			cursor = rodb.rawQuery(query, null);
 			
 			break;
@@ -118,7 +120,7 @@ public class CardsActivity extends Fragment implements OnItemClickListener {
 		case R.id.spend_per_month_for_bonus_radio: {
 			query += " ORDER BY spend_per_month_for_bonus";
 			//cursor = rodb.rawQuery("SELECT *, spend_requirement / time_to_reach_spend_in_months AS spend_per_month_for_bonus FROM providers INNER JOIN point_values ON providers.points_program=point_values.points_program ORDER BY spend_per_month_for_bonus", null);
-			System.out.println("Sort is spend_per_month_for_bonus_radio");
+			TestFlight.log("Sort is spend_per_month_for_bonus_radio");
 			cursor = rodb.rawQuery(query, null);
 			
 			break;
@@ -126,7 +128,7 @@ public class CardsActivity extends Fragment implements OnItemClickListener {
 		case R.id.foreign_transaction_fee_radio: {
 			query += " ORDER BY foreign_transaction_fee";
 			//cursor = rodb.rawQuery("SELECT * FROM providers INNER JOIN point_values ON providers.points_program=point_values.points_program ORDER BY foreign_transaction_fee", null);
-			System.out.println("Sort is foreign_transaction_fee_radio");
+			TestFlight.log("Sort is foreign_transaction_fee_radio");
 			cursor = rodb.rawQuery(query, null);
 			
 			break;
@@ -142,13 +144,13 @@ public class CardsActivity extends Fragment implements OnItemClickListener {
 					"FROM providers INNER JOIN point_values ON providers.points_program=point_values.points_program " +
 					"ORDER BY value_with_manufactured_spend DESC", null);
 			*/
-			System.out.println("Sort is net_bonus_value_with_manufactured_spend");
+			TestFlight.log("Sort is net_bonus_value_with_manufactured_spend");
 			cursor = rodb.rawQuery(query, null);
 			
 			break;
 		}
 		default: {
-			System.out.println("Using default sorting. This should not have happened.");
+			TestFlight.log("Using default sorting. This should not have happened.");
 			cursor = rodb.rawQuery("SELECT * FROM providers INNER JOIN point_values ON providers.points_program=point_values.points_program", null);
 			break;
 		}
@@ -162,9 +164,9 @@ public class CardsActivity extends Fragment implements OnItemClickListener {
 		adapter = new SimpleCursorAdapter(getActivity(), R.layout.list_view_card, cursor, fromColumns, toViews, 0);
 		ListView listView = ((ListView) layout.findViewById(R.id.listview));
 		if (adapter == null) 
-			System.out.println("Adapter is null.");
+			TestFlight.log("Adapter is null.");
 		if (listView == null) {
-			System.out.println("listView is null.");
+			TestFlight.log("listView is null.");
 		} else {
 		listView.setAdapter(adapter);
 		listView.setOnItemClickListener(this);
@@ -179,9 +181,9 @@ public class CardsActivity extends Fragment implements OnItemClickListener {
 	
 	public void refreshDataset() {
 		if (adapter == null) {
-			System.out.println("Uh oh. Adapter is null on resume.");
+			TestFlight.log("Uh oh. Adapter is null on resume.");
 		} else {
-			System.out.println("Notifying of dataset changes.");
+			TestFlight.log("Notifying of dataset changes.");
 			adapter.notifyDataSetChanged();
 		}
 	}
@@ -240,7 +242,7 @@ public class CardsActivity extends Fragment implements OnItemClickListener {
 			} else if (business == true && personal == true) {
 				//nothing needed
 			} else {
-				System.out.println("WTF?");
+				TestFlight.log("WTF?");
 			}
 			
 			cursor = rodb.rawQuery("SELECT *, first_purchase_bonus * points_value / 100 AS 'first_purchase_bonus_value', " +
@@ -295,16 +297,16 @@ public class CardsActivity extends Fragment implements OnItemClickListener {
 	public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
 		Intent intent = new Intent(getActivity(), DisplaySingleCard.class);
 		//intent = new Intent(getActivity(), Test.class);
-		System.out.println("String to save/pass: " + ((Cursor) parent.getItemAtPosition(position)).getString(((Cursor) parent.getItemAtPosition(position)).getColumnIndex("name")));
+		TestFlight.log("String to save/pass: " + ((Cursor) parent.getItemAtPosition(position)).getString(((Cursor) parent.getItemAtPosition(position)).getColumnIndex("name")));
 		if (intent == null) {
-			System.out.println("Single card intent is null.");
+			TestFlight.log("Single card intent is null.");
 		} else {
 			intent.putExtra("card_selected", ((Cursor) parent.getItemAtPosition(position)).getString(((Cursor) parent.getItemAtPosition(position)).getColumnIndex("name")));
 		}
 		try {
 			startActivity(intent);
 		} catch (Exception e) {
-			System.out.println(e);
+			TestFlight.log(e.toString());
 		}
 	}
 	
@@ -313,7 +315,7 @@ public class CardsActivity extends Fragment implements OnItemClickListener {
 	{
 		super.onStart();
 		FlurryAgent.onStartSession(getActivity(), "B8HFG9HTK5C3RQRNNFY5");
-		System.out.println("Called Flurry.");
+		TestFlight.log("Called Flurry.");
 	}
 	 
 	@Override
@@ -321,15 +323,15 @@ public class CardsActivity extends Fragment implements OnItemClickListener {
 	{
 		super.onStop();		
 		FlurryAgent.onEndSession(getActivity());
-		System.out.println("Stopped Flurry.");
+		TestFlight.log("Stopped Flurry.");
 	}
 	
 	@Override
 	public void onPause() {
-		System.out.println("Cards activity destroyed.");
+		TestFlight.log("Cards activity destroyed.");
 		if (rodb != null) {
 			rodb.close();
-			System.out.println("RODB destroyed.");
+			TestFlight.log("RODB destroyed.");
 		}
 		
 		super.onPause();
@@ -337,10 +339,10 @@ public class CardsActivity extends Fragment implements OnItemClickListener {
 	
 	private void checkDB() {
 		if (rodb == null) {
-			System.out.println("RODB in cards activity is null.");
+			TestFlight.log("RODB in cards activity is null.");
 			refreshDB();
 		} else {
-			System.out.println("RODB is not null. It is at: " + rodb);
+			TestFlight.log("RODB is not null. It is at: " + rodb);
 		}
 	}
 	

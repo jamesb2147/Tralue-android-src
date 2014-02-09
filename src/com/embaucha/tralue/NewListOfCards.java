@@ -1,5 +1,7 @@
 package com.embaucha.tralue;
 
+import com.testflightapp.lib.TestFlight;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.database.Cursor;
@@ -19,6 +21,7 @@ public class NewListOfCards extends Activity implements OnItemClickListener {
 	static String percentage = "percentage_of_award";
 	
 	public void onCreate(Bundle savedInstanceState) {
+		TestFlight.passCheckpoint("Loaded the new list of cards.");
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.new_list_of_cards);
 		
@@ -50,11 +53,11 @@ public class NewListOfCards extends Activity implements OnItemClickListener {
 		//SELECT *, (spend_bonus + first_purchase_bonus) * 100 / cost_in_miles AS percentage FROM providers INNER JOIN partners ON providers.points_program=partners.points_program INNER JOIN compiled_awards ON partners.partner_points_program=compiled_awards.airline WHERE origin LIKE '%chi%' and destination like '%hkg%' and class_of_service='economy' ORDER BY percentage DESC;
 		
 		
-		System.out.println("Query: " + query);
-		System.out.println("Running query...");
+		TestFlight.log("Query: " + query);
+		TestFlight.log("Running query...");
 		Cursor cursor = rodb.rawQuery(query, null);
 		if (cursor.getCount() == 0) {
-			System.out.println("Cursor is empty.");
+			TestFlight.log("Cursor is empty.");
 			Toast.makeText(getApplicationContext(), "We didn't find any results. :'-( Double check your location entries, then email us if you're still having issues.", Toast.LENGTH_LONG).show();
 		}
 		String[] fromColumns = { OpenHelper.KEY_NAME, percentage, OpenHelper.KEY_CARRIER_NAMES };
@@ -77,12 +80,14 @@ public class NewListOfCards extends Activity implements OnItemClickListener {
 	@SuppressWarnings("unused")
 	@Override
 	public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
+		TestFlight.passCheckpoint("Card selected in new list of cards.");
+		
 		Intent intent = new Intent(this, NewDisplaySingleCard.class);
 		//intent = new Intent(getActivity(), Test.class);
-		System.out.println("String to save/pass: " + ((Cursor) parent.getItemAtPosition(position)).getString(((Cursor) parent.getItemAtPosition(position)).getColumnIndex("name")));
-		System.out.println("compiled_awards_id to save: " + ((Cursor) parent.getItemAtPosition(position)).getInt(((Cursor) parent.getItemAtPosition(position)).getColumnIndex(OpenHelper.COL_ID)));
+		TestFlight.log("String to save/pass: " + ((Cursor) parent.getItemAtPosition(position)).getString(((Cursor) parent.getItemAtPosition(position)).getColumnIndex("name")));
+		TestFlight.log("compiled_awards_id to save: " + ((Cursor) parent.getItemAtPosition(position)).getInt(((Cursor) parent.getItemAtPosition(position)).getColumnIndex(OpenHelper.COL_ID)));
 		if (intent == null) {
-			System.out.println("Single card intent is null.");
+			TestFlight.log("Single card intent is null.");
 		} else {
 			intent.putExtra("card_selected", ((Cursor) parent.getItemAtPosition(position)).getString(((Cursor) parent.getItemAtPosition(position)).getColumnIndex("name")));
 			intent.putExtra("compiled_awards_id", ((Cursor) parent.getItemAtPosition(position)).getInt(((Cursor) parent.getItemAtPosition(position)).getColumnIndex(OpenHelper.COL_ID)));
@@ -96,7 +101,7 @@ public class NewListOfCards extends Activity implements OnItemClickListener {
 		try {
 			startActivity(intent);
 		} catch (Exception e) {
-			System.out.println(e);
+			TestFlight.log(e.toString());
 		}
 	}
 }

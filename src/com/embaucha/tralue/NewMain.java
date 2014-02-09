@@ -17,6 +17,7 @@ import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
+import com.testflightapp.lib.TestFlight;
 
 public class NewMain extends Activity implements OnClickListener {
 	static OpenHelper open_helper;
@@ -32,6 +33,8 @@ public class NewMain extends Activity implements OnClickListener {
 	public void onCreate (Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.new_main);
+		
+		TestFlight.takeOff(this.getApplication(), "34e328e0-8dd4-4a6a-8f71-16c5c00d345b");
 		
 		setUpDB();
 		
@@ -79,23 +82,23 @@ public class NewMain extends Activity implements OnClickListener {
 		} else {
 			switch (checkRadioButton()) {
 			case R.id.economy: {
-				System.out.println("Economy fallback.");
+				TestFlight.log("Economy fallback.");
 				break;
 			}
 			case R.id.business: {
-				System.out.println("Business fallback.");
+				TestFlight.log("Business fallback.");
 				break;
 			}
 			case R.id.first: {
-				System.out.println("First fallback.");
+				TestFlight.log("First fallback.");
 				break;
 			}
 			default: {
-				System.out.println("Fuck.");
+				TestFlight.log("Fuck.");
 			}
 			}
 			if (buttonChecked.equals("")) {
-				System.out.println("FUUUUUUUCK.");
+				TestFlight.log("FUUUUUUUCK.");
 			}
 			intent.putExtra("service_class", buttonChecked);
 		}
@@ -123,10 +126,10 @@ public class NewMain extends Activity implements OnClickListener {
 			float cpm = price * 100 / Float.parseFloat(cursor.getString(cursor.getColumnIndex("cost_in_miles")));
 			if (cpm >= (float)1.0) {
 				//cpm is good, leave it alone
-				System.out.println("CPM is good; leave it alone.");
+				TestFlight.log("CPM is good; leave it alone.");
 			} else if (cpm < (float)1) {
 				//cpm is no good; redeem points for cash/travel instead to buy ticket outright
-				System.out.println("Redeem points for cash instead. Setting CPM to 1.");
+				TestFlight.log("Redeem points for cash instead. Setting CPM to 1.");
 				cpm = (float)1.0;
 			}
 			
@@ -175,7 +178,7 @@ public class NewMain extends Activity implements OnClickListener {
 			//break;
 		}
 		default: {
-			System.out.println("No selection found. Assuming economy.");
+			TestFlight.log("No selection found. Assuming economy.");
 			economy.setChecked(true);
 			return checkRadioButton();
 		}
@@ -183,6 +186,9 @@ public class NewMain extends Activity implements OnClickListener {
 	}
 	
 	public void emailDeveloper(View v) {
+		TestFlight.passCheckpoint("Clicked button to send feedback from main program view.");
+		TestFlight.log("Clicked button to send feedback from main program view.");
+		
 		Intent email = new Intent(Intent.ACTION_SEND);
 		email.putExtra(Intent.EXTRA_EMAIL, new String[]{"feedback@embaucha.com"});		  
 		email.putExtra(Intent.EXTRA_SUBJECT, "Tralue - About us");
@@ -203,6 +209,8 @@ public class NewMain extends Activity implements OnClickListener {
 	    @Override
 	    public boolean onOptionsItemSelected(MenuItem item) {
 	        // Handle item selection
+	    	TestFlight.passCheckpoint("Used actionbar item in simple view.");
+	    	
 	        switch (item.getItemId()) {
 	            case R.id.about_us: {
 	                Intent intent = new Intent(this, AboutUs.class);

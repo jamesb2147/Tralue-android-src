@@ -1,5 +1,7 @@
 package com.embaucha.tralue;
 
+import com.testflightapp.lib.TestFlight;
+
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -25,7 +27,7 @@ public class MainActivity extends FragmentActivity {
 		setContentView(R.layout.activity_main);
 		
 		pagerAdapter = new DemoCollectionPagerAdapter(getSupportFragmentManager());
-		System.out.println("test");
+		TestFlight.log("test");
 		viewPager = (ViewPager) findViewById(R.id.pager);
 		//viewPager.setOffscreenPageLimit(0);
 		viewPager.setAdapter(pagerAdapter);
@@ -98,12 +100,12 @@ public class MainActivity extends FragmentActivity {
 
 	    @Override
 	    public Fragment getItem(int i) {
-	    	System.out.println("Getting fragment number " + i);
+	    	TestFlight.log("Getting fragment number " + i);
 	    	
 	    	switch (i) {
 	    	case 0: {
 	    		//fragment = getSupportFragmentManager().findFragmentById(R.id.tralue_fragment);
-	    		//System.out.println("Calling new fragment.");
+	    		//TestFlight.log("Calling new fragment.");
 	    		fragment = new PointValues();
 	    		break;
 	    	}
@@ -119,7 +121,7 @@ public class MainActivity extends FragmentActivity {
 	    		break;
 	    	}
 	    	default: {
-	    		System.out.println("Default fragment state.");
+	    		TestFlight.log("Default fragment state.");
 	    		//fragment = getSupportFragmentManager().findFragmentById(R.id.tralue_fragment);
 	    		fragment = new Selector();
 	    		break;
@@ -145,13 +147,13 @@ public class MainActivity extends FragmentActivity {
 	    @Override
 	    public int getItemPosition(Object o) {
 	    	if (o instanceof CardsActivity) {
-	    		System.out.println("Card activity is being resorted...");
+	    		TestFlight.log("Card activity is being resorted...");
 	    		((CardsActivity) o).resort();
-	    		System.out.println("Card activity resorted.");
+	    		TestFlight.log("Card activity resorted.");
 	    	} else if (o instanceof PointValues) {
-	    		System.out.println("Point values are being saved...");
+	    		TestFlight.log("Point values are being saved...");
 	    		((PointValues) o).saveIt();
-	    		System.out.println("Point values are saved.");
+	    		TestFlight.log("Point values are saved.");
 	    	}
 	    	
 	    	return super.getItemPosition(o);
@@ -175,7 +177,7 @@ public class MainActivity extends FragmentActivity {
 	    		return "Cards";
 	    	}
 	    	default: {
-	    		System.out.println("Default fragment state.");
+	    		TestFlight.log("Default fragment state.");
 	    		//fragment = getSupportFragmentManager().findFragmentById(R.id.tralue_fragment);
 	    		return "Test fragment";
 	    	}

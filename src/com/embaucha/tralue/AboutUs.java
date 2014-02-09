@@ -1,5 +1,7 @@
 package com.embaucha.tralue;
 
+import com.testflightapp.lib.TestFlight;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,9 +12,13 @@ public class AboutUs extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.about_us);
 		
+		TestFlight.passCheckpoint("Opened About Us page.");
+		
 	}
 	
 	public void emailDeveloper(View v) {
+		TestFlight.passCheckpoint("Clicked button to email developer on About Us page.");
+		
 		Intent email = new Intent(Intent.ACTION_SEND);
 		email.putExtra(Intent.EXTRA_EMAIL, new String[]{"feedback@embaucha.com"});		  
 		email.putExtra(Intent.EXTRA_SUBJECT, "Tralue - About us");

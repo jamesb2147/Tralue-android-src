@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import com.flurry.android.FlurryAgent;
+import com.testflightapp.lib.TestFlight;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -24,11 +25,13 @@ public class NewDisplaySingleCard extends Activity {
 	int compiled_awards_id;
 	
 	public void onCreate(Bundle bundle) {
-		System.out.println("Launching...");
+		TestFlight.log("Launching...");
 		super.onCreate(bundle);
-		System.out.println("After super call...");
+		TestFlight.log("After super call...");
+		TestFlight.passCheckpoint("Opened a new-style card display.");
+		TestFlight.log("After TestFlight call...");
 		setContentView(R.layout.new_display_single_card);
-		System.out.println("After setting view...");
+		TestFlight.log("After setting view...");
 		Intent intent = this.getIntent();
 		Bundle extras = intent.getExtras();
 		card = extras.getString("card_selected");
@@ -38,7 +41,7 @@ public class NewDisplaySingleCard extends Activity {
 		price = extras.getFloat("price", (float)0.0);
 		compiled_awards_id = extras.getInt("compiled_awards_id");
 		
-		System.out.println("Grabbed data from bundle...");
+		TestFlight.log("Grabbed data from bundle...");
 		
 		OpenHelper oh = new OpenHelper(this);
 		SQLiteDatabase rodb = oh.getReadableDatabase();
@@ -47,10 +50,10 @@ public class NewDisplaySingleCard extends Activity {
 		//I need to add a button for sending email to one's self with a link to the card application
 		
 		while(cursor.moveToNext()) {
-			System.out.println("iterating...");
+			TestFlight.log("iterating...");
 			if (cursor.getString(cursor.getColumnIndex(name)).equals(card)) {
-				System.out.println("Match!");
-				//System.out.println("SELECT *, first_purchase_bonus * points_value / 100 AS 'first_purchase_bonus_value' FROM providers INNER JOIN point_values " +
+				TestFlight.log("Match!");
+				//TestFlight.log("SELECT *, first_purchase_bonus * points_value / 100 AS 'first_purchase_bonus_value' FROM providers INNER JOIN point_values " +
 				//		"ON providers.points_program=point_values.points_program WHERE providers.name = '" + cursor.getString(cursor.getColumnIndex(name)) + "'");
 				
 				String query = "SELECT *, " + OpenHelper.KEY_SPEND_BONUS + " + " + OpenHelper.KEY_FIRST_PURCHASE_BONUS + " AS total_bonus_points, " +
@@ -70,8 +73,8 @@ public class NewDisplaySingleCard extends Activity {
 						OpenHelper.TABLE_AIRLINE_NAMES + " ON " + OpenHelper.TABLE_AIRLINE_NAMES + "." + OpenHelper.KEY_CARRIERS + "=" + OpenHelper.TABLE_COMPILED_AWARDS + "." + OpenHelper.COL_AIRLINE +
 						" WHERE " + OpenHelper.COL_CLASS + "='" + service_class + "' AND " + OpenHelper.COL_ORIGIN + " LIKE '%" + origin + "%' AND " + 
 						OpenHelper.COL_DESTINATION + " LIKE '%" + destination + "%' AND providers.name = '" + cursor.getString(cursor.getColumnIndex(name)) + "' AND " + OpenHelper.COL_ID + "=" + compiled_awards_id;
-				System.out.println("Query:");
-				System.out.println(query);
+				TestFlight.log("Query:");
+				TestFlight.log(query);
 				Cursor cursor2 = rodb.rawQuery(query, null);
 				
 				
@@ -130,11 +133,11 @@ public class NewDisplaySingleCard extends Activity {
 				((TextView)findViewById(R.id.card_spend_bonus_value)).setText(cursor2.getString(cursor2.getColumnIndex("spend_bonus_value")));
 				((TextView)findViewById(R.id.spend_per_month_for_bonus)).setText(cursor2.getString(cursor2.getColumnIndex("spend_per_month_for_bonus")));
 				((TextView)findViewById(R.id.card_foreign_transaction_fee)).setText(cursor2.getString(cursor2.getColumnIndex("foreign_transaction_fee")));
-				//System.out.println("Value of keeping card is:" + cursor2.getString(cursor2.getColumnIndex("value_of_keeping_card")));
+				//TestFlight.log("Value of keeping card is:" + cursor2.getString(cursor2.getColumnIndex("value_of_keeping_card")));
 				((TextView)findViewById(R.id.value_of_keeping_card)).setText(cursor2.getString(cursor2.getColumnIndex("value_of_keeping_card")));
 				((TextView)findViewById(R.id.value_with_manufactured_spend)).setText(cursor2.getString(cursor2.getColumnIndex("value_with_manufactured_spend")));
 				((TextView)findViewById(R.id.notes)).setText(cursor2.getString(cursor2.getColumnIndex("notes")));
-				//System.out.println("The image is: " + cursor2.getString(cursor2.getColumnIndex("image")));
+				//TestFlight.log("The image is: " + cursor2.getString(cursor2.getColumnIndex("image")));
 				//((ImageView)findViewById(R.id.card_image)).setImageResource(R.drawable.sapphire_preferred);
 				 * 
 				 */
@@ -145,10 +148,10 @@ public class NewDisplaySingleCard extends Activity {
 				
 				//cost to get from origin to destination in miles
 				//origin
-				System.out.println("Origin is: " + origin);
+				TestFlight.log("Origin is: " + origin);
 				((TextView)findViewById(R.id.card_origin)).setText(cursor2.getString(cursor2.getColumnIndex(OpenHelper.COL_ORIGIN)));
 				//destination
-				System.out.println("Destination is: " + destination);
+				TestFlight.log("Destination is: " + destination);
 				((TextView)findViewById(R.id.card_destination)).setText(cursor2.getString(cursor2.getColumnIndex(OpenHelper.COL_DESTINATION)));
 				//cost in miles
 				((TextView)findViewById(R.id.card_cost_in_miles)).setText(cursor2.getString(cursor2.getColumnIndex(OpenHelper.COL_COST)));
@@ -174,13 +177,18 @@ public class NewDisplaySingleCard extends Activity {
 				articleParams.put("card_name", cursor2.getString(cursor2.getColumnIndex(name)));
 				FlurryAgent.logEvent("Card_selected", articleParams);
 				
+				TestFlight.log("Card selected is: " + card);
+				
+				//temporary until card_percentage_of_miles is fixed
+				((TextView)findViewById(R.id.card_percentage_of_miles_text)).setVisibility(View.GONE);
+				
 				url = cursor2.getString(cursor2.getColumnIndex("url"));
 				if (url != null) {
 					((Button)findViewById(R.id.apply_now_button)).setVisibility(View.VISIBLE);
 					((Button)findViewById(R.id.email_to_self_button)).setVisibility(View.VISIBLE);
 				} else {
-					((Button)findViewById(R.id.apply_now_button)).setVisibility(View.INVISIBLE);
-					((Button)findViewById(R.id.email_to_self_button)).setVisibility(View.INVISIBLE);
+					((Button)findViewById(R.id.apply_now_button)).setVisibility(View.GONE);
+					((Button)findViewById(R.id.email_to_self_button)).setVisibility(View.GONE);
 				}
 				
 				String carrier_notes = cursor2.getString(cursor2.getColumnIndex(OpenHelper.KEY_CARRIER_NOTES));
@@ -367,7 +375,7 @@ public class NewDisplaySingleCard extends Activity {
 	{
 		super.onStart();
 		FlurryAgent.onStartSession(this, "B8HFG9HTK5C3RQRNNFY5");
-		System.out.println("Called Flurry.");
+		TestFlight.log("Called Flurry.");
 	}
 	 
 	@Override
@@ -376,6 +384,6 @@ public class NewDisplaySingleCard extends Activity {
 		
 		super.onStop();		
 		FlurryAgent.onEndSession(this);
-		System.out.println("Stopped Flurry.");
+		TestFlight.log("Stopped Flurry.");
 	}
 }

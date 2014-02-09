@@ -1,6 +1,7 @@
 package com.embaucha.tralue;
 
 import com.embaucha.tralue.cardfactory.*;
+import com.testflightapp.lib.TestFlight;
 
 import java.util.ArrayList;
 
@@ -14,8 +15,8 @@ public class CardCatalog {
     	cards = new ArrayList<Card>();
     	
         //cards.add(new AmtrakPersonal());
-        System.out.println("Initializing cards catalog...");
-        System.out.println("Starting with first card.");
+        TestFlight.log("Initializing cards catalog...");
+        TestFlight.log("Starting with first card.");
         
         cards.add(new BAPersonal());
         cards.add(new USAirwaysPersonal());
@@ -65,7 +66,7 @@ public class CardCatalog {
         cards.add(new PlatinumCardBusiness());
         cards.add(new FlexPerksTravelRewardsBusiness());
         
-        System.out.println("Finished adding cards to catalog. Handing catalog to requestor.");
+        TestFlight.log("Finished adding cards to catalog. Handing catalog to requestor.");
     }
 
     public ArrayList<Card> getCards() {

@@ -1,5 +1,7 @@
 package com.embaucha.tralue;
 
+import com.testflightapp.lib.TestFlight;
+
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -1515,9 +1517,9 @@ public class OpenHelper extends SQLiteOpenHelper {
 		SQLiteDatabase rodb = this.getReadableDatabase();
 		Cursor cursor = rodb.rawQuery("SELECT * FROM " + TABLE_VALUES, null);
 		
-		System.out.println("Kicking off while loop.");
+		TestFlight.log("Kicking off while loop.");
 		while (cursor.moveToNext()) {
-			System.out.println("Cursor's points_program is " + cursor.getString(cursor.getColumnIndex("points_program")) + " and value is " + cursor.getFloat(cursor.getColumnIndex("points_value")) + ".");
+			TestFlight.log("Cursor's points_program is " + cursor.getString(cursor.getColumnIndex("points_program")) + " and value is " + cursor.getFloat(cursor.getColumnIndex("points_value")) + ".");
 			pvd.setPointsValue(cursor.getString(cursor.getColumnIndex("points_program")), cursor.getFloat(cursor.getColumnIndex("points_value")));
 		}
 		
