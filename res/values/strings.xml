@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string name="company_name">Embaucha LLC</string>
+	<string name="source_request">Want to see some source code? Have feedback or questions? Email us at feedback@embaucha.com</string>
+	<string name="email_developer">Email feedback@embaucha.com</string>
+	<string name="users_like_you">It\'s users like you who make this application possible. Thank you for using Tralue and have a great day!</string>
+    <string name="app_name">Tralue</string>
+    <string name="point_values">Point values and other settings</string>
+    <string name="selector">Sort</string>
+    <string name="about_us">About us</string>
+    
+    <string name="sorted">These cards are sorted based on your previous selection.</string>
+    
+    <string name="planned_spend">Planned spend per month: $</string>
+    <string name="loss_rate">Manufactured spend loss rate</string>
+    <string name="as_a_percent">%:</string>
+    <string name="input_as_cpm">Please enter all values below as cents per mile/point.</string>
+    <string name="show_business_cards">Show only business cards</string>
+    <string name="show_personal_cards">Show only personal cards</string>
+    <string name="show_business_and_personal_cards">Show business and personal cards</string>
+    
+    <string name="delta">Delta Skymiles:</string>
+    <string name="alaska">Alaska Mileage Plan:</string>
+    <string name="united">United Mileage Plus:</string>
+    <string name="usair">US Airways Dividend Miles:</string>
+    <string name="american">American AAdvantage:</string>
+    <string name="frontier">Frontier EarlyReturns:</string>
+    <string name="jetblue">JetBlue trueBlue:</string>
+    <string name="spirit">Spirit Free Spirit:</string>
+    <string name="southwest">Southwest Rapid Rewards:</string>
+    <string name="ba">British Airways Avios:</string>
+    <string name="ur">Chase Ultimate Rewards:</string>
+    <string name="mr">American Express Membership Rewards:</string>
+    <string name="carlson">Club Carlson:</string>
+    <string name="amtrak">Amtrak Guest Rewards:</string>
+    <string name="arrival">BarclayCard Arrival:</string>
+    <string name="spg">Starwood Preferred Guest:</string>
+    <string name="usbank">US Bank Flexpoints:</string>
+    <string name="discover">Discover:</string>
+    
+    <string name="value_hint">1.2</string>
+    <string name="credit_cards">Credit cards</string>
+    <string name="select_sort">Select the sorting method of the database:</string>
+    
+    <string name="by">by</string>
+    <string name="card_net_bonus_text">Card total bonus less annual fee: $</string>
+    <string name="card_total_bonus_text">Total bonus from card: $</string>
+    <string name="card_first_purchase_bonus_text">First purchase bonus value: $</string>
+    <string name="spend_per_month_for_bonus_text">Spend per month for spending bonus: $</string>
+    <string name="card_spend_bonus_value_text">Value of bonus points from spend req.: $</string>
+    <string name="card_annual_fee_text">Annual fee: </string>
+    <string name="card_foreign_transaction_fee_text">Foreign transaction fee:</string>
+    <string name="card_value_of_keeping_card_text">Annual value of keeping card: $</string>
+    <string name="card_value_with_manufactured_spend_text">Value of the card after spending loss: $</string>
+    <string name="notes_text">Notes:</string>
+    <string name="apply_now">Apply now</string>
+    <string name="email_application">Email a link to the application</string>
+    <string name="inline_award_disclaimer">ALWAYS CHECK THAT THE AWARD YOU WANT IS AVAILABLE AT THIS NUMBER OF MILES BEFORE SIGNING UP FOR A CREDIT CARD.</string>
+    
+    <string name="card_net_bonus_radio">Card total bonus less annual fee</string>
+    <string name="card_total_bonus_radio">Card total bonus</string>
+    <string name="annual_value_of_keeping_card_radio">Annual value of keeping card</string>
+    <string name="alphabetical_radio">Alphabetical</string>
+    <string name="foreign_transaction_fee_radio">Foreign transaction fee</string>
+    <string name="first_purchase_bonus_value_radio">First purchase bonus</string>
+    <string name="spend_per_month_for_bonus_radio">Spend per month for bonus</string>
+    <string name="net_bonus_value_with_manufactured_spend_radio">Card total bonus when manufacturing spend</string>
+
+    <string name="how_do_i_get_there">How do I get there?</string>
+    <string name="origin_airport">Originating airport:</string>
+    <string name="origin_airport_hint">Chicago, New York City, or Los Angeles</string>
+    <string name="destination_airport">Destination airport:</string>
+    <string name="destination_airport_hint">Sydney, Hong Kong, Tokyo, Beijing, London, Paris, or Managua</string>
+    
+</resources>

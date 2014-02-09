@@ -1,0 +1,419 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merger>
+
+    <dataSet config="main" >
+        <source path="/Users/jamesb2147/Dropbox/workspace/Tralue/res" >
+            <file
+                name="ic_launcher"
+                path="/Users/jamesb2147/Dropbox/workspace/Tralue/res/drawable-hdpi/ic_launcher.png"
+                qualifiers="hdpi"
+                type="drawable" />
+            <file
+                name="aadvantage_world_mastercard"
+                path="/Users/jamesb2147/Dropbox/workspace/Tralue/res/drawable-ldpi/aadvantage_world_mastercard.jpg"
+                qualifiers="ldpi"
+                type="drawable" />
+            <file
+                name="alaska_airlines_business"
+                path="/Users/jamesb2147/Dropbox/workspace/Tralue/res/drawable-ldpi/alaska_airlines_business.jpg"
+                qualifiers="ldpi"
+                type="drawable" />
+            <file
+                name="amtrak_card"
+                path="/Users/jamesb2147/Dropbox/workspace/Tralue/res/drawable-ldpi/amtrak_card.png"
+                qualifiers="ldpi"
+                type="drawable" />
+            <file
+                name="barclaycard_arrival"
+                path="/Users/jamesb2147/Dropbox/workspace/Tralue/res/drawable-ldpi/barclaycard_arrival.jpg"
+                qualifiers="ldpi"
+                type="drawable" />
+            <file
+                name="barclaycard_arrival_no_fee"
+                path="/Users/jamesb2147/Dropbox/workspace/Tralue/res/drawable-ldpi/barclaycard_arrival_no_fee.jpg"
+                qualifiers="ldpi"
+                type="drawable" />
+            <file
+                name="carlson_business"
+                path="/Users/jamesb2147/Dropbox/workspace/Tralue/res/drawable-ldpi/carlson_business.png"
+                qualifiers="ldpi"
+                type="drawable" />
+            <file
+                name="club_carlson_premier_rewards_visa_signature"
+                path="/Users/jamesb2147/Dropbox/workspace/Tralue/res/drawable-ldpi/club_carlson_premier_rewards_visa_signature.png"
+                qualifiers="ldpi"
+                type="drawable" />
+            <file
+                name="delta_reserve_business_card"
+                path="/Users/jamesb2147/Dropbox/workspace/Tralue/res/drawable-ldpi/delta_reserve_business_card.gif"
+                qualifiers="ldpi"
+                type="drawable" />
+            <file
+                name="discover_it"
+                path="/Users/jamesb2147/Dropbox/workspace/Tralue/res/drawable-ldpi/discover_it.gif"
+                qualifiers="ldpi"
+                type="drawable" />
+            <file
+                name="flexperks_business"
+                path="/Users/jamesb2147/Dropbox/workspace/Tralue/res/drawable-ldpi/flexperks_business.png"
+                qualifiers="ldpi"
+                type="drawable" />
+            <file
+                name="forward_card"
+                path="/Users/jamesb2147/Dropbox/workspace/Tralue/res/drawable-ldpi/forward_card.png"
+                qualifiers="ldpi"
+                type="drawable" />
+            <file
+                name="freedom_card"
+                path="/Users/jamesb2147/Dropbox/workspace/Tralue/res/drawable-ldpi/freedom_card.gif"
+                qualifiers="ldpi"
+                type="drawable" />
+            <file
+                name="gold_card"
+                path="/Users/jamesb2147/Dropbox/workspace/Tralue/res/drawable-ldpi/gold_card.jpg"
+                qualifiers="ldpi"
+                type="drawable" />
+            <file
+                name="gold_skymiles_business"
+                path="/Users/jamesb2147/Dropbox/workspace/Tralue/res/drawable-ldpi/gold_skymiles_business.gif"
+                qualifiers="ldpi"
+                type="drawable" />
+            <file
+                name="ink_bold"
+                path="/Users/jamesb2147/Dropbox/workspace/Tralue/res/drawable-ldpi/ink_bold.png"
+                qualifiers="ldpi"
+                type="drawable" />
+            <file
+                name="ink_cash"
+                path="/Users/jamesb2147/Dropbox/workspace/Tralue/res/drawable-ldpi/ink_cash.png"
+                qualifiers="ldpi"
+                type="drawable" />
+            <file
+                name="ink_classic"
+                path="/Users/jamesb2147/Dropbox/workspace/Tralue/res/drawable-ldpi/ink_classic.jpg"
+                qualifiers="ldpi"
+                type="drawable" />
+            <file
+                name="ink_plus"
+                path="/Users/jamesb2147/Dropbox/workspace/Tralue/res/drawable-ldpi/ink_plus.png"
+                qualifiers="ldpi"
+                type="drawable" />
+            <file
+                name="mercedes_benz_platinum"
+                path="/Users/jamesb2147/Dropbox/workspace/Tralue/res/drawable-ldpi/mercedes_benz_platinum.jpg"
+                qualifiers="ldpi"
+                type="drawable" />
+            <file
+                name="platinum_business_card"
+                path="/Users/jamesb2147/Dropbox/workspace/Tralue/res/drawable-ldpi/platinum_business_card.gif"
+                qualifiers="ldpi"
+                type="drawable" />
+            <file
+                name="platinum_card"
+                path="/Users/jamesb2147/Dropbox/workspace/Tralue/res/drawable-ldpi/platinum_card.gif"
+                qualifiers="ldpi"
+                type="drawable" />
+            <file
+                name="platinum_skymiles_business"
+                path="/Users/jamesb2147/Dropbox/workspace/Tralue/res/drawable-ldpi/platinum_skymiles_business.gif"
+                qualifiers="ldpi"
+                type="drawable" />
+            <file
+                name="premier_rewards_gold"
+                path="/Users/jamesb2147/Dropbox/workspace/Tralue/res/drawable-ldpi/premier_rewards_gold.jpg"
+                qualifiers="ldpi"
+                type="drawable" />
+            <file
+                name="sapphire_card"
+                path="/Users/jamesb2147/Dropbox/workspace/Tralue/res/drawable-ldpi/sapphire_card.gif"
+                qualifiers="ldpi"
+                type="drawable" />
+            <file
+                name="sapphire_preferred"
+                path="/Users/jamesb2147/Dropbox/workspace/Tralue/res/drawable-ldpi/sapphire_preferred.gif"
+                qualifiers="ldpi"
+                type="drawable" />
+            <file
+                name="southwest_plus_business"
+                path="/Users/jamesb2147/Dropbox/workspace/Tralue/res/drawable-ldpi/southwest_plus_business.jpg"
+                qualifiers="ldpi"
+                type="drawable" />
+            <file
+                name="southwest_premier_business"
+                path="/Users/jamesb2147/Dropbox/workspace/Tralue/res/drawable-ldpi/southwest_premier_business.jpg"
+                qualifiers="ldpi"
+                type="drawable" />
+            <file
+                name="southwest_premier_personal"
+                path="/Users/jamesb2147/Dropbox/workspace/Tralue/res/drawable-ldpi/southwest_premier_personal.png"
+                qualifiers="ldpi"
+                type="drawable" />
+            <file
+                name="starwood_preferred_guest"
+                path="/Users/jamesb2147/Dropbox/workspace/Tralue/res/drawable-ldpi/starwood_preferred_guest.gif"
+                qualifiers="ldpi"
+                type="drawable" />
+            <file
+                name="starwood_preferred_guest_business"
+                path="/Users/jamesb2147/Dropbox/workspace/Tralue/res/drawable-ldpi/starwood_preferred_guest_business.gif"
+                qualifiers="ldpi"
+                type="drawable" />
+            <file
+                name="thank_you_business"
+                path="/Users/jamesb2147/Dropbox/workspace/Tralue/res/drawable-ldpi/thank_you_business.gif"
+                qualifiers="ldpi"
+                type="drawable" />
+            <file
+                name="thank_you_preferred"
+                path="/Users/jamesb2147/Dropbox/workspace/Tralue/res/drawable-ldpi/thank_you_preferred.png"
+                qualifiers="ldpi"
+                type="drawable" />
+            <file
+                name="thank_you_premier"
+                path="/Users/jamesb2147/Dropbox/workspace/Tralue/res/drawable-ldpi/thank_you_premier.png"
+                qualifiers="ldpi"
+                type="drawable" />
+            <file
+                name="ic_launcher"
+                path="/Users/jamesb2147/Dropbox/workspace/Tralue/res/drawable-mdpi/ic_launcher.png"
+                qualifiers="mdpi"
+                type="drawable" />
+            <file
+                name="ic_launcher"
+                path="/Users/jamesb2147/Dropbox/workspace/Tralue/res/drawable-xhdpi/ic_launcher.png"
+                qualifiers="xhdpi"
+                type="drawable" />
+            <file
+                name="ic_launcher"
+                path="/Users/jamesb2147/Dropbox/workspace/Tralue/res/drawable-xxhdpi/ic_launcher.png"
+                qualifiers="xxhdpi"
+                type="drawable" />
+            <file
+                name="about_us"
+                path="/Users/jamesb2147/Dropbox/workspace/Tralue/res/layout/about_us.xml"
+                qualifiers=""
+                type="layout" />
+            <file
+                name="activity_main"
+                path="/Users/jamesb2147/Dropbox/workspace/Tralue/res/layout/activity_main.xml"
+                qualifiers=""
+                type="layout" />
+            <file
+                name="cards_activity"
+                path="/Users/jamesb2147/Dropbox/workspace/Tralue/res/layout/cards_activity.xml"
+                qualifiers=""
+                type="layout" />
+            <file
+                name="display_single_card"
+                path="/Users/jamesb2147/Dropbox/workspace/Tralue/res/layout/display_single_card.xml"
+                qualifiers=""
+                type="layout" />
+            <file
+                name="list_view_card"
+                path="/Users/jamesb2147/Dropbox/workspace/Tralue/res/layout/list_view_card.xml"
+                qualifiers=""
+                type="layout" />
+            <file
+                name="point_values"
+                path="/Users/jamesb2147/Dropbox/workspace/Tralue/res/layout/point_values.xml"
+                qualifiers=""
+                type="layout" />
+            <file
+                name="selector"
+                path="/Users/jamesb2147/Dropbox/workspace/Tralue/res/layout/selector.xml"
+                qualifiers=""
+                type="layout" />
+            <file
+                name="main"
+                path="/Users/jamesb2147/Dropbox/workspace/Tralue/res/menu/main.xml"
+                qualifiers=""
+                type="menu" />
+            <file
+                path="/Users/jamesb2147/Dropbox/workspace/Tralue/res/values/dimens.xml"
+                qualifiers="" >
+                <dimen name="activity_horizontal_margin" >16dp
+                </dimen>
+                <dimen name="activity_vertical_margin" >16dp
+                </dimen>
+            </file>
+            <file
+                path="/Users/jamesb2147/Dropbox/workspace/Tralue/res/values/strings.xml"
+                qualifiers="" >
+                <string name="american" >American AAdvantage:
+                </string>
+                <string name="card_value_with_manufactured_spend_text" >Value of the card after spending loss: $
+                </string>
+                <string name="jetblue" >JetBlue trueBlue:
+                </string>
+                <string name="apply_now" >Apply now
+                </string>
+                <string name="card_total_bonus_radio" >Card total bonus
+                </string>
+                <string name="show_business_cards" >Show only business cards
+                </string>
+                <string name="ur" >Chase Ultimate Rewards:
+                </string>
+                <string name="card_total_bonus" >Total bonus from card: $
+                </string>
+                <string name="spirit" >Spirit Free Spirit:
+                </string>
+                <string name="amtrak" >Amtrak Guest Rewards:
+                </string>
+                <string name="select_sort" >Select the sorting method of the database:
+                </string>
+                <string name="as_a_percent" >%:
+                </string>
+                <string name="email_application" >Email a link to the application
+                </string>
+                <string name="first_purchase_bonus_value_radio" >First purchase bonus
+                </string>
+                <string name="card_first_purchase_bonus_text" >First purchase bonus value: $
+                </string>
+                <string name="card_foreign_transaction_fee_text" >Foreign transaction fee in %:
+                </string>
+                <string name="card_value_of_keeping_card_text" >Annual value of keeping card: $
+                </string>
+                <string name="alphabetical_radio" >Alphabetical
+                </string>
+                <string name="mr" >American Express Membership Rewards:
+                </string>
+                <string name="delta" >Delta Skymiles:
+                </string>
+                <string name="discover" >Discover:
+                </string>
+                <string name="frontier" >Frontier EarlyReturns:
+                </string>
+                <string name="spg" >Starwood Preferred Guest:
+                </string>
+                <string name="alaska" >Alaska Mileage Plan:
+                </string>
+                <string name="southwest" >Southwest Rapid Rewards:
+                </string>
+                <string name="credit_cards" >Credit cards
+                </string>
+                <string name="value_hint" >1.2
+                </string>
+                <string name="input_as_cpm" >Please enter all values below as cents per mile/point.
+                </string>
+                <string name="by" >by
+                </string>
+                <string name="spend_per_month_for_bonus_text" >Spend per month for spending bonus: $
+                </string>
+                <string name="about_us" >About us
+                </string>
+                <string name="sorted" >These cards are sorted based on your previous selection.
+                </string>
+                <string name="usair" >US Airways Dividend Miles:
+                </string>
+                <string name="arrival" >BarclayCard Arrival:
+                </string>
+                <string name="company_name" >Embaucha LLC
+                </string>
+                <string name="show_business_and_personal_cards" >Show business and personal cards
+                </string>
+                <string name="spend_per_month_for_bonus_radio" >Spend per month for bonus
+                </string>
+                <string name="ba" >British Airways Avios:
+                </string>
+                <string name="card_net_bonus_text" >Card total bonus less annual fee: $
+                </string>
+                <string name="show_personal_cards" >Show only personal cards
+                </string>
+                <string name="annual_value_of_keeping_card_radio" >Annual value of keeping card
+                </string>
+                <string name="foreign_transaction_fee_radio" >Foreign transaction fee
+                </string>
+                <string name="selector" >Sort
+                </string>
+                <string name="united" >United Mileage Plus:
+                </string>
+                <string name="notes_text" >Notes:
+                </string>
+                <string name="users_like_you" >It\'s users like you who make this application possible. Thank you for using Tralue and have a great day!
+                </string>
+                <string name="card_net_bonus_radio" >Card total bonus less annual fee
+                </string>
+                <string name="email_developer" >Email feedback@embaucha.com
+                </string>
+                <string name="point_values" >Point values and other settings
+                </string>
+                <string name="net_bonus_value_with_manufactured_spend_radio" >Card total bonus when manufacturing spend
+                </string>
+                <string name="usbank" >US Bank Flexpoints:
+                </string>
+                <string name="planned_spend" >Planned spend per month: $
+                </string>
+                <string name="card_spend_bonus_value_text" >Value of bonus points from spend req.: $
+                </string>
+                <string name="source_request" >Want to see some source code? Have feedback or questions? Email us at feedback@embaucha.com
+                </string>
+                <string name="loss_rate" >Manufactured spend loss rate
+                </string>
+                <string name="app_name" >Tralue
+                </string>
+                <string name="carlson" >Club Carlson:
+                </string>
+            </file>
+            <file
+                path="/Users/jamesb2147/Dropbox/workspace/Tralue/res/values/styles.xml"
+                qualifiers="" >
+
+                <style
+                    name="AppBaseTheme"
+                    parent="android:Theme" >
+
+                    <!--
+            Theme customizations available in newer API levels can go in
+            res/values-vXX/styles.xml, while customizations related to
+            backward-compatibility can go here.
+                    -->
+                </style>
+
+                <style
+                    name="AppTheme"
+                    parent="AppBaseTheme" >
+
+                    <!-- All customizations that are NOT specific to a particular API-level can go here. -->
+                </style>
+            </file>
+            <file
+                path="/Users/jamesb2147/Dropbox/workspace/Tralue/res/values-sw720dp-land/dimens.xml"
+                qualifiers="sw720dp-land" >
+                <dimen name="activity_horizontal_margin" >128dp
+                </dimen>
+            </file>
+            <file
+                path="/Users/jamesb2147/Dropbox/workspace/Tralue/res/values-v11/styles.xml"
+                qualifiers="v11" >
+
+                <style
+                    name="AppBaseTheme"
+                    parent="android:Theme.Holo" >
+
+                    <!-- API 11 theme customizations can go here. -->
+                </style>
+            </file>
+            <file
+                path="/Users/jamesb2147/Dropbox/workspace/Tralue/res/values-v14/styles.xml"
+                qualifiers="v14" >
+
+                <style
+                    name="AppBaseTheme"
+                    parent="android:Theme.Holo" >
+
+                    <!-- API 14 theme customizations can go here. -->
+                </style>
+            </file>
+            <file
+                name="option_03"
+                path="/Users/jamesb2147/Dropbox/workspace/Tralue/res/drawable-hdpi/option_03.png"
+                qualifiers="hdpi"
+                type="drawable" />
+        </source>
+        <source path="/Users/jamesb2147/Dropbox/workspace/Tralue/build/res/rs/debug" />
+    </dataSet>
+    <dataSet config="debug" >
+        <source path="/Users/jamesb2147/Dropbox/workspace/Tralue/build-types/debug/res" />
+    </dataSet>
+
+</merger>
