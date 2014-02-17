@@ -10,7 +10,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 public class OpenHelper extends SQLiteOpenHelper {
-	private static final int DATABASE_VERSION = 40;
+	private static final int DATABASE_VERSION = 41;
 	private static final String DATABASE_NAME = "tralue.db";
 	static final String TABLE_PROVIDERS = "providers";
 	static final String TABLE_VALUES = "point_values";
@@ -189,6 +189,13 @@ public class OpenHelper extends SQLiteOpenHelper {
         	//nada in values
         }
         case 39: {
+        	//nada in values
+        }
+        case 40: {
+        	//something is wrong with my debug build because no data is populating
+        	//attempting to force a rebuild of the on-device database by incrementing DB version
+        	//wish me luck!
+        	
         	//nada in values
         }
 		}
