@@ -65,6 +65,9 @@ public class CardCatalog {
         cards.add(new AlaskaAirlinesBusiness());
         cards.add(new PlatinumCardBusiness());
         cards.add(new FlexPerksTravelRewardsBusiness());
+        //temp cards - end with aadvantage 100k offer
+        cards.add(new AAdvantageWorldEliteExecutiveMastercard2());
+        cards.add(new AAdvantageWorldEliteExecutiveMastercard3());
         
         TestFlight.log("Finished adding cards to catalog. Handing catalog to requestor.");
     }

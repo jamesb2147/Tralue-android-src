@@ -45,13 +45,13 @@ public class NewDisplaySingleCard extends Activity {
 		
 		OpenHelper oh = new OpenHelper(this);
 		SQLiteDatabase rodb = oh.getReadableDatabase();
-		Cursor cursor = rodb.rawQuery("SELECT providers.name FROM providers INNER JOIN point_values ON providers.points_program=point_values.points_program", null);
+		Cursor cursor = rodb.rawQuery("SELECT providers.name, providers.card_id FROM providers INNER JOIN point_values ON providers.points_program=point_values.points_program", null);
 		
 		//I need to add a button for sending email to one's self with a link to the card application
-		
+		System.out.println("Move to next...");
 		while(cursor.moveToNext()) {
 			TestFlight.log("iterating...");
-			if (cursor.getString(cursor.getColumnIndex(name)).equals(card)) {
+			if (cursor.getInt(cursor.getColumnIndex(OpenHelper.KEY_CARD_ID)) == (compiled_awards_id)) {
 				TestFlight.log("Match!");
 				//TestFlight.log("SELECT *, first_purchase_bonus * points_value / 100 AS 'first_purchase_bonus_value' FROM providers INNER JOIN point_values " +
 				//		"ON providers.points_program=point_values.points_program WHERE providers.name = '" + cursor.getString(cursor.getColumnIndex(name)) + "'");
@@ -63,7 +63,7 @@ public class NewDisplaySingleCard extends Activity {
 						" ON " + "providers.points_program=" + OpenHelper.TABLE_COMPILED_AWARDS + "." + OpenHelper.COL_AIRLINE + " LEFT OUTER JOIN " +
 						OpenHelper.TABLE_AIRLINE_NAMES + " ON " + OpenHelper.TABLE_AIRLINE_NAMES + "." + OpenHelper.KEY_CARRIERS + "=" + OpenHelper.TABLE_COMPILED_AWARDS + "." + OpenHelper.COL_AIRLINE +
 						" WHERE " + OpenHelper.COL_CLASS + "='" + service_class + "' AND " + OpenHelper.COL_ORIGIN + " LIKE '%" + origin + "%' AND " + 
-						OpenHelper.COL_DESTINATION + " LIKE '%" + destination + "%' AND providers.name = '" + cursor.getString(cursor.getColumnIndex(name)) + "' AND " + OpenHelper.COL_ID + "=" + compiled_awards_id;
+						OpenHelper.COL_DESTINATION + " LIKE '%" + destination + "%' AND " + OpenHelper.KEY_CARD_ID + "=" + compiled_awards_id;
 				query += " UNION ALL ";
 				query += "SELECT *, " + OpenHelper.KEY_SPEND_BONUS + " + " + OpenHelper.KEY_FIRST_PURCHASE_BONUS + " AS total_bonus_points, " +
 						"(" + OpenHelper.KEY_SPEND_BONUS + " + " + OpenHelper.KEY_FIRST_PURCHASE_BONUS + ") * 100 / " + OpenHelper.COL_COST + " AS " + NewListOfCards.percentage + 
@@ -72,9 +72,10 @@ public class NewDisplaySingleCard extends Activity {
 						" ON " + "partners.partner_points_program=" + OpenHelper.TABLE_COMPILED_AWARDS + "." + OpenHelper.COL_AIRLINE + " LEFT OUTER JOIN " +
 						OpenHelper.TABLE_AIRLINE_NAMES + " ON " + OpenHelper.TABLE_AIRLINE_NAMES + "." + OpenHelper.KEY_CARRIERS + "=" + OpenHelper.TABLE_COMPILED_AWARDS + "." + OpenHelper.COL_AIRLINE +
 						" WHERE " + OpenHelper.COL_CLASS + "='" + service_class + "' AND " + OpenHelper.COL_ORIGIN + " LIKE '%" + origin + "%' AND " + 
-						OpenHelper.COL_DESTINATION + " LIKE '%" + destination + "%' AND providers.name = '" + cursor.getString(cursor.getColumnIndex(name)) + "' AND " + OpenHelper.COL_ID + "=" + compiled_awards_id;
+						OpenHelper.COL_DESTINATION + " LIKE '%" + destination + "%' AND " + OpenHelper.KEY_CARD_ID + "=" + compiled_awards_id;
 				TestFlight.log("Query:");
 				TestFlight.log(query);
+				System.out.println("Running query:\n" + query);
 				Cursor cursor2 = rodb.rawQuery(query, null);
 				
 				
@@ -143,13 +144,17 @@ public class NewDisplaySingleCard extends Activity {
 				 */
 				
 				//NEW card view data
+				System.out.println("Starting to read data...");
 				((TextView)findViewById(R.id.card_name)).setText(cursor2.getString(cursor2.getColumnIndex(name)));
+				System.out.println("Read name.");
 				((TextView)findViewById(R.id.card_issuer)).setText(cursor2.getString(cursor2.getColumnIndex(issuer)));
+				System.out.println("Read issuer.");
 				
 				//cost to get from origin to destination in miles
 				//origin
 				TestFlight.log("Origin is: " + origin);
 				((TextView)findViewById(R.id.card_origin)).setText(cursor2.getString(cursor2.getColumnIndex(OpenHelper.COL_ORIGIN)));
+				System.out.println("Read origin.");
 				//destination
 				TestFlight.log("Destination is: " + destination);
 				((TextView)findViewById(R.id.card_destination)).setText(cursor2.getString(cursor2.getColumnIndex(OpenHelper.COL_DESTINATION)));
@@ -181,6 +186,7 @@ public class NewDisplaySingleCard extends Activity {
 				
 				//temporary until card_percentage_of_miles is fixed
 				((TextView)findViewById(R.id.card_percentage_of_miles_text)).setVisibility(View.GONE);
+				((TextView)findViewById(R.id.card_percentage_of_miles)).setVisibility(View.GONE);
 				
 				url = cursor2.getString(cursor2.getColumnIndex("url"));
 				if (url != null) {

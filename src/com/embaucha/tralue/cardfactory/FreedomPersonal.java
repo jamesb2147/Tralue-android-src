@@ -22,7 +22,7 @@ public class FreedomPersonal extends Card {
         this.setAnnual_fee(0);
         this.setFee_waived_first_year(false);
         this.setPoints_program("mr");
-        this.setSpend_bonus(20000);
+        this.setSpend_bonus(10000);
         this.setSpend_requirement(500);
         this.setTime_to_reach_spend_in_months(3);
         this.setFirst_purchase_bonus(0);

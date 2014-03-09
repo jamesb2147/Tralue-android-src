@@ -70,6 +70,6 @@
     <string name="origin_airport">Originating airport:</string>
     <string name="origin_airport_hint">Chicago, New York City, or Los Angeles</string>
     <string name="destination_airport">Destination airport:</string>
-    <string name="destination_airport_hint">Sydney, Hong Kong, Tokyo, Beijing, London, Paris, or Managua</string>
+    <string name="destination_airport_hint">Sydney, New Delhi, Hong Kong, Tokyo, Beijing, London, Paris, or Managua</string>
     
 </resources>

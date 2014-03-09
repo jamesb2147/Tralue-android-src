@@ -73,12 +73,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="What is the price of a ticket on Kayak?"
+        android:visibility="gone"
         />
     <EditText 
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/price"
         android:hint="$465"
+        android:visibility="gone"
         />
 	<Button 
 	    android:layout_width="wrap_content"

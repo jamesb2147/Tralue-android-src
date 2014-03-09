@@ -81,6 +81,7 @@ public class NewListOfCards extends Activity implements OnItemClickListener {
 	@Override
 	public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
 		TestFlight.passCheckpoint("Card selected in new list of cards.");
+		System.out.println("Card selected in new list of cards.");
 		
 		Intent intent = new Intent(this, NewDisplaySingleCard.class);
 		//intent = new Intent(getActivity(), Test.class);
@@ -90,15 +91,17 @@ public class NewListOfCards extends Activity implements OnItemClickListener {
 			TestFlight.log("Single card intent is null.");
 		} else {
 			intent.putExtra("card_selected", ((Cursor) parent.getItemAtPosition(position)).getString(((Cursor) parent.getItemAtPosition(position)).getColumnIndex("name")));
-			intent.putExtra("compiled_awards_id", ((Cursor) parent.getItemAtPosition(position)).getInt(((Cursor) parent.getItemAtPosition(position)).getColumnIndex(OpenHelper.COL_ID)));
+			intent.putExtra("compiled_awards_id", ((Cursor) parent.getItemAtPosition(position)).getInt(((Cursor) parent.getItemAtPosition(position)).getColumnIndex(OpenHelper.KEY_CARD_ID)));
 			intent.putExtra("origin", origin);
 			intent.putExtra("destination", destination);
 			intent.putExtra("class_of_service", service_class);
 			intent.putExtra("price", price);
+			System.out.println("Extras inserted.");
 			//intent.putExtra("cost_in_miles", ((Cursor) parent.getItemAtPosition(position)).getString(((Cursor) parent.getItemAtPosition(position)).getColumnIndex("cost_in_miles")));
 			//intent.putExtra("miles_provided", ((Cursor) parent.getItemAtPosition(position)).getString(((Cursor) parent.getItemAtPosition(position)).getColumnIndex(OpenHelper.KEY_SPEND_BONUS)) + ((Cursor) parent.getItemAtPosition(position)).getString(((Cursor) parent.getItemAtPosition(position)).getColumnIndex(OpenHelper.KEY_FIRST_PURCHASE_BONUS)));
 		}
 		try {
+			System.out.println("Starting activity...");
 			startActivity(intent);
 		} catch (Exception e) {
 			TestFlight.log(e.toString());

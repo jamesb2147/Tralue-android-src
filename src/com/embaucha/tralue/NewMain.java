@@ -38,8 +38,8 @@ public class NewMain extends Activity implements OnClickListener {
 		
 		setUpDB();
 		
-		orig_airports = new String[] {"Chicago - CHI ( ORD, MDW )", "Los Angeles - LAX", "New York - NYC ( JFK, LGA )"};
-		dest_airports = new String[] {"Tokyo - TYO ( NRT, HND )", "Beijing - BJS ( PEK, NAY )", "Sydney - SYD", "London - LON ( LHR, LGW, STN, LCY )", "Paris - PAR ( CDG, ORY )", "Hong Kong - HKG", "Managua - MGA"};
+		orig_airports = new String[] {OpenHelper.chi, OpenHelper.lax, OpenHelper.nyc};
+		dest_airports = new String[] {OpenHelper.tokyo, OpenHelper.beijing, OpenHelper.sydney, OpenHelper.london, OpenHelper.paris, OpenHelper.hong_kong, OpenHelper.managua, OpenHelper.delhi};
 		ArrayAdapter<String> autoCompleteAdapterOrig = new ArrayAdapter<String>(this, android.R.layout.simple_dropdown_item_1line, orig_airports);
 		ArrayAdapter<String> autoCompleteAdapterDest = new ArrayAdapter<String>(this, android.R.layout.simple_dropdown_item_1line, dest_airports);
 		originACTV = (AutoCompleteTextView)findViewById(R.id.origin);
@@ -61,6 +61,8 @@ public class NewMain extends Activity implements OnClickListener {
 	}
 	
 	public void setUpDB() {
+		PVData pvd = new PVData(this);
+		
 		open_helper = new OpenHelper(this);
 		rwdb = open_helper.getWritableDatabase();
 		rodb = open_helper.getReadableDatabase();
@@ -113,7 +115,7 @@ public class NewMain extends Activity implements OnClickListener {
 			price = Float.parseFloat(price_btn.getText().toString());
 		}
 		if (price <= 0 || price > 1000000) {
-			Toast.makeText(getApplicationContext(), "Hey, please put a reasonable ticket price in next time. Assuming $100 for now.", Toast.LENGTH_LONG).show();
+//			Toast.makeText(getApplicationContext(), "Hey, please put a reasonable ticket price in next time. Assuming $100 for now.", Toast.LENGTH_LONG).show();
 			price = 100;
 		}
 		intent.putExtra("price", price);
