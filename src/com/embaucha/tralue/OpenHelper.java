@@ -1104,30 +1104,30 @@ public class OpenHelper extends SQLiteOpenHelper {
 						+ ") VALUES ('" + united + "', '" + first + "', '" + lax + "', '" + delhi + "', " + 180000 + ")");
 				//delta
 				rwdb.execSQL("INSERT INTO " + TABLE_COMPILED_AWARDS + " (" + COL_AIRLINE + ", " + COL_CLASS + ", " + COL_ORIGIN + ", " + COL_DESTINATION + ", " + COL_COST 
-						+ ") VALUES ('" + delta + "', '" + economy + "', '" + lax + "', '" + managua + "', " + 85000 + ")");
+						+ ") VALUES ('" + delta + "', '" + economy + "', '" + lax + "', '" + delhi + "', " + 85000 + ")");
 				rwdb.execSQL("INSERT INTO " + TABLE_COMPILED_AWARDS + " (" + COL_AIRLINE + ", " + COL_CLASS + ", " + COL_ORIGIN + ", " + COL_DESTINATION + ", " + COL_COST 
-						+ ") VALUES ('" + delta + "', '" + business + "', '" + lax + "', '" + managua + "', " + 140000 + ")");
+						+ ") VALUES ('" + delta + "', '" + business + "', '" + lax + "', '" + delhi + "', " + 140000 + ")");
 				//american
 				rwdb.execSQL("INSERT INTO " + TABLE_COMPILED_AWARDS + " (" + COL_AIRLINE + ", " + COL_CLASS + ", " + COL_ORIGIN + ", " + COL_DESTINATION + ", " + COL_COST 
-						+ ") VALUES ('" + american + "', '" + economy + "', '" + lax + "', '" + managua + "', " + 85000 + ")");
+						+ ") VALUES ('" + american + "', '" + economy + "', '" + lax + "', '" + delhi + "', " + 85000 + ")");
 				rwdb.execSQL("INSERT INTO " + TABLE_COMPILED_AWARDS + " (" + COL_AIRLINE + ", " + COL_CLASS + ", " + COL_ORIGIN + ", " + COL_DESTINATION + ", " + COL_COST 
-						+ ") VALUES ('" + american + "', '" + business + "', '" + lax + "', '" + managua + "', " + 140000 + ")");
+						+ ") VALUES ('" + american + "', '" + business + "', '" + lax + "', '" + delhi + "', " + 140000 + ")");
 				rwdb.execSQL("INSERT INTO " + TABLE_COMPILED_AWARDS + " (" + COL_AIRLINE + ", " + COL_CLASS + ", " + COL_ORIGIN + ", " + COL_DESTINATION + ", " + COL_COST 
-						+ ") VALUES ('" + american + "', '" + first + "', '" + lax + "', '" + managua + "', " + 180000 + ")");
+						+ ") VALUES ('" + american + "', '" + first + "', '" + lax + "', '" + delhi + "', " + 180000 + ")");
 				//alaska
 				rwdb.execSQL("INSERT INTO " + TABLE_COMPILED_AWARDS + " (" + COL_AIRLINE + ", " + COL_CLASS + ", " + COL_ORIGIN + ", " + COL_DESTINATION + ", " + COL_COST 
-						+ ") VALUES ('" + alaska + "', '" + economy + "', '" + lax + "', '" + managua + "', " + 85000 + ")");
+						+ ") VALUES ('" + alaska + "', '" + economy + "', '" + lax + "', '" + delhi + "', " + 85000 + ")");
 				rwdb.execSQL("INSERT INTO " + TABLE_COMPILED_AWARDS + " (" + COL_AIRLINE + ", " + COL_CLASS + ", " + COL_ORIGIN + ", " + COL_DESTINATION + ", " + COL_COST 
-						+ ") VALUES ('" + alaska + "', '" + business + "', '" + lax + "', '" + managua + "', " + 140000 + ")");
+						+ ") VALUES ('" + alaska + "', '" + business + "', '" + lax + "', '" + delhi + "', " + 140000 + ")");
 				rwdb.execSQL("INSERT INTO " + TABLE_COMPILED_AWARDS + " (" + COL_AIRLINE + ", " + COL_CLASS + ", " + COL_ORIGIN + ", " + COL_DESTINATION + ", " + COL_COST 
-						+ ") VALUES ('" + alaska + "', '" + first + "', '" + lax + "', '" + managua + "', " + 160000 + ")");
+						+ ") VALUES ('" + alaska + "', '" + first + "', '" + lax + "', '" + delhi + "', " + 160000 + ")");
 				//ba
 				rwdb.execSQL("INSERT INTO " + TABLE_COMPILED_AWARDS + " (" + COL_AIRLINE + ", " + COL_CLASS + ", " + COL_ORIGIN + ", " + COL_DESTINATION + ", " + COL_COST 
-						+ ") VALUES ('" + ba + "', '" + economy + "', '" + lax + "', '" + managua + "', " + 100000 + ")");
+						+ ") VALUES ('" + ba + "', '" + economy + "', '" + lax + "', '" + delhi + "', " + 100000 + ")");
 				rwdb.execSQL("INSERT INTO " + TABLE_COMPILED_AWARDS + " (" + COL_AIRLINE + ", " + COL_CLASS + ", " + COL_ORIGIN + ", " + COL_DESTINATION + ", " + COL_COST 
-						+ ") VALUES ('" + ba + "', '" + business + "', '" + lax + "', '" + managua + "', " + 200000 + ")");
+						+ ") VALUES ('" + ba + "', '" + business + "', '" + lax + "', '" + delhi + "', " + 200000 + ")");
 				rwdb.execSQL("INSERT INTO " + TABLE_COMPILED_AWARDS + " (" + COL_AIRLINE + ", " + COL_CLASS + ", " + COL_ORIGIN + ", " + COL_DESTINATION + ", " + COL_COST 
-						+ ") VALUES ('" + ba + "', '" + first + "', '" + lax + "', '" + managua + "', " + 300000 + ")");
+						+ ") VALUES ('" + ba + "', '" + first + "', '" + lax + "', '" + delhi + "', " + 300000 + ")");
 				
 				rwdb.setTransactionSuccessful();
 				rwdb.endTransaction();
