@@ -10,7 +10,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 public class OpenHelper extends SQLiteOpenHelper {
-	private static final int DATABASE_VERSION = 44;
+	private static final int DATABASE_VERSION = 45;
 	private static final String DATABASE_NAME = "tralue.db";
 	static final String TABLE_PROVIDERS = "providers";
 	static final String TABLE_VALUES = "point_values";
@@ -209,6 +209,10 @@ public class OpenHelper extends SQLiteOpenHelper {
         }
         case 43: {
         	//changed card table to use unique key id
+        	//nada in values
+        }
+        case 44: {
+        	//corrected a pricing error
         	//nada in values
         }
 		}
