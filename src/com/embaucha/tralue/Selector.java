@@ -3,6 +3,8 @@ package com.embaucha.tralue;
 import java.util.HashMap;
 import java.util.Map;
 
+import ly.count.android.api.Countly;
+
 import com.flurry.android.FlurryAgent;
 
 //import android.app.Activity;
@@ -121,6 +123,7 @@ public class Selector extends Fragment implements OnItemSelectedListener, OnChec
 		super.onStart();
 		FlurryAgent.onStartSession(getActivity(), "B8HFG9HTK5C3RQRNNFY5");
 		System.out.println("Called Flurry.");
+		Countly.sharedInstance().onStart();
 	}
 	 
 	@Override
@@ -129,6 +132,7 @@ public class Selector extends Fragment implements OnItemSelectedListener, OnChec
 		super.onStop();		
 		FlurryAgent.onEndSession(getActivity());
 		System.out.println("Stopped Flurry.");
+		Countly.sharedInstance().onStop();
 	}
 
 	@Override

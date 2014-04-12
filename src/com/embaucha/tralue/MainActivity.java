@@ -1,5 +1,7 @@
 package com.embaucha.tralue;
 
+import ly.count.android.api.Countly;
+
 import com.testflightapp.lib.TestFlight;
 
 import android.database.sqlite.SQLiteDatabase;
@@ -72,6 +74,16 @@ public class MainActivity extends FragmentActivity {
 		open_helper = new OpenHelper(this);
 		rwdb = open_helper.getWritableDatabase();
 		rodb = open_helper.getReadableDatabase();
+	}
+	
+	public void onStart() {
+		super.onStart();
+		Countly.sharedInstance().onStart();
+	}
+	
+	public void onStop() {
+		super.onStop();
+		Countly.sharedInstance().onStop();
 	}
 	
 	public void onDestroy() {

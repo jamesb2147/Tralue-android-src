@@ -1,5 +1,6 @@
 package com.embaucha.tralue;
 
+import ly.count.android.api.Countly;
 import android.app.Activity;
 import android.content.Intent;
 import android.database.Cursor;
@@ -35,6 +36,7 @@ public class NewMain extends Activity implements OnClickListener {
 		setContentView(R.layout.new_main);
 		
 		TestFlight.takeOff(this.getApplication(), "34e328e0-8dd4-4a6a-8f71-16c5c00d345b");
+		Countly.sharedInstance().init(this, "http://countly.embaucha.com", "2f3cb86eedf797fd0bfb42699e36b6d3381a4c60");
 		
 		setUpDB();
 		
@@ -229,6 +231,15 @@ public class NewMain extends Activity implements OnClickListener {
 	            }
 	        }
 	    }
+	public void onStart() {
+		super.onStart();
+		Countly.sharedInstance().onStart();
+	}
+		
+	public void onStop() {
+		super.onStop();
+		Countly.sharedInstance().onStop();
+	}
 	
 	public void onDestroy() {
 		rodb.close();

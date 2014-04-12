@@ -1,5 +1,7 @@
 package com.embaucha.tralue;
 
+import ly.count.android.api.Countly;
+
 import com.testflightapp.lib.TestFlight;
 
 import android.app.Activity;
@@ -106,5 +108,15 @@ public class NewListOfCards extends Activity implements OnItemClickListener {
 		} catch (Exception e) {
 			TestFlight.log(e.toString());
 		}
+	}
+	
+	public void onStart() {
+		super.onStart();
+		Countly.sharedInstance().onStart();
+	}
+	
+	public void onStop() {
+		super.onStop();
+		Countly.sharedInstance().onStop();
 	}
 }

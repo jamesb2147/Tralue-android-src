@@ -3,6 +3,8 @@ package com.embaucha.tralue;
 import java.util.HashMap;
 import java.util.Map;
 
+import ly.count.android.api.Countly;
+
 import com.flurry.android.FlurryAgent;
 import com.testflightapp.lib.TestFlight;
 
@@ -253,6 +255,7 @@ public class DisplaySingleCard extends Activity {
 		super.onStart();
 		FlurryAgent.onStartSession(this, "B8HFG9HTK5C3RQRNNFY5");
 		TestFlight.log("Called Flurry.");
+		Countly.sharedInstance().onStart();
 	}
 	 
 	@Override
@@ -261,5 +264,6 @@ public class DisplaySingleCard extends Activity {
 		super.onStop();		
 		FlurryAgent.onEndSession(this);
 		TestFlight.log("Stopped Flurry.");
+		Countly.sharedInstance().onStop();
 	}
 }
