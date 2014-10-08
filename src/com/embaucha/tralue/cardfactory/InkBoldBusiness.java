@@ -29,7 +29,7 @@ public class InkBoldBusiness extends Card {
         this.setForeign_transaction_fee(0);
         this.setChip("No");
         this.setNotes("Flexible/transferable points, portal bonuses, and 5x category earnings on communication services.");
-        this.setUrl("http://www.thepointsguy.com/go/InkBoldTD/");
+        this.setUrl("http://bit.ly/bold-chase");
         this.setBusiness_personal("business");
         this.setIntended_audience("everyone");
         this.setImage(17);

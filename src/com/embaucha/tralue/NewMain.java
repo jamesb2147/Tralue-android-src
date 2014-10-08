@@ -19,6 +19,11 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 import com.testflightapp.lib.TestFlight;
+import com.parse.Parse;
+import com.parse.ParseAnalytics;
+import com.parse.ParseObject;
+import com.parse.ParseInstallation;
+import com.parse.PushService;
 
 public class NewMain extends Activity implements OnClickListener {
 	static OpenHelper open_helper;
@@ -35,8 +40,18 @@ public class NewMain extends Activity implements OnClickListener {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.new_main);
 		
-		TestFlight.takeOff(this.getApplication(), "34e328e0-8dd4-4a6a-8f71-16c5c00d345b");
-		Countly.sharedInstance().init(this, "http://countly.embaucha.com", "2f3cb86eedf797fd0bfb42699e36b6d3381a4c60");
+//		TestFlight.takeOff(this.getApplication(), "34e328e0-8dd4-4a6a-8f71-16c5c00d345b");
+		Countly.sharedInstance().init(this, "http://countly.embaucha.com", "a731bfa33eb9c5d2455b10120c778d06ffd73a12");
+//		Parse.enableLocalDatastore(this);
+		Parse.initialize(this, "u9ZfHSQYG9KQ5F3Z2Sfuqfj2MhZFjbOHSX7xviqu", "InvTtbMr77KxroQ7iJirIUAUbIiqeRxkOUEJjRiL");
+		
+		//test parse
+//		ParseObject testObject = new ParseObject("TestObject");
+//		testObject.put("foo", "bar");
+//		testObject.saveInBackground();
+		
+		//test parse push
+		PushService.setDefaultPushCallback(this, NewMain.class);
 		
 		setUpDB();
 		
@@ -237,11 +252,13 @@ public class NewMain extends Activity implements OnClickListener {
 	}
 		
 	public void onStop() {
+		System.out.println("NewMain onStop");
 		super.onStop();
 		Countly.sharedInstance().onStop();
 	}
 	
 	public void onDestroy() {
+		System.out.println("NewMain onDestroy");
 		rodb.close();
 		rwdb.close();
 		

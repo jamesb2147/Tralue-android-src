@@ -19,7 +19,7 @@ public class EnhancedBusinessGoldRewards extends Card {
         this.setAnnual_fee(175);
         this.setFee_waived_first_year(true);
         this.setPoints_program("mr");
-        this.setSpend_bonus(30000);
+        this.setSpend_bonus(25000);
         this.setSpend_requirement(5000);
         this.setTime_to_reach_spend_in_months(3);
         this.setFirst_purchase_bonus(0);
@@ -29,7 +29,7 @@ public class EnhancedBusinessGoldRewards extends Card {
         this.setNotes("Flexible/transferable points, portal bonuses," +
 				" and 3x category earnings on airfare, 2x for advertising, gas, shipping, and computer hardware/services. Also benefits from " +
 				"OPEN program of 10% discount or 5x earning at OPEN merchants, and free Amazon Prime membership.");
-        this.setUrl("http://thepointsguy.com/top-deals-3/www.thepointsguy.com/go/businessgoldTD/");
+        this.setUrl("http://bit.ly/business-gold-rewards-amex");
         this.setBusiness_personal("business");
         this.setIntended_audience("everyone");
 	}

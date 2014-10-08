@@ -29,7 +29,7 @@ public class GoldDeltaSkymilesPersonal extends Card {
         this.setForeign_transaction_fee((float)2.7);
         this.setChip("No");
         this.setNotes("$50 statement credit on Delta purchase within three months. 2 miles per dollar spent on Delta purchases.");
-        this.setUrl("http://thepointsguy.com/go/DeltaGoldTD/");
+        this.setUrl("http://bit.ly/gold-skymiles-personal");
         this.setBusiness_personal("personal");
         this.setIntended_audience("everyone");
     }

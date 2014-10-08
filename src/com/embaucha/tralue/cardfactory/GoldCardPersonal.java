@@ -29,7 +29,7 @@ public class GoldCardPersonal extends Card {
         this.setForeign_transaction_fee((float)2.7);
         this.setChip("No");
         this.setNotes("Carefully inspect the terms and conditions of the bonus offer to be sure that you're eligible; many existing charge cardmembers will not be.");
-        this.setUrl("http://thepointsguy.com/top-deals-3/www.thepontsguy.com/go/AmexGoldTD");
+        this.setUrl("http://bit.ly/amex-gold-personal");
         this.setBusiness_personal("personal");
         this.setIntended_audience("everyone");
         this.setImage(7);

@@ -16,10 +16,10 @@ public class FlexPerksTravelRewardsBusiness extends Card {
 				"'http://thepointsguy.com/go/USBankFlexPerksVisaBusinessTD/', 'business', 'everyone', 31)");
         */
 
-        this.setName("FlexPerks Business Travel Rewards card");
+        this.setName("FlexPerks Business Edge Travel Rewards");
         this.setIssuer("US Bank");
-        this.setAnnual_fee(55);
-        this.setFee_waived_first_year(true);
+        this.setAnnual_fee(0);
+        this.setFee_waived_first_year(false);
         this.setPoints_program("usbank");
         this.setSpend_bonus(20000);
         this.setSpend_requirement(3500);
@@ -29,7 +29,7 @@ public class FlexPerksTravelRewardsBusiness extends Card {
         this.setForeign_transaction_fee(3);
         this.setChip("No");
         this.setNotes("Spend $24,000 in a year and the annual fee will be waived and you will earn 3,500 bonus FlexPoints.");
-        this.setUrl("http://thepointsguy.com/go/USBankFlexPerksVisaBusinessTD/");
+        this.setUrl("http://bit.ly/flexperks-travel-business");
         this.setBusiness_personal("business");
         this.setIntended_audience("everyone");
         this.setImage(31);

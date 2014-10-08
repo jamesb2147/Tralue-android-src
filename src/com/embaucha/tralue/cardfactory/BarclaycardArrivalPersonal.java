@@ -28,7 +28,7 @@ public class BarclaycardArrivalPersonal extends Card {
         this.setForeign_transaction_fee(0);
         this.setChip("No");
         this.setNotes("You may be approved for a lower offer on a Platinum card (the usual Barclays warnings apply).");
-        this.setUrl("http://thepointsguy.com/go/ArrivalTD/");
+        this.setUrl("http://www.barclaycardarrival.com/");
         this.setBusiness_personal("personal");
         this.setIntended_audience("everyone");
         this.setImage(3);

@@ -22,14 +22,14 @@ public class SapphirePreferredPersonal extends Card {
         this.setFee_waived_first_year(true);
         this.setPoints_program("ur");
         this.setSpend_bonus(40000);
-        this.setSpend_requirement(2000);
+        this.setSpend_requirement(3000);
         this.setTime_to_reach_spend_in_months(3);
         this.setFirst_purchase_bonus(0);
         this.setPoints_per_dollar_spent_general_spend(1);
         this.setForeign_transaction_fee(0);
         this.setChip("Chip and signature");
-        this.setNotes("Flexible/transferable points, portal bonuses, and 2x category earnings on dining and travel.");
-        this.setUrl("http://thepointsguy.com/go/SapphirePrefTD/");
+        this.setNotes("Flexible/transferable points, portal bonuses, and 2x category earnings on dining and travel. 5,000 bonus points for adding an authorized user.");
+        this.setUrl("http://bit.ly/chase-sapphire-comparison");
         this.setBusiness_personal("personal");
         this.setIntended_audience("everyone");
         this.setImage(1);

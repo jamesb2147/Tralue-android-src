@@ -29,7 +29,7 @@ public class ClubCarlsonPremierRewardsPersonal extends Card {
         this.setForeign_transaction_fee(2);
         this.setChip("No");
         this.setNotes("Carlson Gold status and last night free on award stays of at least 2 nights.");
-        this.setUrl("http://thepointsguy.com/go/ClubCarlsonPremierVisaTD/");
+        this.setUrl("http://bit.ly/carlson-visa-signature");
         this.setBusiness_personal("personal");
         this.setIntended_audience("everyone");
         this.setImage(4);

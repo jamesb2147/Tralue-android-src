@@ -33,9 +33,11 @@ public class SpiritPersonal extends Card {
         this.setNotes("If approved for a credit limit of less than $5000, you will receive the lesser Platinum Plus card. The platinum card " +
 				"earns a first purchase bonus of 5000 miles, and has a $19 annual fee. Mastercard benefits also differ. Both cards " +
 				"receive 5000 bonus miles per year for spending $10,000 and paying your annual fee.");
-        this.setUrl("http://doublizer.com/index.php?code=VABV3J");
+        this.setUrl("http://bit.ly/spirit-mastercard");
         this.setBusiness_personal("personal");
         this.setIntended_audience("everyone");
+        
+        this.populateCard("cgqmoJUeug");
     }
 
     public Card getCard() {

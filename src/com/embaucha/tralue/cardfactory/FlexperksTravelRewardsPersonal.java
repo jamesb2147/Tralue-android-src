@@ -27,8 +27,8 @@ public class FlexperksTravelRewardsPersonal extends Card {
         this.setPoints_per_dollar_spent_general_spend(1);
         this.setForeign_transaction_fee(3);
         this.setChip("Chip and signature");
-        this.setNotes("Points can only be used in large increments towards retail airfare.");
-        this.setUrl("http://thepointsguy.com/go/USBankFlexPerksVisaTD/");
+        this.setNotes("Points can only be used in large increments (think $200 increments) towards retail airfare.");
+        this.setUrl("http://bit.ly/flexperks-travel-personal");
         this.setBusiness_personal("personal");
         this.setIntended_audience("everyone");
     }

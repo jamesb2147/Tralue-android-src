@@ -29,9 +29,9 @@ public class MercedesBenzAmExPlatinumPersonal extends Card {
         this.setPoints_per_dollar_spent_general_spend(1);
         this.setForeign_transaction_fee(0);
         this.setChip("No");
-        this.setNotes("$200 airline fee rebate, lounge access for Delta, American, and US Airways lounges, Global Entry fees are rebated, 25% bonus on " +
-				"pay-with-points (1.25 cents per point fixed value), and Starwood Gold status.");
-        this.setUrl("http://thepointsguy.com/go/MBPlatinumTD/");
+        this.setNotes("$200 airline fee rebate each calendar year, lounge access for Delta, American, and US Airways lounges, Global Entry fees are rebated, 25% bonus on " +
+				"pay-with-points (1.25 cents per point fixed value), Starwood Gold status, and a $1000 certificate towards lease or purchase of a Mercedes-Benz.");
+        this.setUrl("http://bit.ly/amex-mb-platinum");
         this.setBusiness_personal("personal");
         this.setIntended_audience("everyone");
         this.setImage(8);

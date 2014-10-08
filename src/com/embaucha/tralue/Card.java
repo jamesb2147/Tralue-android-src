@@ -1,5 +1,11 @@
 package com.embaucha.tralue;
 
+import com.parse.GetCallback;
+import com.parse.Parse;
+import com.parse.ParseObject;
+import com.parse.ParseQuery;
+import com.parse.ParseException;
+
 /**
  * Created by jamesb2147 on 12/10/13.
  */
@@ -23,6 +29,8 @@ public class Card {
     int image;
     //added to card, but not yet to DB
     int minimumMonthsBetweenApplications;
+    //transient fields!!!
+    float percentage_of_points;
 
     public Card() {
         name = "Default name";
@@ -43,8 +51,43 @@ public class Card {
         intended_audience = "everyone";
         //new field
         minimumMonthsBetweenApplications = 12;
-
+        
         //url and image should remain blank -- the code will automagically remove the appropriate fields programmatically, so the user won't even know they weren't there
+    }
+    
+    public void populateCard(String id) {
+    	//pull card data from Parse based on ID
+    	ParseQuery<ParseObject> query = ParseQuery.getQuery("Cards");
+    	query.getInBackground("cgqmoJUeug", new GetCallback<ParseObject>() {
+    	  public void done(ParseObject object, ParseException e) {
+    	    if (e == null) {
+    	      // success
+    	    	name = object.getString("name");
+    	    	issuer = object.getString("issuer");
+    	    	annual_fee = (Integer) object.getNumber("annual_fee");
+    	    } else {
+    	      // something went wrong
+    	    	//first, try again using local DB
+    	    	ParseQuery<ParseObject> query = ParseQuery.getQuery("Cards");
+    	    	query.fromLocalDatastore();
+    	    	query.getInBackground("cgqmoJUeug", new GetCallback<ParseObject>() {
+    	    	  public void done(ParseObject object, ParseException e) {
+    	    	    if (e == null) {
+    	    	      // success
+    	    	    	name = object.getString("name");
+    	    	    	issuer = object.getString("issuer");
+    	    	    	annual_fee = (Integer) object.getNumber("annual_fee");
+    	    	    } else {
+    	    	      // something went wrong
+    	    	    	//throw message with error?
+    	    	    }
+    	    	  }
+    	    	});
+    	    }
+    	  }
+    	});
+    	
+    	
     }
 
     public String getName() {
@@ -189,5 +232,13 @@ public class Card {
 
     public void setMinimumMonthsBetweenApplications(int minimumMonthsBetweenApplications) {
         this.minimumMonthsBetweenApplications = minimumMonthsBetweenApplications;
+    }
+    
+    public float getPercentage() {
+    	return percentage_of_points;
+    }
+    
+    public void setPercentage(float percent) {
+    	percentage_of_points = percent;
     }
 }

@@ -30,7 +30,7 @@ public class GoldDeltaSkymilesBusiness extends Card {
         this.setChip("No");
         this.setNotes("$50 statement credit on a Delta purchase within the first three months. 2 miles per dollar on Delta purchases, first checked bag " +
 				"free, and priority boarding on Delta flights.");
-        this.setUrl("http://thepointsguy.com/go/DeltaBusinessTD/");
+        this.setUrl("http://bit.ly/gold-skymiles-business");
         this.setBusiness_personal("business");
         this.setIntended_audience("everyone");
         this.setImage(18);

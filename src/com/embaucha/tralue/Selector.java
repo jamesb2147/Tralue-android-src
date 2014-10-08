@@ -5,7 +5,7 @@ import java.util.Map;
 
 import ly.count.android.api.Countly;
 
-import com.flurry.android.FlurryAgent;
+//import com.flurry.android.FlurryAgent;
 
 //import android.app.Activity;
 import android.content.Intent;
@@ -105,7 +105,7 @@ public class Selector extends Fragment implements OnItemSelectedListener, OnChec
 			//tracking via Flurry analytics...
 			Map<String, String> articleParams = new HashMap<String, String>();
 			articleParams.put("sort", parent.getItemAtPosition(position).toString());
-			FlurryAgent.logEvent("Sort_selected", articleParams);
+//			FlurryAgent.logEvent("Sort_selected", articleParams);
 			
 			//start activity
 			startActivity(intent);
@@ -121,7 +121,7 @@ public class Selector extends Fragment implements OnItemSelectedListener, OnChec
 	public void onStart()
 	{
 		super.onStart();
-		FlurryAgent.onStartSession(getActivity(), "B8HFG9HTK5C3RQRNNFY5");
+//		FlurryAgent.onStartSession(getActivity(), "B8HFG9HTK5C3RQRNNFY5");
 		System.out.println("Called Flurry.");
 		Countly.sharedInstance().onStart();
 	}
@@ -130,14 +130,13 @@ public class Selector extends Fragment implements OnItemSelectedListener, OnChec
 	public void onStop()
 	{
 		super.onStop();		
-		FlurryAgent.onEndSession(getActivity());
+//		FlurryAgent.onEndSession(getActivity());
 		System.out.println("Stopped Flurry.");
 		Countly.sharedInstance().onStop();
 	}
 
 	@Override
 	public void onCheckedChanged(RadioGroup rg1, int arg1) {
-		// TODO Auto-generated method stub
 		int selected = rg1.getCheckedRadioButtonId();
 		System.out.println("Checked button is: " + rg.getCheckedRadioButtonId());
 		

@@ -32,7 +32,7 @@ public class InkCashBusiness extends Card {
         this.setNotes("This is actually a cash back card, NOT Ultimate Rewards. See the Ink Classic for the points-earning version of this card. " +
         		"5% cash back on the first $25,000 spent annually at office supply stores, and on cellular phone, landline, internet, and cable " +
         		"TV services, 2% cash back on the first $25,000 spent annually at gas stations and restaurants, 1% on all other purchases.");
-        this.setUrl("http://thepointsguy.com/go/InkCashTD/");
+        this.setUrl("http://bit.ly/cash-chase");
         this.setBusiness_personal("business");
         this.setIntended_audience("everyone");
         this.setImage(23);

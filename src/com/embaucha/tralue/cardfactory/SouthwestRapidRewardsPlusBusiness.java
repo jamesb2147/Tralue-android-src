@@ -29,10 +29,10 @@ public class SouthwestRapidRewardsPlusBusiness extends Card {
         this.setPoints_per_dollar_spent_general_spend(1);
         this.setForeign_transaction_fee(3);
         this.setChip("No");
-        this.setNotes("Earn 100,000 points in a year and receive the Southwest Companion Pass that allows one person to fly with you for free on any " +
+        this.setNotes("Earn 110,000 points in a year and receive the Southwest Companion Pass that allows one person to fly with you for free on any " +
 				"Southwest paid or award ticket for one year. Phenomenal value, for those who can make use of it! " +
 				"Also, 3,000 points every year you pay your annual fee.");
-        this.setUrl("http://thepointsguy.com/go/SouthwestPlusBusinessTD/");
+        this.setUrl("http://bit.ly/rapidrewards-plus-business");
         this.setBusiness_personal("business");
         this.setIntended_audience("everyone");
         this.setImage(28);

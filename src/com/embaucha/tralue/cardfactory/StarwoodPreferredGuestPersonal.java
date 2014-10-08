@@ -29,7 +29,7 @@ public class StarwoodPreferredGuestPersonal extends Card {
         this.setForeign_transaction_fee((float)2.7);
         this.setChip("No");
         this.setNotes("Unique experience offers can, apparently, be a decent deal. Plus, they really are unique.");
-        this.setUrl("http://thepointsguy.com/go/StarwoodAmexTD/");
+        this.setUrl("http://bit.ly/amex-spg-personal");
         this.setBusiness_personal("personal");
         this.setIntended_audience("everyone");
         this.setImage(12);

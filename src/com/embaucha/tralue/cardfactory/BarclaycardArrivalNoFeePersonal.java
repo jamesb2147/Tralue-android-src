@@ -33,7 +33,7 @@ public class BarclaycardArrivalNoFeePersonal extends Card {
 				"instead of World Mastercard (the standard Barclays warning. However, in this case, I could not find any material difference *in the offer.* " +
 				"Now, Platinum cardholders will not have access to World Elite Mastercard benefits (e.g. hotel promotions worldwide), but everyone will " +
 				"receive 20,000 bonus points and no annual fee. VICTORY!!!");
-        this.setUrl("http://thepointsguy.com/go/ArrivalNoFeeTD/");
+        this.setUrl("http://bit.ly/1pFqyAM");
         this.setBusiness_personal("personal");
         this.setIntended_audience("everyone");
         this.setImage(2);

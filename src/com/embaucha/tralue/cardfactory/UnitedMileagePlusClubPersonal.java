@@ -31,7 +31,7 @@ public class UnitedMileagePlusClubPersonal extends Card {
         this.setNotes("Full United Club membership included. Earns 1.5 miles per dollar on all purchases. " +
         		"First and second checked bags are free. This offer is only available in Chase branches, otherwise " +
         		"you have to pay the annual fee your first year.");
-        //this.setUrl("https://creditcards.chase.com/credit-cards/amtrak-guest-rewards-masterthis.aspx");
+        //this.setUrl("http://bit.ly/mp-explorer-chase");
         this.setBusiness_personal("personal");
         this.setIntended_audience("everyone");
         //this.setImage(32);

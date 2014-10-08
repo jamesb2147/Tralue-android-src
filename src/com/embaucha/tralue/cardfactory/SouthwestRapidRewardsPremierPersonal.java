@@ -29,9 +29,9 @@ public class SouthwestRapidRewardsPremierPersonal extends Card {
         this.setPoints_per_dollar_spent_general_spend(2);
         this.setForeign_transaction_fee(0);
         this.setChip("No");
-        this.setNotes("Earn 100,000 points in a year and receive the Southwest Companion Pass that allows one person to fly with you for " +
+        this.setNotes("Earn 110,000 points in a year and receive the Southwest Companion Pass that allows one person to fly with you for " +
 				"free on any Southwest paid or award ticket for one year. Phenomenal value, for those who can make use of it!");
-        this.setUrl("http://thepointsguy.com/go/SouthwestPremierBusinessTD/");
+        this.setUrl("http://bit.ly/rapidrewards-premier-personal");
         this.setBusiness_personal("personal");
         this.setIntended_audience("everyone");
         this.setImage(15);

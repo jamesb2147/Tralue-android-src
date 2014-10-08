@@ -5,8 +5,8 @@ import java.util.Map;
 
 import ly.count.android.api.Countly;
 
-import com.flurry.android.FlurryAgent;
-import com.testflightapp.lib.TestFlight;
+//import com.flurry.android.FlurryAgent;
+//import com.testflightapp.lib.TestFlight;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -25,13 +25,13 @@ public class DisplaySingleCard extends Activity {
 	String url, card;
 	
 	public void onCreate(Bundle bundle) {
-		TestFlight.log("Launching...");
+//		TestFlight.log("Launching...");
 		super.onCreate(bundle);
-		TestFlight.log("After super call...");
+//		TestFlight.log("After super call...");
 		setContentView(R.layout.display_single_card);
-		TestFlight.log("After setting view...");
+//		TestFlight.log("After setting view...");
 		card = this.getIntent().getExtras().getString("card_selected");
-		TestFlight.log("Grabbing data from bundle...");
+//		TestFlight.log("Grabbing data from bundle...");
 		
 		//OpenHelper oh = new OpenHelper(this);
 		SQLiteDatabase rodb = MainActivity.open_helper.getReadableDatabase();
@@ -40,11 +40,11 @@ public class DisplaySingleCard extends Activity {
 		//I need to add a button for sending email to one's self with a link to the card application
 		
 		while(cursor.moveToNext()) {
-			TestFlight.log("iterating...");
+//			TestFlight.log("iterating...");
 			if (cursor.getString(cursor.getColumnIndex(name)).equals(card)) {
-				TestFlight.log("Match!");
-				TestFlight.log("SELECT *, first_purchase_bonus * points_value / 100 AS 'first_purchase_bonus_value' FROM providers INNER JOIN point_values " +
-						"ON providers.points_program=point_values.points_program WHERE providers.name = '" + cursor.getString(cursor.getColumnIndex(name)) + "'");
+//				TestFlight.log("Match!");
+//				TestFlight.log("SELECT *, first_purchase_bonus * points_value / 100 AS 'first_purchase_bonus_value' FROM providers INNER JOIN point_values " +
+//						"ON providers.points_program=point_values.points_program WHERE providers.name = '" + cursor.getString(cursor.getColumnIndex(name)) + "'");
 				Cursor cursor2 = rodb.rawQuery("SELECT *, first_purchase_bonus * points_value / 100 AS 'first_purchase_bonus_value', " +
 						"(spend_bonus * points_value + first_purchase_bonus * points_value) / 100 AS maximum_bonus_value, spend_requirement / " +
 						"time_to_reach_spend_in_months AS spend_per_month_for_bonus, spend_bonus * points_value / 100 AS spend_bonus_value, " +
@@ -80,7 +80,7 @@ public class DisplaySingleCard extends Activity {
 				
 				Map<String, String> articleParams = new HashMap<String, String>();
 				articleParams.put("card_name", cursor2.getString(cursor2.getColumnIndex(name)));
-				FlurryAgent.logEvent("Card_selected", articleParams);
+//				FlurryAgent.logEvent("Card_selected", articleParams);
 				
 				url = cursor2.getString(cursor2.getColumnIndex("url"));
 				if (url != null) {
@@ -253,8 +253,8 @@ public class DisplaySingleCard extends Activity {
 	protected void onStart()
 	{
 		super.onStart();
-		FlurryAgent.onStartSession(this, "B8HFG9HTK5C3RQRNNFY5");
-		TestFlight.log("Called Flurry.");
+//		FlurryAgent.onStartSession(this, "B8HFG9HTK5C3RQRNNFY5");
+//		TestFlight.log("Called Flurry.");
 		Countly.sharedInstance().onStart();
 	}
 	 
@@ -262,8 +262,8 @@ public class DisplaySingleCard extends Activity {
 	protected void onStop()
 	{
 		super.onStop();		
-		FlurryAgent.onEndSession(this);
-		TestFlight.log("Stopped Flurry.");
+//		FlurryAgent.onEndSession(this);
+//		TestFlight.log("Stopped Flurry.");
 		Countly.sharedInstance().onStop();
 	}
 }

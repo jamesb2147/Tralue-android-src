@@ -29,7 +29,7 @@ public class ThankYouPreferredPersonal extends Card {
         this.setForeign_transaction_fee(3);
         this.setChip("Chip and signature");
         this.setNotes("2 points per dollar on dining and entertainment.");
-        this.setUrl("http://thepointsguy.com/go/CitithankYouPreferredTD/");
+        this.setUrl("http://bit.ly/citi-ty-preferred");
         this.setBusiness_personal("personal");
         this.setIntended_audience("everyone");
         this.setImage(13);

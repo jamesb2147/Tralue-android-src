@@ -22,7 +22,7 @@ public class AAdvantageWorldEliteMastercardPersonal extends Card {
         this.setAnnual_fee(450);
         this.setFee_waived_first_year(false);
         this.setPoints_program("american");
-        this.setSpend_bonus(60000);
+        this.setSpend_bonus(50000);
         this.setSpend_requirement(5000);
         this.setTime_to_reach_spend_in_months(3);
         this.setFirst_purchase_bonus(0);
@@ -31,7 +31,7 @@ public class AAdvantageWorldEliteMastercardPersonal extends Card {
         this.setChip("Chip and signature");
         this.setNotes("With this card you will receive your first checked bag free, Admirals Club membership privileges, " +
 				"25% off in-flight purchases, and 10,000 elite qualifying miles after $40,000 in spend in one year.");
-        this.setUrl("http://thepointsguy.com/go/CitiAAExecTD/");
+        this.setUrl("http://bit.ly/1sY7HYX");
         this.setBusiness_personal("personal");
         this.setIntended_audience("everyone");
     }

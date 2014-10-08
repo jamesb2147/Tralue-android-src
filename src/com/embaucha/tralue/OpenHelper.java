@@ -1,6 +1,6 @@
 package com.embaucha.tralue;
 
-import com.testflightapp.lib.TestFlight;
+//import com.testflightapp.lib.TestFlight;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -10,7 +10,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 public class OpenHelper extends SQLiteOpenHelper {
-	private static final int DATABASE_VERSION = 45;
+	private static final int DATABASE_VERSION = 58;
 	private static final String DATABASE_NAME = "tralue.db";
 	static final String TABLE_PROVIDERS = "providers";
 	static final String TABLE_VALUES = "point_values";
@@ -44,7 +44,9 @@ public class OpenHelper extends SQLiteOpenHelper {
 	static final String KEY_CARRIER_NOTES = "carrier_notes";
 	
 	//used in transfer programs table
+	static final String KEY_TRANSFERRING_PROGRAM = "transferring_point_program";
 	static final String KEY_PARTNER_PROGRAM = "partner_points_program";
+	static final String KEY_TRANSFER_VALUE = "standard_transfer_value";
 	
 	//db setup from demo program
 	static final String COL_ORIGIN = "origin";
@@ -62,12 +64,19 @@ public class OpenHelper extends SQLiteOpenHelper {
 	static final String spirit = "spirit";
 	static final String alaska = "alaska";
 	static final String ba = "ba";
-	//not yet implemented
 	static final String mr = "mr";
 	static final String ur = "ur";
 	static final String ty = "ty";
-	static final String arrival = "arrival";
 	static final String spg = "spg";
+	//not yet implemented
+	static final String arrival = "arrival";
+	static final String amtrak = "amtrak";
+	static final String singapore = "singapore";
+	static final String thai = "thai";
+	static final String korean = "korean";
+	static final String alitalia = "alitalia";
+	static final String cathay_pacific = "cathay_pacific";
+	static final String virgin_atlantic = "virgin_atlantic";
 	
 	//classes of service
 	static final String economy = "economy";
@@ -89,6 +98,8 @@ public class OpenHelper extends SQLiteOpenHelper {
 	static final String managua = "Managua - MGA";
 	static final String delhi = "New Delhi - DEL";
 	
+	static final CardCatalog cat = new CardCatalog();
+	
 	public OpenHelper (Context context) {
 		super(context, DATABASE_NAME, null, DATABASE_VERSION);
 	}
@@ -99,7 +110,7 @@ public class OpenHelper extends SQLiteOpenHelper {
 		rwdb.execSQL("DROP TABLE IF EXISTS " + TABLE_COMPILED_AWARDS);
 		rwdb.execSQL("DROP TABLE IF EXISTS " + TABLE_PARTNERS);
 		rwdb.execSQL("DROP TABLE IF EXISTS " + TABLE_AIRLINE_NAMES);
-		//rwdb.execSQL("DROP TABLE IF EXISTS " + TABLE_VALUES);
+//		rwdb.execSQL("DROP TABLE IF EXISTS " + TABLE_VALUES);
 		rwdb.setTransactionSuccessful();
 		rwdb.endTransaction();
 		
@@ -215,13 +226,33 @@ public class OpenHelper extends SQLiteOpenHelper {
         	//corrected a pricing error
         	//nada in values
         }
+        case 45: {
+        	//nada in values
+        }
+        case 46: {
+        	//added new programs (ty and singapore)
+        	//added new transfer partners (ty and, separately, singapore)
+        }
+        case 47: {
+        	//trivial error corrected where ba was left in place instead of singapore
+        }
+        //after 47, realizing that i don't care anymore, unless i make a change to the table of values
+        case 50: {
+        	//added singapore and thank you points to the database
+        	rwdb.execSQL("INSERT INTO point_values (points_program, points_value) VALUES ('singapore', 0)");
+        	rwdb.execSQL("INSERT INTO point_values (points_program, points_value) VALUES ('ty', 0)");
+        }
+        case 54: {
+        	//uh-oh, i changed a column name and did not update the schema! :X
+        }
 		}
 		
-		//onCreate(db);
+//		onCreate(rwdb);
 		createProviders(rwdb);
 		createAwardChartDB(rwdb);
 		createPartnersTable(rwdb);
 		createCarrierNameTable(rwdb);
+//		createValues(rwdb);
 	}
 	
 	public void onCreate (SQLiteDatabase rwdb) {
@@ -260,7 +291,14 @@ public class OpenHelper extends SQLiteOpenHelper {
 	}
 	
 	private void createValues(SQLiteDatabase rwdb) {
+		System.out.println("Creating values.");
+		rwdb.beginTransaction();
+		System.out.println("Transaction begun.");
 		rwdb.execSQL("CREATE TABLE " + TABLE_VALUES + " (_id INTEGER PRIMARY KEY AUTOINCREMENT, points_program TEXT NOT NULL, points_value REAL)");
+		System.out.println("Table SQL loaded.");
+		rwdb.setTransactionSuccessful();
+		rwdb.endTransaction();
+		System.out.println("Transaction successfullly ended.");
 		
 	}
 	
@@ -274,25 +312,57 @@ public class OpenHelper extends SQLiteOpenHelper {
 		rwdb.execSQL("INSERT INTO " + TABLE_AIRLINE_NAMES + " (" + KEY_CARRIERS + ", " + KEY_CARRIER_NAMES + ", " + KEY_CARRIER_NOTES + ") VALUES ('" + alaska + "', '" + "Alaska" + "', 'Alaska awards are weird. They are highly dependent on date, destination, and partner airline availability, which is in turn also highly volatile. Go to the Alaska website and verify your dates and the points required.')");
 		rwdb.execSQL("INSERT INTO " + TABLE_AIRLINE_NAMES + " (" + KEY_CARRIERS + ", " + KEY_CARRIER_NAMES + ", " + KEY_CARRIER_NOTES + ") VALUES ('" + spirit + "', '" + "Spirit" + "', 'Spirit awards at the low level are only available to persons with the Spirit Mastercard.')");
 		rwdb.execSQL("INSERT INTO " + TABLE_AIRLINE_NAMES + " (" + KEY_CARRIERS + ", " + KEY_CARRIER_NAMES + ") VALUES ('" + american + "', '" + "American" + "')");
+		rwdb.execSQL("INSERT INTO " + TABLE_AIRLINE_NAMES + " (" + KEY_CARRIERS + ", " + KEY_CARRIER_NAMES + ", " + KEY_CARRIER_NOTES + ") VALUES ('" + singapore + "', '" + "Singapore" + "', 'Most Singapore awards are not bookable via the website. You will need to the call Singapore KrisFlyer customer service line to book awards on partner airlines such as United.')");
+		rwdb.execSQL("INSERT INTO " + TABLE_AIRLINE_NAMES + " (" + KEY_CARRIERS + ", " + KEY_CARRIER_NAMES + ", " + KEY_CARRIER_NOTES + ") VALUES ('" + amtrak + "', '" + "Amtrak" + "', 'Amtrak can take multiple days and significant delays to reach a destination. Be sure that this is appropriate for you.')");
+		rwdb.execSQL("INSERT INTO " + TABLE_AIRLINE_NAMES + " (" + KEY_CARRIERS + ", " + KEY_CARRIER_NAMES + ", " + KEY_CARRIER_NOTES + ") VALUES ('" + thai + "', '" + "Thai Airways" + "', 'Thai Airways struggles financially and have historically threatened to gut their frequent flyer program as a way of improving their financials. Beware of holding points in the Royal Orchid Plus program.')");
+		rwdb.execSQL("INSERT INTO " + TABLE_AIRLINE_NAMES + " (" + KEY_CARRIERS + ", " + KEY_CARRIER_NAMES + ", " + KEY_CARRIER_NOTES + ") VALUES ('" + korean + "', '" + "Korean Air" + "', 'Korean Air miles cannot be used for one-way travel on partners.')");
+		rwdb.execSQL("INSERT INTO " + TABLE_AIRLINE_NAMES + " (" + KEY_CARRIERS + ", " + KEY_CARRIER_NAMES + ") VALUES ('" + alitalia + "', '" + "Alitalia" + "')");
+		rwdb.execSQL("INSERT INTO " + TABLE_AIRLINE_NAMES + " (" + KEY_CARRIERS + ", " + KEY_CARRIER_NAMES + ", " + KEY_CARRIER_NOTES + ") VALUES ('" + cathay_pacific + "', '" + "Cathay Pacific" + "', 'The Cathay Pacific Asia Miles frequent flyer program has a $50 fee to join the program.')");
+		rwdb.execSQL("INSERT INTO " + TABLE_AIRLINE_NAMES + " (" + KEY_CARRIERS + ", " + KEY_CARRIER_NAMES + ", " + KEY_CARRIER_NOTES + ") VALUES ('" + virgin_atlantic + "', '" + "Virgin Atlantic" + "', 'Heavy fuel surcharges on this airline often make it not worthwhile to redeem for coach travel. Stick to business class on Virgin Atlantic, people.')");
+		rwdb.execSQL("INSERT INTO " + TABLE_AIRLINE_NAMES + " (" + KEY_CARRIERS + ", " + KEY_CARRIER_NAMES + ", " + KEY_CARRIER_NOTES + ") VALUES ('" + arrival + "', '" + "Arrival" + "', '10% rebate on all points used for travel.')");
 		
+		
+		/*
+		 * 
+		 * static final String arrival = "arrival";
+	static final String amtrak = "amtrak";
+	static final String singapore = "singapore";
+	static final String thai = "thai";
+	static final String korean = "korean";
+	static final String alitalia = "alitalia";
+	static final String cathay_pacific = "cathay_pacific";
+	static final String virgin_atlantic = "virgin_atlantic";
+		 */
 		rwdb.setTransactionSuccessful();
 		rwdb.endTransaction();
 	}
 	
 	private void createPartnersTable(SQLiteDatabase rwdb) {
 		//add transfer rate sometime
-		rwdb.execSQL("CREATE TABLE " + TABLE_PARTNERS + " (" + KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " + KEY_POINTS_PROGRAM + " TEXT NOT NULL, " + KEY_PARTNER_PROGRAM + " TEXT NOT NULL)");
+		rwdb.execSQL("CREATE TABLE " + TABLE_PARTNERS + " (" + KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " + KEY_TRANSFERRING_PROGRAM + " TEXT NOT NULL, " + KEY_PARTNER_PROGRAM + " TEXT NOT NULL, " + KEY_TRANSFER_VALUE + " REAL NOT NULL)");
 		
-		rwdb.execSQL("INSERT INTO " + TABLE_PARTNERS + " (" + KEY_POINTS_PROGRAM + ", " + KEY_PARTNER_PROGRAM + ") VALUES ('" + ur + "', '" + united + "')");
-		rwdb.execSQL("INSERT INTO " + TABLE_PARTNERS + " (" + KEY_POINTS_PROGRAM + ", " + KEY_PARTNER_PROGRAM + ") VALUES ('" + ur + "', '" + ba + "')");
+		//Ultimate Rewards transfer partners
+		rwdb.execSQL("INSERT INTO " + TABLE_PARTNERS + " (" + KEY_TRANSFERRING_PROGRAM + ", " + KEY_PARTNER_PROGRAM + ", " + KEY_TRANSFER_VALUE + ") VALUES ('" + ur + "', '" + united + "', 1.0)");
+		rwdb.execSQL("INSERT INTO " + TABLE_PARTNERS + " (" + KEY_TRANSFERRING_PROGRAM + ", " + KEY_PARTNER_PROGRAM + ", " + KEY_TRANSFER_VALUE + ") VALUES ('" + ur + "', '" + ba + "', 1.0)");
+		rwdb.execSQL("INSERT INTO " + TABLE_PARTNERS + " (" + KEY_TRANSFERRING_PROGRAM + ", " + KEY_PARTNER_PROGRAM + ", " + KEY_TRANSFER_VALUE + ") VALUES ('" + ur + "', '" + singapore + "', 1.0)");
+		rwdb.execSQL("INSERT INTO " + TABLE_PARTNERS + " (" + KEY_TRANSFERRING_PROGRAM + ", " + KEY_PARTNER_PROGRAM + ", " + KEY_TRANSFER_VALUE + ") VALUES ('" + ur + "', '" + korean + "', 1.0)");
 		
-		rwdb.execSQL("INSERT INTO " + TABLE_PARTNERS + " (" + KEY_POINTS_PROGRAM + ", " + KEY_PARTNER_PROGRAM + ") VALUES ('" + mr + "', '" + delta + "')");
-		rwdb.execSQL("INSERT INTO " + TABLE_PARTNERS + " (" + KEY_POINTS_PROGRAM + ", " + KEY_PARTNER_PROGRAM + ") VALUES ('" + mr + "', '" + ba + "')");
+		//Membership Rewards transfer partners
+		rwdb.execSQL("INSERT INTO " + TABLE_PARTNERS + " (" + KEY_TRANSFERRING_PROGRAM + ", " + KEY_PARTNER_PROGRAM + ", " + KEY_TRANSFER_VALUE + ") VALUES ('" + mr + "', '" + delta + "', 1.0)");
+		rwdb.execSQL("INSERT INTO " + TABLE_PARTNERS + " (" + KEY_TRANSFERRING_PROGRAM + ", " + KEY_PARTNER_PROGRAM + ", " + KEY_TRANSFER_VALUE + ") VALUES ('" + mr + "', '" + ba + "', 1.0)");
+		rwdb.execSQL("INSERT INTO " + TABLE_PARTNERS + " (" + KEY_TRANSFERRING_PROGRAM + ", " + KEY_PARTNER_PROGRAM + ", " + KEY_TRANSFER_VALUE + ") VALUES ('" + mr + "', '" + singapore + "', 1.0)");
 		
-		rwdb.execSQL("INSERT INTO " + TABLE_PARTNERS + " (" + KEY_POINTS_PROGRAM + ", " + KEY_PARTNER_PROGRAM + ") VALUES ('" + spg + "', '" + ba + "')");
-		rwdb.execSQL("INSERT INTO " + TABLE_PARTNERS + " (" + KEY_POINTS_PROGRAM + ", " + KEY_PARTNER_PROGRAM + ") VALUES ('" + spg + "', '" + delta + "')");
-		rwdb.execSQL("INSERT INTO " + TABLE_PARTNERS + " (" + KEY_POINTS_PROGRAM + ", " + KEY_PARTNER_PROGRAM + ") VALUES ('" + spg + "', '" + united + "')");
-		rwdb.execSQL("INSERT INTO " + TABLE_PARTNERS + " (" + KEY_POINTS_PROGRAM + ", " + KEY_PARTNER_PROGRAM + ") VALUES ('" + spg + "', '" + american + "')");
+		//SPG transfer partners
+		rwdb.execSQL("INSERT INTO " + TABLE_PARTNERS + " (" + KEY_TRANSFERRING_PROGRAM + ", " + KEY_PARTNER_PROGRAM + ", " + KEY_TRANSFER_VALUE + ") VALUES ('" + spg + "', '" + ba + "', 10.0)");
+		rwdb.execSQL("INSERT INTO " + TABLE_PARTNERS + " (" + KEY_TRANSFERRING_PROGRAM + ", " + KEY_PARTNER_PROGRAM + ", " + KEY_TRANSFER_VALUE + ") VALUES ('" + spg + "', '" + delta + "', 10.0)");
+		rwdb.execSQL("INSERT INTO " + TABLE_PARTNERS + " (" + KEY_TRANSFERRING_PROGRAM + ", " + KEY_PARTNER_PROGRAM + ", " + KEY_TRANSFER_VALUE + ") VALUES ('" + spg + "', '" + united + "', 10.0)");
+		rwdb.execSQL("INSERT INTO " + TABLE_PARTNERS + " (" + KEY_TRANSFERRING_PROGRAM + ", " + KEY_PARTNER_PROGRAM + ", " + KEY_TRANSFER_VALUE + ") VALUES ('" + spg + "', '" + american + "', 10.0)");
+		rwdb.execSQL("INSERT INTO " + TABLE_PARTNERS + " (" + KEY_TRANSFERRING_PROGRAM + ", " + KEY_PARTNER_PROGRAM + ", " + KEY_TRANSFER_VALUE + ") VALUES ('" + spg + "', '" + singapore + "', 10.0)");
+		
+		//Thank You transfer partners (Citi program)
+		rwdb.execSQL("INSERT INTO " + TABLE_PARTNERS + " (" + KEY_TRANSFERRING_PROGRAM + ", " + KEY_PARTNER_PROGRAM + ", " + KEY_TRANSFER_VALUE + ") VALUES ('" + ty + "', '" + singapore + "', 1.0)");
+//		rwdb.execSQL("INSERT INTO " + TABLE_PARTNERS + " (" + KEY_TRANSFERRING_PROGRAM + ", " + KEY_PARTNER_PROGRAM + ", " + KEY_TRANSFER_VALUE + ") VALUES ('" + ty + "', '" + thai + "', 1.0)");
+//		rwdb.execSQL("INSERT INTO " + TABLE_PARTNERS + " (" + KEY_TRANSFERRING_PROGRAM + ", " + KEY_PARTNER_PROGRAM + ", " + KEY_TRANSFER_VALUE + ") VALUES ('" + ty + "', '" + cathay_pacific + "', 1.0)");
 	}
 	
 	private void createAwardChartDB(SQLiteDatabase rwdb) {
@@ -541,6 +611,13 @@ public class OpenHelper extends SQLiteOpenHelper {
 		//spirit
 		rwdb.execSQL("INSERT INTO " + TABLE_COMPILED_AWARDS + " (" + COL_AIRLINE + ", " + COL_CLASS + ", " + COL_ORIGIN + ", " + COL_DESTINATION + ", " + COL_COST + ", " + COL_AWARD_NOTES
 				+ ") VALUES ('" + spirit + "', '" + economy + "', '" + chi + "', '" + managua + "', " + 10000 + ", 'Price out and book each segment separately. The connection is in Miami. The cost is 10,000 miles booked separately and 15,000 miles if booked together.')");
+		//singapore (FAKE AND MADE UP)
+		rwdb.execSQL("INSERT INTO " + TABLE_COMPILED_AWARDS + " (" + COL_AIRLINE + ", " + COL_CLASS + ", " + COL_ORIGIN + ", " + COL_DESTINATION + ", " + COL_COST 
+				+ ") VALUES ('" + singapore + "', '" + economy + "', '" + chi + "', '" + managua + "', " + 35000 + ")");
+		rwdb.execSQL("INSERT INTO " + TABLE_COMPILED_AWARDS + " (" + COL_AIRLINE + ", " + COL_CLASS + ", " + COL_ORIGIN + ", " + COL_DESTINATION + ", " + COL_COST 
+				+ ") VALUES ('" + singapore + "', '" + business + "', '" + chi + "', '" + managua + "', " + 45000 + ")");
+		rwdb.execSQL("INSERT INTO " + TABLE_COMPILED_AWARDS + " (" + COL_AIRLINE + ", " + COL_CLASS + ", " + COL_ORIGIN + ", " + COL_DESTINATION + ", " + COL_COST 
+				+ ") VALUES ('" + singapore + "', '" + first + "', '" + chi + "', '" + managua + "', " + 65000 + ")");
 		//...to delhi
 				//united
 				rwdb.execSQL("INSERT INTO " + TABLE_COMPILED_AWARDS + " (" + COL_AIRLINE + ", " + COL_CLASS + ", " + COL_ORIGIN + ", " + COL_DESTINATION + ", " + COL_COST 
@@ -1567,7 +1644,6 @@ public class OpenHelper extends SQLiteOpenHelper {
         //SQLiteDatabase rwdb = this.getWritableDatabase();
 		db.beginTransaction();
 		
-        CardCatalog cat = new CardCatalog();
         for (Card c : cat.getCards()) {
             ContentValues values = new ContentValues();
 
@@ -1641,9 +1717,9 @@ public class OpenHelper extends SQLiteOpenHelper {
 		SQLiteDatabase rodb = this.getReadableDatabase();
 		Cursor cursor = rodb.rawQuery("SELECT * FROM " + TABLE_VALUES, null);
 		
-		TestFlight.log("Kicking off while loop.");
+//		TestFlight.log("Kicking off while loop.");
 		while (cursor.moveToNext()) {
-			TestFlight.log("Cursor's points_program is " + cursor.getString(cursor.getColumnIndex("points_program")) + " and value is " + cursor.getFloat(cursor.getColumnIndex("points_value")) + ".");
+//			TestFlight.log("Cursor's points_program is " + cursor.getString(cursor.getColumnIndex("points_program")) + " and value is " + cursor.getFloat(cursor.getColumnIndex("points_value")) + ".");
 			pvd.setPointsValue(cursor.getString(cursor.getColumnIndex("points_program")), cursor.getFloat(cursor.getColumnIndex("points_value")));
 		}
 		

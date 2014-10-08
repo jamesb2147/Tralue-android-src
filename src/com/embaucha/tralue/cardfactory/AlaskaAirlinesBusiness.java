@@ -30,7 +30,7 @@ public class AlaskaAirlinesBusiness extends Card {
         this.setChip("No");
         this.setNotes("Foreign transaction fee is not listed in terms and conditions. Annual companion fare for $118. Three miles per dollar earned " +
 				"on Alaska Airlines purchases.");
-        this.setUrl("http://thepointsguy.com/go/AlaskaVisaBizTD/");
+        this.setUrl("http://bit.ly/1rcInH1");
         this.setBusiness_personal("business");
         this.setIntended_audience("everyone");
         this.setImage(29);

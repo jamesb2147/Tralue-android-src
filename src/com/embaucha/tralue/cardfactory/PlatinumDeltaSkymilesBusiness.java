@@ -33,7 +33,7 @@ public class PlatinumDeltaSkymilesBusiness extends Card {
         this.setNotes("5,000 Medallion Qualifying Miles with signup bonus, 2 miles per dollar on Delta purchases, and first bag free. In addition, " +
 				"make $25,000 in purchases and earn 10,000 bonus miles and 10,000 MQMs each calendar year: make $50,000 in purchases and earn " +
 				"an additional 10,000 bonus miles and 10,000 MQMs each calendar year.");
-        this.setUrl("http://thepointsguy.com/go/DeltaPlatinumBizTD/");
+        this.setUrl("http://bit.ly/amex-skymiles-platinum-business");
         this.setBusiness_personal("business");
         this.setIntended_audience("everyone");
         this.setImage(20);

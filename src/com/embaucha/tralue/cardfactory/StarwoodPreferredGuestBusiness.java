@@ -31,7 +31,7 @@ public class StarwoodPreferredGuestBusiness extends Card {
         this.setChip("No");
         this.setNotes("Miles are the most portable of any program (e.g. this is the only card that allows direct transfers of miles to American AAdvantage). " +
 				"Unique experience offers can, apparently, be a decent deal. Plus, they really are unique.");
-        this.setUrl("http://thepointsguy.com/go/StarwoodBusinessTD/");
+        this.setUrl("http://bit.ly/amex-spg-business");
         this.setBusiness_personal("business");
         this.setIntended_audience("everyone");
         this.setImage(19);

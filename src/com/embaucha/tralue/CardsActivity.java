@@ -1,6 +1,6 @@
 package com.embaucha.tralue;
 
-import com.flurry.android.FlurryAgent;
+//import com.flurry.android.FlurryAgent;
 import com.testflightapp.lib.TestFlight;
 
 import android.content.Intent;
@@ -314,7 +314,7 @@ public class CardsActivity extends Fragment implements OnItemClickListener {
 	public void onStart()
 	{
 		super.onStart();
-		FlurryAgent.onStartSession(getActivity(), "B8HFG9HTK5C3RQRNNFY5");
+//		FlurryAgent.onStartSession(getActivity(), "B8HFG9HTK5C3RQRNNFY5");
 		TestFlight.log("Called Flurry.");
 	}
 	 
@@ -322,7 +322,7 @@ public class CardsActivity extends Fragment implements OnItemClickListener {
 	public void onStop()
 	{
 		super.onStop();		
-		FlurryAgent.onEndSession(getActivity());
+//		FlurryAgent.onEndSession(getActivity());
 		TestFlight.log("Stopped Flurry.");
 	}
 	

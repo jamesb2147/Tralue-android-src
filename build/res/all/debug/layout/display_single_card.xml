@@ -63,7 +63,7 @@
         	android:layout_width="wrap_content"
         	android:layout_height="wrap_content"
         	android:padding="1dp"
-        	android:text="@string/card_total_bonus"
+        	android:text="@string/card_total_bonus_text"
         	/>
     	<TextView 
         	android:layout_width="wrap_content"

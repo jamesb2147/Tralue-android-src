@@ -30,7 +30,7 @@ public class ClubCarlsonRewardsBusiness extends Card {
         this.setChip("No");
         this.setNotes("Double points for spend at Carlson Rezidor hotels. Also receive Club Carlson Gold status and last night free on awards stays " +
 				"(must stay at least two nights).");
-        this.setUrl("http://thepointsguy.com/go/CarlsonBizTD/");
+        this.setUrl("http://bit.ly/carlson-visa-business");
         this.setBusiness_personal("business");
         this.setIntended_audience("everyone");
         this.setImage(16);

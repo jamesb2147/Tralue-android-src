@@ -32,7 +32,7 @@ public class FreedomPersonal extends Card {
         this.setNotes("Points cannot be transferred to partners, unless you also hold a Chase card that can transfer points to partners. " +
         		"INO, having only the Freedom card only allows you to redeem for cash back. However, holding the Freedom and a Sapphire Preferred " +
         		"card allows you to pool points and transfer them to Membership Rewards (MR) partners.");
-        this.setUrl("http://www.thepointsguy.com/go/FreedomTD/");
+        this.setUrl("http://bit.ly/freedom-chase");
         this.setBusiness_personal("personal");
         this.setIntended_audience("everyone");
     }

@@ -33,7 +33,7 @@ public class SouthwestRapidRewardsPremierBusiness extends Card {
         this.setNotes("Earn 100,000 points in a year and receive the Southwest Companion Pass that allows one person to fly with you for free on any " +
 				"Southwest paid or award ticket for one year. Phenomenal value, for those who can make use of it! " +
 				"Also, 6,000 points every year you pay your annual fee.");
-        this.setUrl("http://thepointsguy.com/go/SouthwestPremierBusinessTD/");
+        this.setUrl("http://bit.ly/rapidrewards-premier-business");
         this.setBusiness_personal("business");
         this.setIntended_audience("everyone");
         this.setImage(27);

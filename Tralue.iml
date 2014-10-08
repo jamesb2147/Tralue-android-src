@@ -50,6 +50,7 @@
       <sourceFolder url="file://$MODULE_DIR$/tests/rs" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/tests/res" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/tests/resources" isTestSource="true" />
+      <excludeFolder url="file://$MODULE_DIR$/.git" />
       <excludeFolder url="file://$MODULE_DIR$/.gradle" />
       <excludeFolder url="file://$MODULE_DIR$/.idea" />
       <excludeFolder url="file://$MODULE_DIR$/build/apk" />
@@ -66,7 +67,7 @@
     <orderEntry type="jdk" jdkName="Android API 19 Platform" jdkType="Android SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" exported="" name="android-support-v4" level="project" />
-    <orderEntry type="library" exported="" name="Flurry_3.2.2" level="project" />
+    <orderEntry type="library" exported="" name="TestFlightLib" level="project" />
   </component>
 </module>
 

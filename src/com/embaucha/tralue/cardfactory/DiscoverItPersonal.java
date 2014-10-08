@@ -32,7 +32,7 @@ public class DiscoverItPersonal extends Card {
         this.setNotes("Discover is one of the more conservative issuers and is unlikely to issuer cards to heavy churners. " +
         		"They also offer little in the way of sign-up bonuses. However, the cash back promotions are occasionally useful. " +
         		"e.g. Six Flags often offers 5% cash back when paying with Discover.");
-        this.setUrl("http://thepointsguy.com/go/DiscoverItTD/");
+        this.setUrl("http://discvr.co/1nXEr2r");
         this.setBusiness_personal("personal");
         this.setIntended_audience("everyone");
         this.setImage(5);

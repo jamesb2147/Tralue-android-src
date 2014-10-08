@@ -21,8 +21,8 @@ public class UnitedMileagePlusExplorerPersonal extends Card {
         this.setAnnual_fee(95);
         this.setFee_waived_first_year(true);
         this.setPoints_program("united");
-        this.setSpend_bonus(50000);
-        this.setSpend_requirement(2000);
+        this.setSpend_bonus(30000);
+        this.setSpend_requirement(1000);
         this.setTime_to_reach_spend_in_months(3);
         this.setFirst_purchase_bonus(0);
         this.setPoints_per_dollar_spent_general_spend(1);
@@ -30,7 +30,7 @@ public class UnitedMileagePlusExplorerPersonal extends Card {
         this.setChip("No");
         this.setNotes("Spending $25k on your card in a year gets 10,000 bonus miles. 2 points per dollar on United purchases. " +
         		"The 50,000 mile offer is only available in Chase branches. This offer is not available online.");
-        //this.setUrl("none available");
+        this.setUrl("http://bit.ly/mp-explorer-chase");
         this.setBusiness_personal("personal");
         this.setIntended_audience("everyone");
         //this.setImage(32);

@@ -21,7 +21,7 @@ public class InkPlusBusiness extends Card {
         this.setAnnual_fee(95);
         this.setFee_waived_first_year(true);
         this.setPoints_program("ur");
-        this.setSpend_bonus(50000);
+        this.setSpend_bonus(70000);
         this.setSpend_requirement(5000);
         this.setTime_to_reach_spend_in_months(3);
         this.setFirst_purchase_bonus(0);
@@ -29,7 +29,7 @@ public class InkPlusBusiness extends Card {
         this.setForeign_transaction_fee(0);
         this.setChip("No");
         this.setNotes("Flexible/transferable points, portal bonuses, and 5x category earnings on communication services.");
-        this.setUrl("http://www.thepointsguy.com/go/InkPlusTD/");
+        this.setUrl("http://bit.ly/plus-chase");
         this.setBusiness_personal("business");
         this.setIntended_audience("everyone");
         this.setImage(22);

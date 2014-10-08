@@ -21,7 +21,7 @@ public class PlatinumCardBusiness extends Card {
         this.setAnnual_fee(450);
         this.setFee_waived_first_year(false);
         this.setPoints_program("mr");
-        this.setSpend_bonus(25000);
+        this.setSpend_bonus(40000);
         this.setSpend_requirement(5000);
         this.setTime_to_reach_spend_in_months(3);
         this.setFirst_purchase_bonus(0);
@@ -30,7 +30,7 @@ public class PlatinumCardBusiness extends Card {
         this.setChip("No");
         this.setNotes("$200 airline fee rebate available as a statement credit, access to several airlines lounges " +
         		"(and the new Centurion lounges), and reimbursement for Global Entry fees.");
-        this.setUrl("http://thepointsguy.com/go/BusinessPlatinumTD/");
+        this.setUrl("http://bit.ly/amex-platinum-business");
         this.setBusiness_personal("business");
         this.setIntended_audience("everyone");
         this.setImage(30);

@@ -32,7 +32,7 @@ public class DeltaReserveBusiness extends Card {
         this.setNotes("10,000 Mediallion Qualifying Miles after first purchase. Complimentary Skyclub access. Make $30,000 in purchases and " +
 				"earn 15,000 bonus miles and 15,000 MQMs each calendar year. Make $60,000 in purchases and earn an additional 15,000 bonus " +
 				"miles and 15,000 MQMs each calendar year.");
-        this.setUrl("http://thepointsguy.com/go/DeltaReserveBizTD/");
+        this.setUrl("http://bit.ly/delta-reserve-business");
         this.setBusiness_personal("business");
         this.setIntended_audience("everyone");
         this.setImage(21);

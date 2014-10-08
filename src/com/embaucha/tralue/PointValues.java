@@ -1,6 +1,6 @@
 package com.embaucha.tralue;
 
-import com.flurry.android.FlurryAgent;
+//import com.flurry.android.FlurryAgent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -15,10 +15,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class PointValues extends Fragment implements OnLongClickListener, OnCheckedChangeListener {
-	EditText delta, american, spirit, united, usair, jetblue, southwest, frontier, ba, alaska, ur, mr, carlson, arrival, spg, usbank, discover, lossrate, monthlyspend, amtrak;
-	EditText[] et_array = {delta, american, spirit, united, usair, jetblue, southwest, frontier, ba, alaska, ur, mr, carlson, arrival, spg, usbank, discover, lossrate, monthlyspend, amtrak};
-	TextView tv_delta, tv_american, tv_spirit, tv_united, tv_usair, tv_jetblue, tv_southwest, tv_frontier, tv_ba, tv_alaska, tv_ur, tv_mr, tv_carlson, tv_arrival, tv_spg, tv_usbank, tv_discover, tv_lossrate, tv_monthlyspend, tv_amtrak;
-	TextView[] tv_array = {tv_delta, tv_american, tv_spirit, tv_united, tv_usair, tv_jetblue, tv_southwest, tv_frontier, tv_ba, tv_alaska, tv_ur, tv_mr, tv_carlson, tv_arrival, tv_spg, tv_usbank, tv_discover, tv_lossrate, tv_monthlyspend, tv_amtrak};
+	EditText delta, american, spirit, united, usair, jetblue, southwest, frontier, ba, alaska, ur, mr, carlson, arrival, spg, usbank, discover, lossrate, monthlyspend, amtrak, singapore, ty;
+	EditText[] et_array = {delta, american, spirit, united, usair, jetblue, southwest, frontier, ba, alaska, ur, mr, carlson, arrival, spg, usbank, discover, lossrate, monthlyspend, amtrak, singapore, ty};
+	TextView tv_delta, tv_american, tv_spirit, tv_united, tv_usair, tv_jetblue, tv_southwest, tv_frontier, tv_ba, tv_alaska, tv_ur, tv_mr, tv_carlson, tv_arrival, tv_spg, tv_usbank, tv_discover, tv_lossrate, tv_monthlyspend, tv_amtrak, tv_singapore, tv_ty;
+	TextView[] tv_array = {tv_delta, tv_american, tv_spirit, tv_united, tv_usair, tv_jetblue, tv_southwest, tv_frontier, tv_ba, tv_alaska, tv_ur, tv_mr, tv_carlson, tv_arrival, tv_spg, tv_usbank, tv_discover, tv_lossrate, tv_monthlyspend, tv_amtrak, tv_singapore, tv_ty};
 	PVData pvd;
 	View layout;
 	
@@ -44,6 +44,8 @@ public class PointValues extends Fragment implements OnLongClickListener, OnChec
 	String arrival_point = "Arrival point";
 	String usbank_point = "US Bank FlexPoint";
 	String discover_point = "Discover point";
+	String singapore_mile = "Singapore KrisFlyer mile";
+	String ty_point = "Thank You point";
 	String lossrate_text = "This is the loss rate for laundering spend on your credit card. For example, Square incurs a 2.75% loss via service fees, while Amazon Payments currently offers no-fee transactions between persons up to $1000/month.";
 	String monthlyspend_text = "This is the amount you expect to spend on your next credit card on an ongoing basis. This is generally not useful for churners, but very useful for people who prefer to only have one card.";
 	
@@ -72,8 +74,8 @@ public class PointValues extends Fragment implements OnLongClickListener, OnChec
 	
 	private void repopulateArrays() {
 		//this array MUST remain in the same order as the PVData array!!!! ALWAYS!!!!!!!!
-		et_array = new EditText[] {delta, american, spirit, united, usair, jetblue, southwest, frontier, ba, alaska, ur, mr, carlson, arrival, spg, usbank, discover, lossrate, monthlyspend, amtrak};
-		tv_array = new TextView[] {tv_delta, tv_american, tv_spirit, tv_united, tv_usair, tv_jetblue, tv_southwest, tv_frontier, tv_ba, tv_alaska, tv_ur, tv_mr, tv_carlson, tv_arrival, tv_spg, tv_usbank, tv_discover, tv_lossrate, tv_monthlyspend, tv_amtrak};
+		et_array = new EditText[] {delta, american, spirit, united, usair, jetblue, southwest, frontier, ba, alaska, ur, mr, carlson, arrival, spg, usbank, discover, lossrate, monthlyspend, amtrak, singapore, ty};
+		tv_array = new TextView[] {tv_delta, tv_american, tv_spirit, tv_united, tv_usair, tv_jetblue, tv_southwest, tv_frontier, tv_ba, tv_alaska, tv_ur, tv_mr, tv_carlson, tv_arrival, tv_spg, tv_usbank, tv_discover, tv_lossrate, tv_monthlyspend, tv_amtrak, singapore, ty};
 	}
 	
 	private void assignListeners() {
@@ -140,6 +142,8 @@ public class PointValues extends Fragment implements OnLongClickListener, OnChec
 		spg = (EditText) layout.findViewById(R.id.et_spg);
 		usbank = (EditText) layout.findViewById(R.id.et_usbank);
 		discover = (EditText) layout.findViewById(R.id.et_discover);
+		singapore = (EditText) layout.findViewById(R.id.et_singapore);
+		ty = (EditText) layout.findViewById(R.id.et_ty);
 		lossrate = (EditText) layout.findViewById(R.id.et_lossrate);
 		monthlyspend = (EditText) layout.findViewById(R.id.et_monthlyspend);
 	}
@@ -163,6 +167,8 @@ public class PointValues extends Fragment implements OnLongClickListener, OnChec
 		tv_spg = (TextView) layout.findViewById(R.id.tv_spg);
 		tv_usbank = (TextView) layout.findViewById(R.id.tv_usbank);
 		tv_discover = (TextView) layout.findViewById(R.id.tv_discover);
+		tv_singapore = (TextView) layout.findViewById(R.id.tv_singapore);
+		tv_ty = (TextView) layout.findViewById(R.id.tv_ty);
 		tv_lossrate = (TextView) layout.findViewById(R.id.tv_lossrate);
 		tv_monthlyspend = (TextView) layout.findViewById(R.id.tv_monthlyspend);
 	}
@@ -204,6 +210,8 @@ public class PointValues extends Fragment implements OnLongClickListener, OnChec
 	
 	public void onResume() {
 		loadIt();
+		
+		System.out.println("PointValues resumed.");
 		
 		super.onResume();
 	}
@@ -306,8 +314,8 @@ public class PointValues extends Fragment implements OnLongClickListener, OnChec
 	public void onStart()
 	{
 		super.onStart();
-		FlurryAgent.onStartSession(getActivity(), "B8HFG9HTK5C3RQRNNFY5");
-		System.out.println("Called Flurry.");
+//		FlurryAgent.onStartSession(getActivity(), "B8HFG9HTK5C3RQRNNFY5");
+		System.out.println("PointValues onStart.");
 	}
 	
 	@Override
@@ -324,8 +332,8 @@ public class PointValues extends Fragment implements OnLongClickListener, OnChec
 	{
 		System.out.println("Point values stopped.");
 		super.onStop();		
-		FlurryAgent.onEndSession(getActivity());
-		System.out.println("Stopped Flurry.");
+//		FlurryAgent.onEndSession(getActivity());
+		System.out.println("PointValues stopped.");
 	}
 	
 	public boolean onLongClick(View v) {

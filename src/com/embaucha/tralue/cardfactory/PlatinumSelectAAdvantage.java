@@ -20,15 +20,15 @@ public class PlatinumSelectAAdvantage extends Card {
         this.setAnnual_fee(95);
         this.setFee_waived_first_year(true);
         this.setPoints_program("american");
-        this.setSpend_bonus(50000);
-        this.setSpend_requirement(3000);
+        this.setSpend_bonus(30000);
+        this.setSpend_requirement(1000);
         this.setTime_to_reach_spend_in_months(3);
         this.setFirst_purchase_bonus(0);
         this.setPoints_per_dollar_spent_general_spend(1);
         this.setForeign_transaction_fee(3);
         this.setChip("Chip and signature");
         this.setNotes("2 points per dollar on American purchases.");
-        this.setUrl("http://thepointsguy.com/go/CitiAAPlatMC50kTD/");
+        this.setUrl("http://bit.ly/1vIe7Jy");
         this.setBusiness_personal("personal");
         this.setIntended_audience("everyone");
     }

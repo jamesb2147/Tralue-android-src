@@ -20,15 +20,15 @@ public class CapitalOneVentureRewardsPersonal extends Card {
         this.setAnnual_fee(59);
         this.setFee_waived_first_year(false);
         this.setPoints_program("capone");
-        this.setSpend_bonus(10000);
-        this.setSpend_requirement(1000);
+        this.setSpend_bonus(40000);
+        this.setSpend_requirement(3000);
         this.setTime_to_reach_spend_in_months(3);
         this.setFirst_purchase_bonus(0);
         this.setPoints_per_dollar_spent_general_spend(2);
         this.setForeign_transaction_fee(0);
         this.setChip("No");
         this.setNotes("Points have a fixed value of 1 cent.");
-        this.setUrl("http://thepointsguy.com/go/VentureTD/");
+        this.setUrl("http://bit.ly/capone-venture");
         this.setBusiness_personal("personal");
         this.setIntended_audience("everyone");
     }

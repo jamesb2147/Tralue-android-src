@@ -21,8 +21,8 @@ public class PlatinumCardPersonal extends Card {
         this.setAnnual_fee(450);
         this.setFee_waived_first_year(false);
         this.setPoints_program("mr");
-        this.setSpend_bonus(25000);
-        this.setSpend_requirement(2000);
+        this.setSpend_bonus(40000);
+        this.setSpend_requirement(3000);
         this.setTime_to_reach_spend_in_months(3);
         this.setFirst_purchase_bonus(0);
         this.setPoints_per_dollar_spent_general_spend(1);
@@ -30,7 +30,7 @@ public class PlatinumCardPersonal extends Card {
         this.setChip("No");
         this.setNotes("$200 airline fee rebate, lounge access for Delta, American, and US Airways lounges, Global Entry fees are rebated, " +
         		"25% bonus on pay-with-points (1.25 cents per point fixed value), and Starwood Gold.");
-        this.setUrl("http://thepointsguy.com/go/AmexPlatinumTD/");
+        this.setUrl("http://bit.ly/amex-platinum-personal");
         this.setBusiness_personal("personal");
         this.setIntended_audience("everyone");
         this.setImage(9);

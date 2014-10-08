@@ -29,8 +29,8 @@ public class SapphirePersonal extends Card {
         this.setPoints_per_dollar_spent_general_spend(1);
         this.setForeign_transaction_fee(3);
         this.setChip("No");
-        this.setNotes("I am uncertain whether Chase considers this a different product from the Sapphire Preferred, which is important because the sign-up bonus for the Preferred is 4x the Sapphire. In addition, the Sapphire points are not transferrable to airline miles.");
-        this.setUrl("http://thepointsguy.com/go/SapphireTD/");
+        this.setNotes("The Sapphire points are not transferrable to airline miles.");
+        this.setUrl("http://bit.ly/chase-sapphire-comparison");
         this.setBusiness_personal("personal");
         this.setIntended_audience("everyone");
         this.setImage(11);

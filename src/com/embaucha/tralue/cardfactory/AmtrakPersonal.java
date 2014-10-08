@@ -29,7 +29,7 @@ public class AmtrakPersonal extends Card {
         this.setForeign_transaction_fee(3);
         this.setChip("No");
         this.setNotes("2 points per dollar on Amtrak purchases and a 5% points rebate on redemptions for Amtrak travel.");
-        this.setUrl("https://creditcards.chase.com/credit-cards/amtrak-guest-rewards-masterthis.aspx");
+        this.setUrl("http://bit.ly/1rcIpyx");
         this.setBusiness_personal("personal");
         this.setIntended_audience("everyone");
         this.setImage(32);

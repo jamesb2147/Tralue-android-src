@@ -5,8 +5,8 @@ import android.database.sqlite.SQLiteDatabase;
 
 public class PVData {
 	//this array MUST remain in the same order as the PointValues array!!!! ALWAYS!!!!!!!!
-	public static String[] airlines = {"delta", "usair", "united", "american", "ba", "southwest", "jetblue", "spirit", "frontier", "alaska", "ur", "mr", "carlson", "arrival", "spg", "usbank", "discover", "lossrate", "monthlyspend", "amtrak"};
-	public static float[] values = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+	public static String[] airlines = {"delta", "usair", "united", "american", "ba", "southwest", "jetblue", "spirit", "frontier", "alaska", "ur", "mr", "carlson", "arrival", "spg", "usbank", "discover", "lossrate", "monthlyspend", "amtrak", "singapore", "ty"};
+	public static float[] values = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
 	
 	SQLiteDatabase rodb, rwdb;
 	
@@ -22,6 +22,14 @@ public class PVData {
 		
 		op.updatePVData(this);
 		op.updatePointValues(this);
+		
+		rwdb.close();
+		rodb.close();
+	}
+	
+	public void closeDB() {
+		rwdb.close();
+		rodb.close();
 	}
 	
 	public String getPointsProgram(int i) {
