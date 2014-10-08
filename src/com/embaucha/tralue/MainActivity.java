@@ -1,9 +1,6 @@
 package com.embaucha.tralue;
 
 import ly.count.android.api.Countly;
-
-import com.testflightapp.lib.TestFlight;
-
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -29,7 +26,7 @@ public class MainActivity extends FragmentActivity {
 		setContentView(R.layout.activity_main);
 		
 		pagerAdapter = new DemoCollectionPagerAdapter(getSupportFragmentManager());
-		TestFlight.log("test");
+//		TestFlight.log("test");
 		viewPager = (ViewPager) findViewById(R.id.pager);
 		//viewPager.setOffscreenPageLimit(0);
 		viewPager.setAdapter(pagerAdapter);
@@ -112,7 +109,7 @@ public class MainActivity extends FragmentActivity {
 
 	    @Override
 	    public Fragment getItem(int i) {
-	    	TestFlight.log("Getting fragment number " + i);
+//	    	TestFlight.log("Getting fragment number " + i);
 	    	
 	    	switch (i) {
 	    	case 0: {
@@ -133,7 +130,7 @@ public class MainActivity extends FragmentActivity {
 	    		break;
 	    	}
 	    	default: {
-	    		TestFlight.log("Default fragment state.");
+//	    		TestFlight.log("Default fragment state.");
 	    		//fragment = getSupportFragmentManager().findFragmentById(R.id.tralue_fragment);
 	    		fragment = new Selector();
 	    		break;
@@ -159,13 +156,13 @@ public class MainActivity extends FragmentActivity {
 	    @Override
 	    public int getItemPosition(Object o) {
 	    	if (o instanceof CardsActivity) {
-	    		TestFlight.log("Card activity is being resorted...");
+//	    		TestFlight.log("Card activity is being resorted...");
 	    		((CardsActivity) o).resort();
-	    		TestFlight.log("Card activity resorted.");
+//	    		TestFlight.log("Card activity resorted.");
 	    	} else if (o instanceof PointValues) {
-	    		TestFlight.log("Point values are being saved...");
+//	    		TestFlight.log("Point values are being saved...");
 	    		((PointValues) o).saveIt();
-	    		TestFlight.log("Point values are saved.");
+//	    		TestFlight.log("Point values are saved.");
 	    	}
 	    	
 	    	return super.getItemPosition(o);
@@ -189,7 +186,7 @@ public class MainActivity extends FragmentActivity {
 	    		return "Cards";
 	    	}
 	    	default: {
-	    		TestFlight.log("Default fragment state.");
+//	    		TestFlight.log("Default fragment state.");
 	    		//fragment = getSupportFragmentManager().findFragmentById(R.id.tralue_fragment);
 	    		return "Test fragment";
 	    	}

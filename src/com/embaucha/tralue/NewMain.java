@@ -18,7 +18,6 @@ import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
-import com.testflightapp.lib.TestFlight;
 import com.parse.Parse;
 import com.parse.ParseAnalytics;
 import com.parse.ParseObject;
@@ -145,10 +144,10 @@ public class NewMain extends Activity implements OnClickListener {
 			float cpm = price * 100 / Float.parseFloat(cursor.getString(cursor.getColumnIndex("cost_in_miles")));
 			if (cpm >= (float)1.0) {
 				//cpm is good, leave it alone
-				TestFlight.log("CPM is good; leave it alone.");
+//				TestFlight.log("CPM is good; leave it alone.");
 			} else if (cpm < (float)1) {
 				//cpm is no good; redeem points for cash/travel instead to buy ticket outright
-				TestFlight.log("Redeem points for cash instead. Setting CPM to 1.");
+//				TestFlight.log("Redeem points for cash instead. Setting CPM to 1.");
 				cpm = (float)1.0;
 			}
 			
@@ -162,7 +161,6 @@ public class NewMain extends Activity implements OnClickListener {
 	
 	@Override
 	public void onClick(View view) {
-		// TODO Auto-generated method stub
 		switch(checkRadioButton()) {
 		case R.id.economy: {
 			
@@ -197,7 +195,7 @@ public class NewMain extends Activity implements OnClickListener {
 			//break;
 		}
 		default: {
-			TestFlight.log("No selection found. Assuming economy.");
+//			TestFlight.log("No selection found. Assuming economy.");
 			economy.setChecked(true);
 			return checkRadioButton();
 		}
@@ -205,8 +203,8 @@ public class NewMain extends Activity implements OnClickListener {
 	}
 	
 	public void emailDeveloper(View v) {
-		TestFlight.passCheckpoint("Clicked button to send feedback from main program view.");
-		TestFlight.log("Clicked button to send feedback from main program view.");
+//		TestFlight.passCheckpoint("Clicked button to send feedback from main program view.");
+//		TestFlight.log("Clicked button to send feedback from main program view.");
 		
 		Intent email = new Intent(Intent.ACTION_SEND);
 		email.putExtra(Intent.EXTRA_EMAIL, new String[]{"feedback@embaucha.com"});		  
@@ -228,7 +226,7 @@ public class NewMain extends Activity implements OnClickListener {
 	    @Override
 	    public boolean onOptionsItemSelected(MenuItem item) {
 	        // Handle item selection
-	    	TestFlight.passCheckpoint("Used actionbar item in simple view.");
+//	    	TestFlight.passCheckpoint("Used actionbar item in simple view.");
 	    	
 	        switch (item.getItemId()) {
 	            case R.id.about_us: {
