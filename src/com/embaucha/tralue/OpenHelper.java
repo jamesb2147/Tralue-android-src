@@ -2,15 +2,23 @@ package com.embaucha.tralue;
 
 //import com.testflightapp.lib.TestFlight;
 
+import java.util.List;
+
+import com.parse.FindCallback;
+import com.parse.ParseException;
+import com.parse.ParseObject;
+import com.parse.ParseQuery;
+
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 //import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 public class OpenHelper extends SQLiteOpenHelper {
-	private static final int DATABASE_VERSION = 58;
+	private static final int DATABASE_VERSION = 59;
 	private static final String DATABASE_NAME = "tralue.db";
 	static final String TABLE_PROVIDERS = "providers";
 	static final String TABLE_VALUES = "point_values";
@@ -1215,7 +1223,7 @@ public class OpenHelper extends SQLiteOpenHelper {
 				
 	}
 	
-	private void createProviders(SQLiteDatabase db) {
+	private void createProviders(final SQLiteDatabase db) {
 		db.execSQL("CREATE TABLE " + TABLE_PROVIDERS + " (" + KEY_CARD_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " + KEY_NAME + " TEXT NOT NULL, " + KEY_ISSUER + " TEXT NOT NULL, " + KEY_ANNUAL_FEE + " INT, " + KEY_FEE_WAIVED_FIRST_YEAR + " TEXT NOT NULL, " + KEY_POINTS_PROGRAM + " TEXT NOT NULL, " + KEY_SPEND_BONUS + " INT, " + KEY_SPEND_REQUIREMENT + " INT, " + KEY_TIME_TO_REACH_SPEND_IN_MONTHS + " INT, " + KEY_FIRST_PURCHASE_BONUS + " INT, " + KEY_POINTS_PER_DOLLAR_SPENT_GENERAL_SPEND + " REAL, " + KEY_FOREIGN_TRANSACTION_FEE + " REAL, " + KEY_CHIP + " TEXT NOT NULL, " + KEY_NOTES + " TEXT, " + KEY_URL + " TEXT, " + KEY_PLANNED_SPEND_PER_MONTH + " INT, " + KEY_LOSS_RATE + " REAL, " + KEY_BUSINESS_PERSONAL + " TEXT, " + KEY_INTENDED_AUDIENCE + " TEXT, " + KEY_IMAGE + " INT)");
 
 
@@ -1640,33 +1648,79 @@ public class OpenHelper extends SQLiteOpenHelper {
 				"'2 points per dollar on Amtrak purchases and a 5% points rebate on redemptions for Amtrak travel.', 'https://creditcards.chase.com/credit-cards/amtrak-guest-rewards-mastercard.aspx', " +
 				"'business', 'everyone', 32)");
 				*/
+		
+		
+		ParseQuery<ParseObject> parseQuery = ParseQuery.getQuery("Cards");
+		parseQuery.findInBackground(new FindCallback<ParseObject>() {
+			public void done(List<ParseObject> cardList, ParseException e) {
+				if (e == null) {
+					System.out.println("GOT CARDS IN OpenHelper.");
+					
+					db.beginTransaction();
+					
+					for (ParseObject card : cardList) {
+						ContentValues values = new ContentValues();
+						
+						values.put(KEY_NAME, card.getString("name"));
+						values.put(KEY_ISSUER, card.getString("issuer"));
+						values.put(KEY_ANNUAL_FEE, (card.getNumber("annual_fee")).intValue());
+						values.put(KEY_FEE_WAIVED_FIRST_YEAR, card.getBoolean("fee_waived_first_year"));
+						values.put(KEY_POINTS_PROGRAM, card.getString("points_program"));
+						values.put(KEY_SPEND_BONUS, (card.getNumber("spend_bonus")).intValue());
+						values.put(KEY_SPEND_REQUIREMENT, (card.getNumber("spend_requirement")).intValue());
+						values.put(KEY_TIME_TO_REACH_SPEND_IN_MONTHS, (card.getNumber("time_to_reach_spend_in_months")).intValue());
+						values.put(KEY_FIRST_PURCHASE_BONUS, (card.getNumber("first_purchase_bonus")).intValue());
+						values.put(KEY_POINTS_PER_DOLLAR_SPENT_GENERAL_SPEND, (card.getNumber("points_per_dollar_spent_general_spend")).floatValue());
+						values.put(KEY_FOREIGN_TRANSACTION_FEE, (card.getNumber("foreign_transaction_fee")).floatValue());
+						values.put(KEY_CHIP, card.getString("chip"));
+						values.put(KEY_NOTES, card.getString("notes"));
+						values.put(KEY_URL, card.getString("url"));
+						values.put(KEY_BUSINESS_PERSONAL, card.getString("business_personal"));
+						values.put(KEY_INTENDED_AUDIENCE, card.getString("intended_audience"));
+						values.put(KEY_IMAGE, (card.getNumber("image")).intValue());
+						
+						NewListOfCards.update();
+						
+						db.insert(TABLE_PROVIDERS, null, values);
+					}
+					
+					db.setTransactionSuccessful();
+					db.endTransaction();
+					
+//					notifyDataSetChanged();
+//					this.refreshDataSet();
+				} else {
+					Log.d("getCardsList","Error: " + e.getMessage());
+				}
+			}
+		});
 
         //SQLiteDatabase rwdb = this.getWritableDatabase();
 		db.beginTransaction();
 		
-        for (Card c : cat.getCards()) {
-            ContentValues values = new ContentValues();
-
-            values.put(KEY_NAME, c.getName());
-            values.put(KEY_ISSUER, c.getIssuer());
-            values.put(KEY_ANNUAL_FEE, c.getAnnual_fee());
-            values.put(KEY_FEE_WAIVED_FIRST_YEAR, c.isFee_waived_first_year());
-            values.put(KEY_POINTS_PROGRAM, c.getPoints_program());
-            values.put(KEY_SPEND_BONUS, c.getSpend_bonus());
-            values.put(KEY_SPEND_REQUIREMENT, c.getSpend_requirement());
-            values.put(KEY_TIME_TO_REACH_SPEND_IN_MONTHS, c.getTime_to_reach_spend_in_months());
-            values.put(KEY_FIRST_PURCHASE_BONUS, c.getFirst_purchase_bonus());
-            values.put(KEY_POINTS_PER_DOLLAR_SPENT_GENERAL_SPEND, c.getPoints_per_dollar_spent_general_spend());
-            values.put(KEY_FOREIGN_TRANSACTION_FEE, c.getForeign_transaction_fee());
-            values.put(KEY_CHIP, c.getChip());
-            values.put(KEY_NOTES, c.getNotes());
-            values.put(KEY_URL, c.getUrl());
-            values.put(KEY_BUSINESS_PERSONAL, c.getBusiness_personal());
-            values.put(KEY_INTENDED_AUDIENCE, c.getIntended_audience());
-            values.put(KEY_IMAGE, c.getImage());
-
-            db.insert(TABLE_PROVIDERS, null, values);
-        }
+//        for (Card c : cat.getCards()) {
+//            ContentValues values = new ContentValues();
+//
+//            values.put(KEY_NAME, c.getName());
+//            values.put(KEY_ISSUER, c.getIssuer());
+//            values.put(KEY_ANNUAL_FEE, c.getAnnual_fee());
+//            values.put(KEY_FEE_WAIVED_FIRST_YEAR, c.isFee_waived_first_year());
+//            values.put(KEY_POINTS_PROGRAM, c.getPoints_program());
+//            values.put(KEY_SPEND_BONUS, c.getSpend_bonus());
+//            values.put(KEY_SPEND_REQUIREMENT, c.getSpend_requirement());
+//            values.put(KEY_TIME_TO_REACH_SPEND_IN_MONTHS, c.getTime_to_reach_spend_in_months());
+//            values.put(KEY_FIRST_PURCHASE_BONUS, c.getFirst_purchase_bonus());
+//            values.put(KEY_POINTS_PER_DOLLAR_SPENT_GENERAL_SPEND, c.getPoints_per_dollar_spent_general_spend());
+//            values.put(KEY_FOREIGN_TRANSACTION_FEE, c.getForeign_transaction_fee());
+//            values.put(KEY_CHIP, c.getChip());
+//            values.put(KEY_NOTES, c.getNotes());
+//            values.put(KEY_URL, c.getUrl());
+//            values.put(KEY_BUSINESS_PERSONAL, c.getBusiness_personal());
+//            values.put(KEY_INTENDED_AUDIENCE, c.getIntended_audience());
+//            values.put(KEY_IMAGE, c.getImage());
+//
+//            db.insert(TABLE_PROVIDERS, null, values);
+//        }
         
         db.setTransactionSuccessful();
         db.endTransaction();

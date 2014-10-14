@@ -3,6 +3,12 @@ package com.embaucha.tralue;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.List;
+
+import com.parse.FindCallback;
+import com.parse.ParseObject;
+import com.parse.ParseQuery;
+import com.parse.ParseException;
 
 import ly.count.android.api.Countly;
 
@@ -14,6 +20,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v4.widget.SimpleCursorAdapter;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Toast;
@@ -25,6 +32,8 @@ public class NewListOfCards extends Activity implements OnItemClickListener {
 	String origin, destination, service_class;
 	float price;
 	static String percentage = "percentage_of_award";
+	ListView listView;
+	static NewListAdapter adapter;
 	
 	public void onCreate(Bundle savedInstanceState) {
 //		TestFlight.passCheckpoint("Loaded the new list of cards.");
@@ -36,6 +45,17 @@ public class NewListOfCards extends Activity implements OnItemClickListener {
 		//listview id is lv
 		OpenHelper oh = new OpenHelper(this);
 		rodb = oh.getReadableDatabase();
+		
+		ParseQuery<ParseObject> parseQuery = ParseQuery.getQuery("Cards");
+		parseQuery.findInBackground(new FindCallback<ParseObject>() {
+			public void done(List<ParseObject> cardList, ParseException e) {
+				if (e == null) {
+					//magic sauce goes here
+				} else {
+					Log.d("getCardsList","Error: " + e.getMessage());
+				}
+			}
+		});
 		
 		String ORDER = percentage + " DESC";
 		String query = "SELECT *, CASE WHEN " + OpenHelper.KEY_TRANSFERRING_PROGRAM + " != NULL THEN (" + OpenHelper.KEY_SPEND_BONUS + " + " + OpenHelper.KEY_FIRST_PURCHASE_BONUS + ") * 100 * " + OpenHelper.KEY_TRANSFER_VALUE + " / " + OpenHelper.COL_COST + " ELSE (" + OpenHelper.KEY_SPEND_BONUS + " + " + OpenHelper.KEY_FIRST_PURCHASE_BONUS + ") * 100 / " + OpenHelper.COL_COST + " END AS " + percentage + 
@@ -166,8 +186,8 @@ public class NewListOfCards extends Activity implements OnItemClickListener {
 			cursor2.moveToFirst();
 		} while (cursor.moveToNext());
 		
-		SimpleCursorAdapter adapter = new SimpleCursorAdapter(this, R.layout.new_list_view_item, cursor, fromColumns, toViews, 0);
-		ListView listView = ((ListView) findViewById(R.id.lv));
+		SimpleCursorAdapter simpleAdapter = new SimpleCursorAdapter(this, R.layout.new_list_view_item, cursor, fromColumns, toViews, 0);
+		listView = ((ListView) findViewById(R.id.lv));
 		
 		//sort the garbage
 		Comparator<CardContainer[]> myComparator = new Comparator<CardContainer[]>() {
@@ -200,9 +220,9 @@ public class NewListOfCards extends Activity implements OnItemClickListener {
 		 Collections.sort(toDisplay, myComparator);
 		
 		//new adapter test (this will fail)
-		listView.setAdapter(new NewListAdapter(this, toDisplay));
+		adapter = new NewListAdapter(this, toDisplay);
+		listView.setAdapter(adapter);
 		
-//		listView.setAdapter(adapter);
 		listView.setOnItemClickListener(this);
 	}
 	
@@ -212,6 +232,10 @@ public class NewListOfCards extends Activity implements OnItemClickListener {
 		destination = intent.getStringExtra("destination");
 		service_class = intent.getStringExtra("service_class");
 		price = intent.getFloatExtra("price", 0);
+	}
+	
+	protected static void update() {
+		adapter.notifyDataSetChanged();
 	}
 	
 	

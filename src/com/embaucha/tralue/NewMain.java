@@ -42,7 +42,7 @@ public class NewMain extends Activity implements OnClickListener {
 //		TestFlight.takeOff(this.getApplication(), "34e328e0-8dd4-4a6a-8f71-16c5c00d345b");
 		Countly.sharedInstance().init(this, "http://countly.embaucha.com", "a731bfa33eb9c5d2455b10120c778d06ffd73a12");
 //		Parse.enableLocalDatastore(this);
-		Parse.initialize(this, "u9ZfHSQYG9KQ5F3Z2Sfuqfj2MhZFjbOHSX7xviqu", "InvTtbMr77KxroQ7iJirIUAUbIiqeRxkOUEJjRiL");
+//		Parse.initialize(this, "u9ZfHSQYG9KQ5F3Z2Sfuqfj2MhZFjbOHSX7xviqu", "InvTtbMr77KxroQ7iJirIUAUbIiqeRxkOUEJjRiL");
 		
 		//test parse
 //		ParseObject testObject = new ParseObject("TestObject");
