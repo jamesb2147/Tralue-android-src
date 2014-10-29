@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Locale;
 
 import com.parse.FindCallback;
 import com.parse.ParseObject;
@@ -34,6 +35,7 @@ public class NewListOfCards extends Activity implements OnItemClickListener {
 	static String percentage = "percentage_of_award";
 	ListView listView;
 	static NewListAdapter adapter;
+	List<ParseObject> cardList, partnerList, awardList, carrierList;
 	
 	public void onCreate(Bundle savedInstanceState) {
 //		TestFlight.passCheckpoint("Loaded the new list of cards.");
@@ -48,11 +50,82 @@ public class NewListOfCards extends Activity implements OnItemClickListener {
 		
 		ParseQuery<ParseObject> parseQuery = ParseQuery.getQuery("Cards");
 		parseQuery.findInBackground(new FindCallback<ParseObject>() {
-			public void done(List<ParseObject> cardList, ParseException e) {
+			public void done(List<ParseObject> cards, ParseException e) {
 				if (e == null) {
 					//magic sauce goes here
+					System.out.println("Retrieved " + cards.size() + " cards in NewListOfCards.");
+					for (ParseObject card : cards) {
+//						CardContainer container2[] = new CardContainer[]{ new CardContainer(card.getString(OpenHelper.KEY_NAME), 
+//								cursor.getString(cursor.getColumnIndex(OpenHelper.KEY_CARRIER_NAMES)), 
+//								cursor.getFloat(cursor.getColumnIndex(percentage)), 
+//								origin, 
+//								destination, 
+//								service_class, 
+//								price, 
+//								cursor.getInt(cursor.getColumnIndex(OpenHelper.KEY_CARD_ID)))};
+//						
+//						toDisplay.add(container);
+						
+						System.out.println("Card found: " + card.getString(OpenHelper.KEY_NAME));
+					}
+					
+					cardList = cards;
+					
+					checkList();
 				} else {
 					Log.d("getCardsList","Error: " + e.getMessage());
+				}
+			}
+		});
+		
+		parseQuery = ParseQuery.getQuery("Partners");
+		parseQuery.findInBackground(new FindCallback<ParseObject>() {
+			public void done(List<ParseObject> partners, ParseException e) {
+				if (e == null) {
+					//magic sauce goes here
+					System.out.println("Retrieved " + partners.size() + " partners in NewListOfCards.");
+					
+					partnerList = partners;
+					
+					checkList();
+				} else {
+					Log.d("getPartnersList","Error: " + e.getMessage());
+				}
+			}
+		});
+		
+		parseQuery = ParseQuery.getQuery("Awards");
+		parseQuery.findInBackground(new FindCallback<ParseObject>() {
+			public void done(List<ParseObject> awards, ParseException e) {
+				if (e == null) {
+					//magic sauce goes here
+					System.out.println("Retrieved " + cardList.size() + " cards in NewListOfCards.");
+					
+					awardList = awards;
+					
+					checkList();
+				} else {
+					Log.d("getAwardsList","Error: " + e.getMessage());
+					//advise user to go back and try again?
+					//try using findInForeground?
+				}
+			}
+		});
+		
+		parseQuery = ParseQuery.getQuery("CarrierNames");
+		parseQuery.findInBackground(new FindCallback<ParseObject>() {
+			public void done(List<ParseObject> names, ParseException e) {
+				if (e == null) {
+					//magic sauce goes here
+					System.out.println("Retrieved " + cardList.size() + " cards in NewListOfCards.");
+					
+					carrierList = names;
+					
+					checkList();
+				} else {
+					Log.d("getNamesList","Error: " + e.getMessage());
+					//advise user to go back and try again?
+					//try using findInForeground?
 				}
 			}
 		});
@@ -190,32 +263,7 @@ public class NewListOfCards extends Activity implements OnItemClickListener {
 		listView = ((ListView) findViewById(R.id.lv));
 		
 		//sort the garbage
-		Comparator<CardContainer[]> myComparator = new Comparator<CardContainer[]>() {
-		    public int compare(CardContainer[] container1,CardContainer[] container2) {
-//		        magic sauce goes here
-		    	int container1_value, container2_value;
-		    	container1_value = 0;
-		    	container2_value = 0;
-		    	
-		    	if (container1.length > 0) {
-		    		container1_value += container1[0].getPercentage();
-		    	}
-		    	if (container1.length > 1) {
-		    		container1_value += container1[1].getPercentage();
-		    	}
-		    	
-		    	if (container2.length > 0) {
-		    		container2_value += container2[0].getPercentage();
-		    	}
-		    	if (container2.length > 1) {
-		    		container2_value += container2[1].getPercentage();
-		    	}
-		    	
-		    	//now, sort alphabetically when equal?
-		    	
-		    	return container2_value - container1_value;
-		    }
-		 };
+		
 		 
 		 Collections.sort(toDisplay, myComparator);
 		
@@ -225,6 +273,8 @@ public class NewListOfCards extends Activity implements OnItemClickListener {
 		
 		listView.setOnItemClickListener(this);
 	}
+	
+	
 	
 	private void loadValuesFromParent() {
 		Intent intent = getIntent();
@@ -238,34 +288,143 @@ public class NewListOfCards extends Activity implements OnItemClickListener {
 		adapter.notifyDataSetChanged();
 	}
 	
+	protected void checkList() {
+		if (cardList != null && partnerList != null && awardList != null && carrierList != null) {
+			generateList();
+		} else {
+			System.out.println("Nope, a list was null.");
+//			Log.d("Something was null.");
+		}
+	}
 	
-	//FIX THIS
-//	Comparator<CardContainer[]> myComparator = new Comparator<CardContainer[]>() {
-//	    public int compare(CardContainer[] container1,CardContainer[] container2) {
-////	        magic sauce goes here
-//	    	int container1_value, container2_value;
-//	    	container1_value = 0;
-//	    	container2_value = 0;
-//	    	
-//	    	if (container1.length > 0) {
-//	    		container1_value += container1[0].getPercentage();
-//	    	}
-//	    	if (container1.length > 1) {
-//	    		container1_value += container1[1].getPercentage();
-//	    	}
-//	    	
-//	    	if (container2.length > 0) {
-//	    		container2_value += container2[0].getPercentage();
-//	    	}
-//	    	if (container2.length > 1) {
-//	    		container2_value += container2[1].getPercentage();
-//	    	}
-//	    	
-//	    	//now, sort alphabetically when equal?
-//	    	
-//	    	return container1_value - container2_value;
-//	    }
-//	 };
+	protected void generateList() {
+		//insert fancy-pants sauce algorithm here
+		System.out.println("Running fancy-pants sauce algorithm.");
+		
+		ArrayList<CardContainer[]> toDisplay = new ArrayList<CardContainer[]>();
+		
+		for (ParseObject award : awardList) {
+//			System.out.println("Running through tests on award origin: " + award.getString("origin") + " and destination: " + award.getString("destination") + " and class: " + award.getString("class") + "and frequent flyer program: " + award.getString("point_program"));
+			//match origin, destination, and service_class
+			if ((award.getString("origin").toUpperCase(Locale.ENGLISH)).contains(origin.toUpperCase(Locale.ENGLISH)) && (award.getString("destination").toUpperCase(Locale.ENGLISH)).contains(destination.toUpperCase(Locale.ENGLISH)) && award.getString("class").equals(service_class)) {
+				System.out.println("Found a matcheroo!");
+				//check cards for that program
+				for (ParseObject card : cardList) {
+					if (card.getString("points_program").equals(award.getString("point_program"))) {
+						//only use business when appropriate?
+						System.out.println("For travel from: " + award.getString("origin") + " to: " + award.getString("destination") + " sign up for the: " + card.getString("name") + " and use the points via the " + card.getString("points_program") + " points program.");
+						
+						
+//						CardContainer(cursor.getString(cursor.getColumnIndex(OpenHelper.KEY_NAME)), 
+//								cursor.getString(cursor.getColumnIndex(OpenHelper.KEY_CARRIER_NAMES)), 
+//								cursor.getFloat(cursor.getColumnIndex(percentage)), 
+//								origin, 
+//								destination, 
+//								service_class, 
+//								price, 
+//								cursor.getInt(cursor.getColumnIndex(OpenHelper.KEY_CARD_ID))),
+						
+						CardContainer container[] = new CardContainer[] {new CardContainer(card.getString("name"),
+								properName(award.getString("point_program")),
+								calculatePercentage(card, award),
+								origin,
+								destination,
+								service_class,
+								price,
+								card.getObjectId())};
+						
+						toDisplay.add(container);
+					}
+				}
+				
+				//check partner programs... and their respective cards ;)
+				for (ParseObject partner : partnerList) {
+					if (partner.getString("partner_program").equals(award.getString("point_program"))) {
+						//ok, found a partner program, now for the cards...
+						for (ParseObject card : cardList) {
+							if (card.getString("points_program").equals(partner.getString("transferring_program"))) {
+								//you've found yourself a point-transferring card!!!
+								System.out.println("For travel from: " + award.getString("origin") + " to: " + award.getString("destination") + " sign up for the: " + card.getString("name") + " and use the points via the " + award.getString("point_program") + " points program.");
+								
+								CardContainer container[] = new CardContainer[] {new CardContainer(card.getString("name"),
+										properName(award.getString("point_program")),
+										calculatePercentage(card, partner, award),
+										origin,
+										destination,
+										service_class,
+										price,
+										card.getObjectId())};
+								
+								System.out.println("Get percentage shows: " + container[0].getPercentage());
+								System.out.println("Get percentage cast to an int shows: " + (int)container[0].getPercentage());
+								System.out.println("Get percentage cast to an int to a string shows: " + Integer.toString((int)container[0].getPercentage()));
+								
+								toDisplay.add(container);
+							}
+						}
+					}
+				}
+				//well, now that i'm finished with this particular carrier, time to move on to the next one...
+			}
+			
+		}
+		
+		compareAndSort(toDisplay);
+	}
+	
+	protected void compareAndSort(ArrayList<CardContainer[]> toDisplay) {
+		//define comparator -- now defined at end of class
+		
+		//assign and sort
+		Collections.sort(toDisplay, myComparator);
+		
+		assignAndDisplay(toDisplay);
+	}
+	
+	protected void assignAndDisplay(ArrayList<CardContainer[]> toDisplay) {
+		listView = ((ListView) findViewById(R.id.lv));
+		
+		adapter = new NewListAdapter(this, toDisplay);
+		
+		listView.setAdapter(adapter);
+		//listView.setOnItemClickListener(this);
+	}
+	
+	protected float calculatePercentage (ParseObject card, ParseObject award) {
+		int first_purchase_bonus = card.getNumber("first_purchase_bonus").intValue();
+		int spend_bonus = card.getNumber("spend_bonus").intValue();
+		int spend_requirement = card.getNumber("spend_requirement").intValue();
+		float general_spend_earning = card.getNumber("points_per_dollar_spent_general_spend").floatValue();
+		
+		int cost = award.getNumber("cost").intValue();
+		
+		System.out.println("Calculated direct % as: " + (float)((first_purchase_bonus + spend_bonus + (spend_requirement * general_spend_earning)) * 100 / (float)cost));
+		return (float)((first_purchase_bonus + spend_bonus + (spend_requirement * general_spend_earning)) * 100 / (float)cost);
+	}
+	
+	protected float calculatePercentage (ParseObject card, ParseObject partner, ParseObject award) {
+		int first_purchase_bonus = card.getNumber("first_purchase_bonus").intValue();
+		int spend_bonus = card.getNumber("spend_bonus").intValue();
+		int spend_requirement = card.getNumber("spend_requirement").intValue();
+		float general_spend_earning = card.getNumber("points_per_dollar_spent_general_spend").floatValue();
+		
+		float transfer_rate = partner.getNumber("transfer_rate").floatValue();
+		
+		int cost = award.getNumber("cost").intValue();
+		
+		System.out.println("Calculated transferred % as: " + (float)((first_purchase_bonus + spend_bonus + (spend_requirement * general_spend_earning)) * transfer_rate * 100 / (float)cost));
+		return (float)((first_purchase_bonus + spend_bonus + (spend_requirement * general_spend_earning)) * transfer_rate * 100 / (float)cost);
+	}
+	
+	protected String properName(String point_program) {
+		for (ParseObject carrier : carrierList) {
+			if (point_program.equals(carrier.getString("identifier"))) {
+				return carrier.getString("carrier_name");
+			}
+		}
+		
+		return point_program;
+	}
 	
 	@SuppressWarnings("unused")
 	@Override
@@ -278,7 +437,6 @@ public class NewListOfCards extends Activity implements OnItemClickListener {
 			System.out.println("More than one card selected.");
 			
 			intent = new Intent(this, NewCardSet.class);
-			//intent = new Intent(getActivity(), Test.class);
 //			TestFlight.log("String to save/pass: " + ((Cursor) parent.getItemAtPosition(position)).getString(((Cursor) parent.getItemAtPosition(position)).getColumnIndex("name")));
 //			TestFlight.log("compiled_awards_id to save: " + ((Cursor) parent.getItemAtPosition(position)).getInt(((Cursor) parent.getItemAtPosition(position)).getColumnIndex(OpenHelper.COL_ID)));
 			if (intent == null) {
@@ -365,4 +523,31 @@ public class NewListOfCards extends Activity implements OnItemClickListener {
 		super.onStop();
 		Countly.sharedInstance().onStop();
 	}
+	
+	Comparator<CardContainer[]> myComparator = new Comparator<CardContainer[]>() {
+	    public int compare(CardContainer[] container1,CardContainer[] container2) {
+//	        magic sauce goes here
+	    	int container1_value, container2_value;
+	    	container1_value = 0;
+	    	container2_value = 0;
+	    	
+	    	if (container1.length > 0) {
+	    		container1_value += container1[0].getPercentage();
+	    	}
+	    	if (container1.length > 1) {
+	    		container1_value += container1[1].getPercentage();
+	    	}
+	    	
+	    	if (container2.length > 0) {
+	    		container2_value += container2[0].getPercentage();
+	    	}
+	    	if (container2.length > 1) {
+	    		container2_value += container2[1].getPercentage();
+	    	}
+	    	
+	    	//now, sort alphabetically when equal?
+	    	
+	    	return container2_value - container1_value;
+	    }
+	 };
 }

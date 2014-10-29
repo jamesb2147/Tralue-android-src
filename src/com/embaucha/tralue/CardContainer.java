@@ -6,6 +6,7 @@ public class CardContainer {
 	String origin, destination, service_class;
 	float price;
 	int sql_id;
+	String nosql_id;
 	
 	//necessary information for display on NewListOfCards:
 	//name, percentage, key_carrier_names
@@ -25,6 +26,18 @@ public class CardContainer {
 		this.service_class = service_class;
 		this.price = price;
 		this.sql_id = sql_id;
+		
+	}
+	
+	public CardContainer(String name, String award_program, float percentage, String origin, String destination, String service_class, float price, String nosql_id) {
+		this.name = name;
+		this.award_program = award_program;
+		this.percentage = percentage;
+		this.origin = origin;
+		this.destination = destination;
+		this.service_class = service_class;
+		this.price = price;
+		this.nosql_id = nosql_id;
 		
 	}
 	
@@ -58,6 +71,10 @@ public class CardContainer {
 
 	public float getPrice() {
 		return price;
+	}
+	
+	public String getNosql_id() {
+		return nosql_id;
 	}
 
 }

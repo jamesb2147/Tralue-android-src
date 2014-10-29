@@ -18,7 +18,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
 public class OpenHelper extends SQLiteOpenHelper {
-	private static final int DATABASE_VERSION = 60;
+	private static final int DATABASE_VERSION = 61;
 	private static final String DATABASE_NAME = "tralue.db";
 	static final String TABLE_PROVIDERS = "providers";
 	static final String TABLE_VALUES = "point_values";

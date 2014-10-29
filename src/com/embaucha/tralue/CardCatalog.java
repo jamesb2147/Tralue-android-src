@@ -31,6 +31,7 @@ public class CardCatalog {
     	        if (e == null) {
     	        	//success
     	            Log.d("name", "Retrieved " + objects.size() + " cards from Parse.");
+    	            System.out.println("Retrieved " + objects.size() + " cards from Parse.");
     	            System.out.println("Got the object(s) from Parse!!!");
     	            cards_parse = objects;
     	        } else {
