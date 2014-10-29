@@ -515,9 +515,11 @@ public class NewDisplaySingleCard extends Activity {
 		//on carrier
 		((TextView)findViewById(R.id.card_carrier)).setText(award.getString("point_program"));
 		//miles provided by card bonuses
+		System.out.println("Hello?");
+		System.out.println("Miles from card: " + calculateBonusPoints(card) + " converted into String: " + Integer.toString(calculateBonusPoints(card)));
 		((TextView)findViewById(R.id.miles_from_card)).setText(Integer.toString(calculateBonusPoints(card)));
 		//percentage of needed miles earned by signup
-		((TextView)findViewById(R.id.card_percentage_of_miles)).setText(Float.toString(calculateBonusPoints(card)/award.getNumber("cost").floatValue()));
+//		((TextView)findViewById(R.id.card_percentage_of_miles)).setText(Float.toString(calculateBonusPoints(card)/award.getNumber("cost").floatValue()));
 		//spend per month to hit bonus
 		//annual fee
 		((TextView)findViewById(R.id.card_annual_fee)).setText(Integer.toString(card.getNumber("annual_fee").intValue()));
@@ -537,8 +539,8 @@ public class NewDisplaySingleCard extends Activity {
 //		TestFlight.log("Card selected is: " + card);
 		
 		//temporary until card_percentage_of_miles is fixed
-//		((TextView)findViewById(R.id.card_percentage_of_miles_text)).setVisibility(View.GONE);
-//		((TextView)findViewById(R.id.card_percentage_of_miles)).setVisibility(View.GONE);
+		((TextView)findViewById(R.id.card_percentage_of_miles_text)).setVisibility(View.GONE);
+		((TextView)findViewById(R.id.card_percentage_of_miles)).setVisibility(View.GONE);
 		
 		url = card.getString("url");
 		if (url != null) {

@@ -99,7 +99,7 @@ public class NewListOfCards extends Activity implements OnItemClickListener {
 			public void done(List<ParseObject> awards, ParseException e) {
 				if (e == null) {
 					//magic sauce goes here
-					System.out.println("Retrieved " + cardList.size() + " cards in NewListOfCards.");
+//					System.out.println("Retrieved " + cardList.size() + " cards in NewListOfCards.");
 					
 					awardList = awards;
 					
@@ -117,7 +117,7 @@ public class NewListOfCards extends Activity implements OnItemClickListener {
 			public void done(List<ParseObject> names, ParseException e) {
 				if (e == null) {
 					//magic sauce goes here
-					System.out.println("Retrieved " + cardList.size() + " cards in NewListOfCards.");
+//					System.out.println("Retrieved " + cardList.size() + " cards in NewListOfCards.");
 					
 					carrierList = names;
 					
@@ -152,124 +152,124 @@ public class NewListOfCards extends Activity implements OnItemClickListener {
 		//SELECT *, (spend_bonus + first_purchase_bonus) * 100 / cost_in_miles AS percentage FROM providers INNER JOIN partners ON providers.points_program=partners.points_program INNER JOIN compiled_awards ON partners.partner_points_program=compiled_awards.airline WHERE origin LIKE '%chi%' and destination like '%hkg%' and class_of_service='economy' ORDER BY percentage DESC;
 		
 		
-		Cursor cursor = rodb.rawQuery(query, null);
-		if (cursor.getCount() == 0) {
-//			TestFlight.log("Cursor is empty.");
-			Toast.makeText(getApplicationContext(), "We didn't find any results. :'-( Double check your location entries, then email us if you're still having issues.", Toast.LENGTH_LONG).show();
-		}
-		
-		String[] fromColumns = { OpenHelper.KEY_NAME, percentage, OpenHelper.KEY_CARRIER_NAMES };
-		int[] toViews = {R.id.card_text, R.id.card_text_2, R.id.card_text_3};
-		
-		
-		
-		//take top card, add all subsequent cards one at a time in percentage descending order where "via" matches and issuer does not,
-		//move to next card and repeat
-		//but only repeat for cards listed BELOW current card to avoid duplicates
-		int index = 0;
-		cursor.moveToFirst();
+//		Cursor cursor = rodb.rawQuery(query, null);
+//		if (cursor.getCount() == 0) {
+////			TestFlight.log("Cursor is empty.");
+//			Toast.makeText(getApplicationContext(), "We didn't find any results. :'-( Double check your location entries, then email us if you're still having issues.", Toast.LENGTH_LONG).show();
+//		}
+//		
+//		String[] fromColumns = { OpenHelper.KEY_NAME, percentage, OpenHelper.KEY_CARRIER_NAMES };
+//		int[] toViews = {R.id.card_text, R.id.card_text_2, R.id.card_text_3};
+//		
+//		
+//		
+//		//take top card, add all subsequent cards one at a time in percentage descending order where "via" matches and issuer does not,
+//		//move to next card and repeat
+//		//but only repeat for cards listed BELOW current card to avoid duplicates
+//		int index = 0;
+//		cursor.moveToFirst();
 //		Cursor cursor2 = cursor;
-		Cursor cursor2 = rodb.rawQuery(query, null);
-		
-		//
-		ArrayList<CardContainer[]> toDisplay = new ArrayList<CardContainer[]>();
-		
-		do {
-			//add each card individually
-			CardContainer container2[] = new CardContainer[]{ new CardContainer(cursor.getString(cursor.getColumnIndex(OpenHelper.KEY_NAME)), 
-					cursor.getString(cursor.getColumnIndex(OpenHelper.KEY_CARRIER_NAMES)), 
-					cursor.getFloat(cursor.getColumnIndex(percentage)), 
-					origin, 
-					destination, 
-					service_class, 
-					price, 
-					cursor.getInt(cursor.getColumnIndex(OpenHelper.KEY_CARD_ID)))};
-			
-			toDisplay.add(container2);
-			
-			index++;
-
-			System.out.println("Started iterating.");
-			System.out.println("Cursor rows: " + cursor.getCount());
-			System.out.println("Cursor columns: " + cursor.getColumnCount());
-			System.out.println("Cursor2 rows: " + cursor2.getCount());
-			System.out.println("Cursor2 columns: " + cursor2.getColumnCount());
-			System.out.println("Cursor isFirst: " + cursor.isFirst());
-			System.out.println("Cursor isLast: " + cursor.isLast());
-			System.out.println("Cursor2 rows: " + cursor2.isFirst());
-			System.out.println("Cursor2 columns: " + cursor2.isLast());
-			System.out.println("Cursor position: " + cursor.getPosition());
-			System.out.println("Cursor2 position: " + cursor2.getPosition());
-			
-			//Get cursor values (e.g. name, percentage, key_carrier_names [this is the "via" field??], and issuer)
-			//then compare key_carrier_name (if match, then keep!) and issuer (if match, then toss!)
-			
-			//use move to index instead?
-			for (int i =0; i < index; i++) {
-				cursor2.moveToNext();
-			}
-			
-			//use do/while instead with moveToFirst method?
-//			List<CardContainer[]> array = new ArrayList<CardContainer[]>();
-			
-			while (cursor2.moveToNext()) {
-				System.out.println("Iterating through cursor2. Current iteration: " + cursor2.getPosition());
-				if (!cursor.getString(cursor.getColumnIndex(OpenHelper.KEY_ISSUER)).equals(cursor2.getString(cursor2.getColumnIndex(OpenHelper.KEY_ISSUER)))) {
-					System.out.println("Issuers did not match!"); //or one is business and one is personal?
-					if (cursor.getString(cursor.getColumnIndex(OpenHelper.KEY_CARRIER_NAMES)).equals(cursor2.getString(cursor2.getColumnIndex(OpenHelper.KEY_CARRIER_NAMES)))) {
-						//woohoo! found a valid card combination to recommend!
-						//apply to @id/card_2_text for name of second card and make @id/plus_sign visible as well
-						System.out.println("Card with different issuers but a common transfer program found!");
-						System.out.println("Name: " + cursor.getString(cursor.getColumnIndex(OpenHelper.KEY_NAME)) + " - % miles needed: " + cursor.getFloat(cursor.getColumnIndex(percentage)) + " - via: " + cursor.getString(cursor.getColumnIndex(OpenHelper.KEY_CARRIER_NAMES)));
-						System.out.println("Name: " + cursor2.getString(cursor2.getColumnIndex(OpenHelper.KEY_NAME)) + " - % miles needed: " + cursor2.getFloat(cursor2.getColumnIndex(percentage)) + " - via: " + cursor2.getString(cursor2.getColumnIndex(OpenHelper.KEY_CARRIER_NAMES)));
-						
-						//necessary information for display on NewListOfCards:
-						//name, percentage, key_carrier_names
-						
-						//necessary information per bundle to pass to SingleCardDisplay:
-						//origin, destination, class of service, price
-						
-						//necessary information per card to pass to SingleCardDisplay:
-						//name, KEY_CARD_ID
-						
-						//public CardContainer(String name, String award_program, float percentage, String origin, String destination, String service_class, float price, sql_id int)
-						CardContainer container[] = new CardContainer[]{ new CardContainer(cursor.getString(cursor.getColumnIndex(OpenHelper.KEY_NAME)), 
-																							cursor.getString(cursor.getColumnIndex(OpenHelper.KEY_CARRIER_NAMES)), 
-																							cursor.getFloat(cursor.getColumnIndex(percentage)), 
-																							origin, 
-																							destination, 
-																							service_class, 
-																							price, 
-																							cursor.getInt(cursor.getColumnIndex(OpenHelper.KEY_CARD_ID))),
-																		new CardContainer(cursor2.getString(cursor2.getColumnIndex(OpenHelper.KEY_NAME)),
-																							cursor2.getString(cursor2.getColumnIndex(OpenHelper.KEY_CARRIER_NAMES)),
-																							cursor2.getFloat(cursor2.getColumnIndex(percentage)),
-																							origin,
-																							destination,
-																							service_class,
-																							price,
-																							cursor2.getInt(cursor2.getColumnIndex(OpenHelper.KEY_CARD_ID)))};
-						toDisplay.add(container);
-					}
-				}
-			}
-			
-			System.out.println("Cursor position: " + cursor.getPosition());
-			System.out.println("Cursor2 position: " + cursor2.getPosition());
-			cursor2.moveToFirst();
-		} while (cursor.moveToNext());
-		
-		SimpleCursorAdapter simpleAdapter = new SimpleCursorAdapter(this, R.layout.new_list_view_item, cursor, fromColumns, toViews, 0);
+//		Cursor cursor2 = rodb.rawQuery(query, null);
+//		
+//		//
+//		ArrayList<CardContainer[]> toDisplay = new ArrayList<CardContainer[]>();
+//		
+//		do {
+//			//add each card individually
+//			CardContainer container2[] = new CardContainer[]{ new CardContainer(cursor.getString(cursor.getColumnIndex(OpenHelper.KEY_NAME)), 
+//					cursor.getString(cursor.getColumnIndex(OpenHelper.KEY_CARRIER_NAMES)), 
+//					cursor.getFloat(cursor.getColumnIndex(percentage)), 
+//					origin, 
+//					destination, 
+//					service_class, 
+//					price, 
+//					cursor.getInt(cursor.getColumnIndex(OpenHelper.KEY_CARD_ID)))};
+//			
+//			toDisplay.add(container2);
+//			
+//			index++;
+//
+//			System.out.println("Started iterating.");
+//			System.out.println("Cursor rows: " + cursor.getCount());
+//			System.out.println("Cursor columns: " + cursor.getColumnCount());
+//			System.out.println("Cursor2 rows: " + cursor2.getCount());
+//			System.out.println("Cursor2 columns: " + cursor2.getColumnCount());
+//			System.out.println("Cursor isFirst: " + cursor.isFirst());
+//			System.out.println("Cursor isLast: " + cursor.isLast());
+//			System.out.println("Cursor2 rows: " + cursor2.isFirst());
+//			System.out.println("Cursor2 columns: " + cursor2.isLast());
+//			System.out.println("Cursor position: " + cursor.getPosition());
+//			System.out.println("Cursor2 position: " + cursor2.getPosition());
+//			
+//			//Get cursor values (e.g. name, percentage, key_carrier_names [this is the "via" field??], and issuer)
+//			//then compare key_carrier_name (if match, then keep!) and issuer (if match, then toss!)
+//			
+//			//use move to index instead?
+//			for (int i =0; i < index; i++) {
+//				cursor2.moveToNext();
+//			}
+//			
+//			//use do/while instead with moveToFirst method?
+////			List<CardContainer[]> array = new ArrayList<CardContainer[]>();
+//			
+//			while (cursor2.moveToNext()) {
+//				System.out.println("Iterating through cursor2. Current iteration: " + cursor2.getPosition());
+//				if (!cursor.getString(cursor.getColumnIndex(OpenHelper.KEY_ISSUER)).equals(cursor2.getString(cursor2.getColumnIndex(OpenHelper.KEY_ISSUER)))) {
+//					System.out.println("Issuers did not match!"); //or one is business and one is personal?
+//					if (cursor.getString(cursor.getColumnIndex(OpenHelper.KEY_CARRIER_NAMES)).equals(cursor2.getString(cursor2.getColumnIndex(OpenHelper.KEY_CARRIER_NAMES)))) {
+//						//woohoo! found a valid card combination to recommend!
+//						//apply to @id/card_2_text for name of second card and make @id/plus_sign visible as well
+//						System.out.println("Card with different issuers but a common transfer program found!");
+//						System.out.println("Name: " + cursor.getString(cursor.getColumnIndex(OpenHelper.KEY_NAME)) + " - % miles needed: " + cursor.getFloat(cursor.getColumnIndex(percentage)) + " - via: " + cursor.getString(cursor.getColumnIndex(OpenHelper.KEY_CARRIER_NAMES)));
+//						System.out.println("Name: " + cursor2.getString(cursor2.getColumnIndex(OpenHelper.KEY_NAME)) + " - % miles needed: " + cursor2.getFloat(cursor2.getColumnIndex(percentage)) + " - via: " + cursor2.getString(cursor2.getColumnIndex(OpenHelper.KEY_CARRIER_NAMES)));
+//						
+//						//necessary information for display on NewListOfCards:
+//						//name, percentage, key_carrier_names
+//						
+//						//necessary information per bundle to pass to SingleCardDisplay:
+//						//origin, destination, class of service, price
+//						
+//						//necessary information per card to pass to SingleCardDisplay:
+//						//name, KEY_CARD_ID
+//						
+//						//public CardContainer(String name, String award_program, float percentage, String origin, String destination, String service_class, float price, sql_id int)
+//						CardContainer container[] = new CardContainer[]{ new CardContainer(cursor.getString(cursor.getColumnIndex(OpenHelper.KEY_NAME)), 
+//																							cursor.getString(cursor.getColumnIndex(OpenHelper.KEY_CARRIER_NAMES)), 
+//																							cursor.getFloat(cursor.getColumnIndex(percentage)), 
+//																							origin, 
+//																							destination, 
+//																							service_class, 
+//																							price, 
+//																							cursor.getInt(cursor.getColumnIndex(OpenHelper.KEY_CARD_ID))),
+//																		new CardContainer(cursor2.getString(cursor2.getColumnIndex(OpenHelper.KEY_NAME)),
+//																							cursor2.getString(cursor2.getColumnIndex(OpenHelper.KEY_CARRIER_NAMES)),
+//																							cursor2.getFloat(cursor2.getColumnIndex(percentage)),
+//																							origin,
+//																							destination,
+//																							service_class,
+//																							price,
+//																							cursor2.getInt(cursor2.getColumnIndex(OpenHelper.KEY_CARD_ID)))};
+//						toDisplay.add(container);
+//					}
+//				}
+//			}
+//			
+//			System.out.println("Cursor position: " + cursor.getPosition());
+//			System.out.println("Cursor2 position: " + cursor2.getPosition());
+//			cursor2.moveToFirst();
+//		} while (cursor.moveToNext());
+//		
+//		SimpleCursorAdapter simpleAdapter = new SimpleCursorAdapter(this, R.layout.new_list_view_item, cursor, fromColumns, toViews, 0);
 		listView = ((ListView) findViewById(R.id.lv));
-		
-		//sort the garbage
-		
+//		
+//		//sort the garbage
+//		
 		 
-		 Collections.sort(toDisplay, myComparator);
+//		 Collections.sort(toDisplay, myComparator);
 		
 		//new adapter test (this will fail)
-		adapter = new NewListAdapter(this, toDisplay);
-		listView.setAdapter(adapter);
+//		adapter = new NewListAdapter(this, toDisplay);
+//		listView.setAdapter(adapter);
 		
 		listView.setOnItemClickListener(this);
 	}
