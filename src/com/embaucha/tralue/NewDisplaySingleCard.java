@@ -312,140 +312,7 @@ public class NewDisplaySingleCard extends Activity {
 //					((TextView)findViewById(R.id.award_notes)).setVisibility(View.GONE);
 //				}
 				
-				switch (cursor2.getInt(cursor2.getColumnIndex("image"))) {
-				case 1: {
-					((ImageView)findViewById(R.id.card_image)).setImageResource(R.drawable.sapphire_preferred);
-					break;
-				}
-				case 2: {
-					((ImageView)findViewById(R.id.card_image)).setImageResource(R.drawable.barclaycard_arrival_no_fee);
-					break;
-				}
-				case 3: {
-					((ImageView)findViewById(R.id.card_image)).setImageResource(R.drawable.barclaycard_arrival);
-					break;
-				}
-				case 4: {
-					((ImageView)findViewById(R.id.card_image)).setImageResource(R.drawable.club_carlson_premier_rewards_visa_signature);
-					break;
-				}
-				case 5: {
-					((ImageView)findViewById(R.id.card_image)).setImageResource(R.drawable.discover_it);
-					break;
-				}
-				case 6: {
-					((ImageView)findViewById(R.id.card_image)).setImageResource(R.drawable.forward_card);
-					break;
-				}
-				case 7: {
-					((ImageView)findViewById(R.id.card_image)).setImageResource(R.drawable.gold_card);
-					break;
-				}
-				case 8: {
-					((ImageView)findViewById(R.id.card_image)).setImageResource(R.drawable.mercedes_benz_platinum);
-					break;
-				}
-				case 9: {
-					((ImageView)findViewById(R.id.card_image)).setImageResource(R.drawable.platinum_card);
-					break;
-				}
-				case 10: {
-					((ImageView)findViewById(R.id.card_image)).setImageResource(R.drawable.premier_rewards_gold);
-					break;
-				}
-				case 11: {
-					((ImageView)findViewById(R.id.card_image)).setImageResource(R.drawable.sapphire_card);
-					break;
-				}
-				case 12: {
-					((ImageView)findViewById(R.id.card_image)).setImageResource(R.drawable.starwood_preferred_guest);
-					break;
-				}
-				case 13: {
-					((ImageView)findViewById(R.id.card_image)).setImageResource(R.drawable.thank_you_preferred);
-					break;
-				}
-				case 14: {
-					((ImageView)findViewById(R.id.card_image)).setImageResource(R.drawable.thank_you_premier);
-					break;
-				}
-				case 15: {
-					((ImageView)findViewById(R.id.card_image)).setImageResource(R.drawable.southwest_premier_personal);
-					break;
-				}
-				case 16: {
-					((ImageView)findViewById(R.id.card_image)).setImageResource(R.drawable.carlson_business);
-					break;
-				}
-				case 17: {
-					((ImageView)findViewById(R.id.card_image)).setImageResource(R.drawable.ink_bold);
-					break;
-				}
-				case 18: {
-					((ImageView)findViewById(R.id.card_image)).setImageResource(R.drawable.gold_skymiles_business);
-					break;
-				}
-				case 19: {
-					((ImageView)findViewById(R.id.card_image)).setImageResource(R.drawable.starwood_preferred_guest_business);
-					break;
-				}
-				case 20: {
-					((ImageView)findViewById(R.id.card_image)).setImageResource(R.drawable.platinum_skymiles_business);
-					break;
-				}
-				case 21: {
-					((ImageView)findViewById(R.id.card_image)).setImageResource(R.drawable.delta_reserve_business_card);
-					break;
-				}
-				case 22: {
-					((ImageView)findViewById(R.id.card_image)).setImageResource(R.drawable.ink_plus);
-					break;
-				}
-				case 23: {
-					((ImageView)findViewById(R.id.card_image)).setImageResource(R.drawable.ink_cash);
-					break;
-				}
-				case 24: {
-					((ImageView)findViewById(R.id.card_image)).setImageResource(R.drawable.thank_you_business);
-					break;
-				}
-				case 25: {
-					((ImageView)findViewById(R.id.card_image)).setImageResource(R.drawable.ink_classic);
-					break;
-				}
-				case 26: {
-					((ImageView)findViewById(R.id.card_image)).setImageResource(R.drawable.aadvantage_world_mastercard);
-					break;
-				}
-				case 27: {
-					((ImageView)findViewById(R.id.card_image)).setImageResource(R.drawable.southwest_premier_business);
-					break;
-				}
-				case 28: {
-					((ImageView)findViewById(R.id.card_image)).setImageResource(R.drawable.southwest_plus_business);
-					break;
-				}
-				case 29: {
-					((ImageView)findViewById(R.id.card_image)).setImageResource(R.drawable.alaska_airlines_business);
-					break;
-				}
-				case 30: {
-					((ImageView)findViewById(R.id.card_image)).setImageResource(R.drawable.platinum_business_card);
-					break;
-				}
-				case 31: {
-					((ImageView)findViewById(R.id.card_image)).setImageResource(R.drawable.flexperks_business);
-					break;
-				}
-				case 32: {
-					((ImageView)findViewById(R.id.card_image)).setImageResource(R.drawable.amtrak_card);
-					break;
-				}
-				default: {
-					((ImageView)findViewById(R.id.card_image)).setVisibility(View.INVISIBLE);
-					break;
-				}
-				}
+				
 			}
 			
 		}
@@ -575,6 +442,8 @@ public class NewDisplaySingleCard extends Activity {
 			((TextView)findViewById(R.id.award_notes)).setVisibility(View.GONE);
 		}
 		
+		imageSwitch(card.getNumber("image_index").intValue());
+		
 		System.out.println("Everything is set to visible...");
 	}
 	
@@ -658,12 +527,14 @@ public class NewDisplaySingleCard extends Activity {
 			((TextView)findViewById(R.id.award_notes_text)).setVisibility(View.GONE);
 			((TextView)findViewById(R.id.award_notes)).setVisibility(View.GONE);
 		}
+		
+		imageSwitch(card.getNumber("image_index").intValue());
 				
 		System.out.println("Everything is set to visible...");
 	}
 	
 	protected int calculateBonusPoints (ParseObject card) {
-		return (int)(card.getNumber("first_purchase_bonus").intValue() + card.getNumber("spend_bonus").intValue() + (card.getNumber("spend_bonus").intValue() * card.getNumber("spend_requirement").intValue() * card.getNumber("points_per_dollar_spent_general_spend").floatValue()));
+		return (int)((int)card.getNumber("first_purchase_bonus").intValue() + (int)card.getNumber("spend_bonus").intValue() + (float)((int)card.getNumber("spend_bonus").intValue() * (int)card.getNumber("spend_requirement").intValue() * (float)card.getNumber("points_per_dollar_spent_general_spend").floatValue()));
 	}
 	
 	protected int calculateBonusPoints (ParseObject card, ParseObject partner) {
@@ -707,5 +578,142 @@ public class NewDisplaySingleCard extends Activity {
 //		FlurryAgent.onEndSession(this);
 //		TestFlight.log("Stopped Flurry.");
 		Countly.sharedInstance().onStop();
+	}
+	
+	protected void imageSwitch(int temp) {
+	switch (temp) {
+	case 1: {
+		((ImageView)findViewById(R.id.card_image)).setImageResource(R.drawable.sapphire_preferred);
+		break;
+	}
+	case 2: {
+		((ImageView)findViewById(R.id.card_image)).setImageResource(R.drawable.barclaycard_arrival_no_fee);
+		break;
+	}
+	case 3: {
+		((ImageView)findViewById(R.id.card_image)).setImageResource(R.drawable.barclaycard_arrival);
+		break;
+	}
+	case 4: {
+		((ImageView)findViewById(R.id.card_image)).setImageResource(R.drawable.club_carlson_premier_rewards_visa_signature);
+		break;
+	}
+	case 5: {
+		((ImageView)findViewById(R.id.card_image)).setImageResource(R.drawable.discover_it);
+		break;
+	}
+	case 6: {
+		((ImageView)findViewById(R.id.card_image)).setImageResource(R.drawable.forward_card);
+		break;
+	}
+	case 7: {
+		((ImageView)findViewById(R.id.card_image)).setImageResource(R.drawable.gold_card);
+		break;
+	}
+	case 8: {
+		((ImageView)findViewById(R.id.card_image)).setImageResource(R.drawable.mercedes_benz_platinum);
+		break;
+	}
+	case 9: {
+		((ImageView)findViewById(R.id.card_image)).setImageResource(R.drawable.platinum_card);
+		break;
+	}
+	case 10: {
+		((ImageView)findViewById(R.id.card_image)).setImageResource(R.drawable.premier_rewards_gold);
+		break;
+	}
+	case 11: {
+		((ImageView)findViewById(R.id.card_image)).setImageResource(R.drawable.sapphire_card);
+		break;
+	}
+	case 12: {
+		((ImageView)findViewById(R.id.card_image)).setImageResource(R.drawable.starwood_preferred_guest);
+		break;
+	}
+	case 13: {
+		((ImageView)findViewById(R.id.card_image)).setImageResource(R.drawable.thank_you_preferred);
+		break;
+	}
+	case 14: {
+		((ImageView)findViewById(R.id.card_image)).setImageResource(R.drawable.thank_you_premier);
+		break;
+	}
+	case 15: {
+		((ImageView)findViewById(R.id.card_image)).setImageResource(R.drawable.southwest_premier_personal);
+		break;
+	}
+	case 16: {
+		((ImageView)findViewById(R.id.card_image)).setImageResource(R.drawable.carlson_business);
+		break;
+	}
+	case 17: {
+		((ImageView)findViewById(R.id.card_image)).setImageResource(R.drawable.ink_bold);
+		break;
+	}
+	case 18: {
+		((ImageView)findViewById(R.id.card_image)).setImageResource(R.drawable.gold_skymiles_business);
+		break;
+	}
+	case 19: {
+		((ImageView)findViewById(R.id.card_image)).setImageResource(R.drawable.starwood_preferred_guest_business);
+		break;
+	}
+	case 20: {
+		((ImageView)findViewById(R.id.card_image)).setImageResource(R.drawable.platinum_skymiles_business);
+		break;
+	}
+	case 21: {
+		((ImageView)findViewById(R.id.card_image)).setImageResource(R.drawable.delta_reserve_business_card);
+		break;
+	}
+	case 22: {
+		((ImageView)findViewById(R.id.card_image)).setImageResource(R.drawable.ink_plus);
+		break;
+	}
+	case 23: {
+		((ImageView)findViewById(R.id.card_image)).setImageResource(R.drawable.ink_cash);
+		break;
+	}
+	case 24: {
+		((ImageView)findViewById(R.id.card_image)).setImageResource(R.drawable.thank_you_business);
+		break;
+	}
+	case 25: {
+		((ImageView)findViewById(R.id.card_image)).setImageResource(R.drawable.ink_classic);
+		break;
+	}
+	case 26: {
+		((ImageView)findViewById(R.id.card_image)).setImageResource(R.drawable.aadvantage_world_mastercard);
+		break;
+	}
+	case 27: {
+		((ImageView)findViewById(R.id.card_image)).setImageResource(R.drawable.southwest_premier_business);
+		break;
+	}
+	case 28: {
+		((ImageView)findViewById(R.id.card_image)).setImageResource(R.drawable.southwest_plus_business);
+		break;
+	}
+	case 29: {
+		((ImageView)findViewById(R.id.card_image)).setImageResource(R.drawable.alaska_airlines_business);
+		break;
+	}
+	case 30: {
+		((ImageView)findViewById(R.id.card_image)).setImageResource(R.drawable.platinum_business_card);
+		break;
+	}
+	case 31: {
+		((ImageView)findViewById(R.id.card_image)).setImageResource(R.drawable.flexperks_business);
+		break;
+	}
+	case 32: {
+		((ImageView)findViewById(R.id.card_image)).setImageResource(R.drawable.amtrak_card);
+		break;
+	}
+	default: {
+		((ImageView)findViewById(R.id.card_image)).setVisibility(View.INVISIBLE);
+		break;
+	}
+	}
 	}
 }
