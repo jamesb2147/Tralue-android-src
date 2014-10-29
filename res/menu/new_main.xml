@@ -11,5 +11,6 @@
         android:orderInCategory="200"
         android:showAsAction="ifRoom"
         android:title="Manual mode"
+        android:visible="false"
         />
     </menu>

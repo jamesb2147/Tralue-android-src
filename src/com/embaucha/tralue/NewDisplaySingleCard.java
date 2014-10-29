@@ -1,7 +1,13 @@
 package com.embaucha.tralue;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+
+import com.parse.FindCallback;
+import com.parse.ParseException;
+import com.parse.ParseObject;
+import com.parse.ParseQuery;
 
 import ly.count.android.api.Countly;
 
@@ -14,6 +20,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 //import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -25,6 +32,8 @@ public class NewDisplaySingleCard extends Activity {
 	String url, card, origin, destination, service_class;
 	Float price;
 	int compiled_awards_id;
+	String nosql_id;
+	List<ParseObject> carrierList, cardList, awardList, partnerList;
 	
 	public void onCreate(Bundle bundle) {
 //		TestFlight.log("Launching...");
@@ -42,6 +51,92 @@ public class NewDisplaySingleCard extends Activity {
 		service_class = extras.getString("class_of_service");
 		price = extras.getFloat("price", (float)0.0);
 		compiled_awards_id = extras.getInt("compiled_awards_id");
+		nosql_id = extras.getString("nosql_id");
+		
+		
+		
+		ParseQuery<ParseObject> parseQuery = ParseQuery.getQuery("Cards");
+		parseQuery.whereEqualTo("objectId", nosql_id);
+		parseQuery.findInBackground(new FindCallback<ParseObject>() {
+			public void done(List<ParseObject> cards, ParseException e) {
+				if (e == null) {
+					//magic sauce goes here
+					System.out.println("Retrieved " + cards.size() + " cards in NewDisplaySingleCard.");
+					for (ParseObject card : cards) {
+//						CardContainer container2[] = new CardContainer[]{ new CardContainer(card.getString(OpenHelper.KEY_NAME), 
+//								cursor.getString(cursor.getColumnIndex(OpenHelper.KEY_CARRIER_NAMES)), 
+//								cursor.getFloat(cursor.getColumnIndex(percentage)), 
+//								origin, 
+//								destination, 
+//								service_class, 
+//								price, 
+//								cursor.getInt(cursor.getColumnIndex(OpenHelper.KEY_CARD_ID)))};
+//						
+//						toDisplay.add(container);
+						
+						System.out.println("Card found: " + card.getString(OpenHelper.KEY_NAME));
+					}
+					
+					cardList = cards;
+					
+					checkList();
+				} else {
+					Log.d("getCardsList","Error: " + e.getMessage());
+				}
+			}
+		});
+		
+		parseQuery = ParseQuery.getQuery("Partners");
+		parseQuery.findInBackground(new FindCallback<ParseObject>() {
+			public void done(List<ParseObject> partners, ParseException e) {
+				if (e == null) {
+					partnerList = partners;
+					
+					checkList();
+				} else {
+					Log.d("getPartnersList","Error: " + e.getMessage());
+				}
+			}
+		});
+		
+		parseQuery = ParseQuery.getQuery("Awards");
+		parseQuery.whereEqualTo("origin", origin);
+		parseQuery.whereEqualTo("destination", destination);
+		parseQuery.whereEqualTo("class", service_class);
+		parseQuery.findInBackground(new FindCallback<ParseObject>() {
+			public void done(List<ParseObject> awards, ParseException e) {
+				if (e == null) {
+					//magic sauce goes here
+//					System.out.println("Retrieved " + cardList.size() + " cards in NewListOfCards.");
+					
+					awardList = awards;
+					
+					checkList();
+				} else {
+					Log.d("getAwardsList","Error: " + e.getMessage());
+					//advise user to go back and try again?
+					//try using findInForeground?
+				}
+			}
+		});
+		
+		parseQuery = ParseQuery.getQuery("CarrierNames");
+		parseQuery.findInBackground(new FindCallback<ParseObject>() {
+			public void done(List<ParseObject> names, ParseException e) {
+				if (e == null) {
+					//magic sauce goes here
+//					System.out.println("Retrieved " + cardList.size() + " cards in NewListOfCards.");
+					
+					carrierList = names;
+					
+					checkList();
+				} else {
+					Log.d("getNamesList","Error: " + e.getMessage());
+					//advise user to go back and try again?
+					//try using findInForeground?
+				}
+			}
+		});
 		
 //		TestFlight.log("Grabbed data from bundle...");
 		
@@ -146,76 +241,76 @@ public class NewDisplaySingleCard extends Activity {
 				 */
 				
 				//NEW card view data
-				System.out.println("Starting to read data...");
-				((TextView)findViewById(R.id.card_name)).setText(cursor2.getString(cursor2.getColumnIndex(name)));
-				System.out.println("Read name.");
-				((TextView)findViewById(R.id.card_issuer)).setText(cursor2.getString(cursor2.getColumnIndex(issuer)));
-				System.out.println("Read issuer.");
-				
-				//cost to get from origin to destination in miles
-				//origin
-//				TestFlight.log("Origin is: " + origin);
-				((TextView)findViewById(R.id.card_origin)).setText(cursor2.getString(cursor2.getColumnIndex(OpenHelper.COL_ORIGIN)));
-				System.out.println("Read origin.");
-				//destination
-//				TestFlight.log("Destination is: " + destination);
-				((TextView)findViewById(R.id.card_destination)).setText(cursor2.getString(cursor2.getColumnIndex(OpenHelper.COL_DESTINATION)));
-				//cost in miles
-				((TextView)findViewById(R.id.card_cost_in_miles)).setText(cursor2.getString(cursor2.getColumnIndex(OpenHelper.COL_COST)));
-				//on carrier
-				((TextView)findViewById(R.id.card_carrier)).setText(cursor2.getString(cursor2.getColumnIndex(OpenHelper.KEY_CARRIER_NAMES)));
-				//miles provided by card bonuses
-				((TextView)findViewById(R.id.miles_from_card)).setText(cursor2.getString(cursor2.getColumnIndex("total_bonus_points")));
-				//percentage of needed miles earned by signup
-				((TextView)findViewById(R.id.card_percentage_of_miles)).setText(cursor2.getString(cursor2.getColumnIndex(NewListOfCards.percentage)));
-				//spend per month to hit bonus
-				//annual fee
-				((TextView)findViewById(R.id.card_annual_fee)).setText(cursor2.getString(cursor2.getColumnIndex(OpenHelper.KEY_ANNUAL_FEE)));
-				//foreign transaction fee
-				((TextView)findViewById(R.id.card_foreign_transaction_fee)).setText(cursor2.getString(cursor2.getColumnIndex(OpenHelper.KEY_FOREIGN_TRANSACTION_FEE)));
-				//award notes
-				((TextView)findViewById(R.id.award_notes)).setText(cursor2.getString(cursor2.getColumnIndex(OpenHelper.COL_AWARD_NOTES)));
-				//carrier notes
-				((TextView)findViewById(R.id.points_program_notes)).setText(cursor2.getString(cursor2.getColumnIndex(OpenHelper.KEY_CARRIER_NOTES)));
-				//credit card notes
-				((TextView)findViewById(R.id.notes)).setText(cursor2.getString(cursor2.getColumnIndex(OpenHelper.KEY_NOTES)));
-				
-				Map<String, String> articleParams = new HashMap<String, String>();
-				articleParams.put("card_name", cursor2.getString(cursor2.getColumnIndex(name)));
-//				FlurryAgent.logEvent("Card_selected", articleParams);
-				
-//				TestFlight.log("Card selected is: " + card);
-				
-				//temporary until card_percentage_of_miles is fixed
-				((TextView)findViewById(R.id.card_percentage_of_miles_text)).setVisibility(View.GONE);
-				((TextView)findViewById(R.id.card_percentage_of_miles)).setVisibility(View.GONE);
-				
-				url = cursor2.getString(cursor2.getColumnIndex("url"));
-				if (url != null) {
-					((Button)findViewById(R.id.apply_now_button)).setVisibility(View.VISIBLE);
-					((Button)findViewById(R.id.email_to_self_button)).setVisibility(View.VISIBLE);
-				} else {
-					((Button)findViewById(R.id.apply_now_button)).setVisibility(View.GONE);
-					((Button)findViewById(R.id.email_to_self_button)).setVisibility(View.GONE);
-				}
-				
-				String carrier_notes = cursor2.getString(cursor2.getColumnIndex(OpenHelper.KEY_CARRIER_NOTES));
-				if (carrier_notes != null) {
-					((TextView)findViewById(R.id.points_program_notes_text)).setVisibility(View.VISIBLE);
-					((TextView)findViewById(R.id.points_program_notes)).setVisibility(View.VISIBLE);
-				} else {
-					((TextView)findViewById(R.id.points_program_notes_text)).setVisibility(View.GONE);
-					((TextView)findViewById(R.id.points_program_notes)).setVisibility(View.GONE);
-				}
-				
-				String award_notes = cursor2.getString(cursor2.getColumnIndex(OpenHelper.COL_AWARD_NOTES));
-				if (award_notes != null) {
-					((TextView)findViewById(R.id.award_notes_text)).setVisibility(View.VISIBLE);
-					((TextView)findViewById(R.id.award_notes)).setVisibility(View.VISIBLE);
-				} else {
-					((TextView)findViewById(R.id.award_notes_text)).setVisibility(View.GONE);
-					((TextView)findViewById(R.id.award_notes)).setVisibility(View.GONE);
-				}
+//				System.out.println("Starting to read data...");
+//				((TextView)findViewById(R.id.card_name)).setText(cursor2.getString(cursor2.getColumnIndex(name)));
+//				System.out.println("Read name.");
+//				((TextView)findViewById(R.id.card_issuer)).setText(cursor2.getString(cursor2.getColumnIndex(issuer)));
+//				System.out.println("Read issuer.");
+//				
+//				//cost to get from origin to destination in miles
+//				//origin
+////				TestFlight.log("Origin is: " + origin);
+//				((TextView)findViewById(R.id.card_origin)).setText(cursor2.getString(cursor2.getColumnIndex(OpenHelper.COL_ORIGIN)));
+//				System.out.println("Read origin.");
+//				//destination
+////				TestFlight.log("Destination is: " + destination);
+//				((TextView)findViewById(R.id.card_destination)).setText(cursor2.getString(cursor2.getColumnIndex(OpenHelper.COL_DESTINATION)));
+//				//cost in miles
+//				((TextView)findViewById(R.id.card_cost_in_miles)).setText(cursor2.getString(cursor2.getColumnIndex(OpenHelper.COL_COST)));
+//				//on carrier
+//				((TextView)findViewById(R.id.card_carrier)).setText(cursor2.getString(cursor2.getColumnIndex(OpenHelper.KEY_CARRIER_NAMES)));
+//				//miles provided by card bonuses
+//				((TextView)findViewById(R.id.miles_from_card)).setText(cursor2.getString(cursor2.getColumnIndex("total_bonus_points")));
+//				//percentage of needed miles earned by signup
+//				((TextView)findViewById(R.id.card_percentage_of_miles)).setText(cursor2.getString(cursor2.getColumnIndex(NewListOfCards.percentage)));
+//				//spend per month to hit bonus
+//				//annual fee
+//				((TextView)findViewById(R.id.card_annual_fee)).setText(cursor2.getString(cursor2.getColumnIndex(OpenHelper.KEY_ANNUAL_FEE)));
+//				//foreign transaction fee
+//				((TextView)findViewById(R.id.card_foreign_transaction_fee)).setText(cursor2.getString(cursor2.getColumnIndex(OpenHelper.KEY_FOREIGN_TRANSACTION_FEE)));
+//				//award notes
+//				((TextView)findViewById(R.id.award_notes)).setText(cursor2.getString(cursor2.getColumnIndex(OpenHelper.COL_AWARD_NOTES)));
+//				//carrier notes
+//				((TextView)findViewById(R.id.points_program_notes)).setText(cursor2.getString(cursor2.getColumnIndex(OpenHelper.KEY_CARRIER_NOTES)));
+//				//credit card notes
+//				((TextView)findViewById(R.id.notes)).setText(cursor2.getString(cursor2.getColumnIndex(OpenHelper.KEY_NOTES)));
+//				
+//				Map<String, String> articleParams = new HashMap<String, String>();
+//				articleParams.put("card_name", cursor2.getString(cursor2.getColumnIndex(name)));
+////				FlurryAgent.logEvent("Card_selected", articleParams);
+//				
+////				TestFlight.log("Card selected is: " + card);
+//				
+//				//temporary until card_percentage_of_miles is fixed
+//				((TextView)findViewById(R.id.card_percentage_of_miles_text)).setVisibility(View.GONE);
+//				((TextView)findViewById(R.id.card_percentage_of_miles)).setVisibility(View.GONE);
+//				
+//				url = cursor2.getString(cursor2.getColumnIndex("url"));
+//				if (url != null) {
+//					((Button)findViewById(R.id.apply_now_button)).setVisibility(View.VISIBLE);
+//					((Button)findViewById(R.id.email_to_self_button)).setVisibility(View.VISIBLE);
+//				} else {
+//					((Button)findViewById(R.id.apply_now_button)).setVisibility(View.GONE);
+//					((Button)findViewById(R.id.email_to_self_button)).setVisibility(View.GONE);
+//				}
+//				
+//				String carrier_notes = cursor2.getString(cursor2.getColumnIndex(OpenHelper.KEY_CARRIER_NOTES));
+//				if (carrier_notes != null) {
+//					((TextView)findViewById(R.id.points_program_notes_text)).setVisibility(View.VISIBLE);
+//					((TextView)findViewById(R.id.points_program_notes)).setVisibility(View.VISIBLE);
+//				} else {
+//					((TextView)findViewById(R.id.points_program_notes_text)).setVisibility(View.GONE);
+//					((TextView)findViewById(R.id.points_program_notes)).setVisibility(View.GONE);
+//				}
+//				
+//				String award_notes = cursor2.getString(cursor2.getColumnIndex(OpenHelper.COL_AWARD_NOTES));
+//				if (award_notes != null) {
+//					((TextView)findViewById(R.id.award_notes_text)).setVisibility(View.VISIBLE);
+//					((TextView)findViewById(R.id.award_notes)).setVisibility(View.VISIBLE);
+//				} else {
+//					((TextView)findViewById(R.id.award_notes_text)).setVisibility(View.GONE);
+//					((TextView)findViewById(R.id.award_notes)).setVisibility(View.GONE);
+//				}
 				
 				switch (cursor2.getInt(cursor2.getColumnIndex("image"))) {
 				case 1: {
@@ -356,6 +451,221 @@ public class NewDisplaySingleCard extends Activity {
 		}
 		
 		rodb.close();
+	}
+	
+	protected void checkList() {
+		if (cardList != null && partnerList != null && awardList != null && carrierList != null) {
+			System.out.println("Running generate view.");
+			generateView();
+		} else {
+			System.out.println("Nope, a list was null.");
+//			Log.d("Something was null.");
+		}
+	}
+	
+	protected void generateView() {
+		for (ParseObject card : cardList) {
+			System.out.println("Card points program: " + card.getString("points_program"));
+			for (ParseObject award : awardList) {
+				System.out.println(award.getString("point_program"));
+				if (award.getString("point_program").equals(card.getString("points_program"))) {
+					//found the match with details about the loyalty program
+					System.out.println("Loading up card and award...");
+					loadUpCard(card, award);
+				}
+			}
+			
+			for (ParseObject partner : partnerList) {
+				System.out.println("Card partners programs: " + partner.getString("transferring_program"));
+				if (partner.getString("transferring_program").equals(card.getString("points_program"))) {
+					//found the match
+					System.out.println("Matching programs are (partner): " + partner.getString("transferring_program") + " and (card): " + card.getString("points_program"));
+					System.out.println(awardList);
+					for (ParseObject award : awardList) {
+						System.out.println("Awards: " + award.getString("point_program") + " partner program: " + partner.getString("partner_program"));
+						if (award.getString("point_program").equals(partner.getString("partner_program"))) {
+							//found the award program, too! now we know the miles cost and details about the loyalty program
+							System.out.println("Loading up card, partners, and award...");
+							loadUpCard(card, partner, award);
+						}
+					}
+				}
+			}
+		}
+	}
+	
+	protected void loadUpCard (ParseObject card, ParseObject award) {
+		//NEW card view data
+		System.out.println("Starting to read data...");
+		((TextView)findViewById(R.id.card_name)).setText(card.getString("name"));
+		System.out.println("Read name.");
+		((TextView)findViewById(R.id.card_issuer)).setText(card.getString("issuer"));
+		System.out.println("Read issuer.");
+		
+		//cost to get from origin to destination in miles
+		//origin
+//		TestFlight.log("Origin is: " + origin);
+		((TextView)findViewById(R.id.card_origin)).setText(award.getString("origin"));
+		System.out.println("Read origin.");
+		//destination
+//		TestFlight.log("Destination is: " + destination);
+		((TextView)findViewById(R.id.card_destination)).setText(award.getString("destination"));
+		//cost in miles
+		((TextView)findViewById(R.id.card_cost_in_miles)).setText(Integer.toString(award.getNumber("cost").intValue()));
+		//on carrier
+		((TextView)findViewById(R.id.card_carrier)).setText(award.getString("point_program"));
+		//miles provided by card bonuses
+		((TextView)findViewById(R.id.miles_from_card)).setText(Integer.toString(calculateBonusPoints(card)));
+		//percentage of needed miles earned by signup
+		((TextView)findViewById(R.id.card_percentage_of_miles)).setText(Float.toString(calculateBonusPoints(card)/award.getNumber("cost").floatValue()));
+		//spend per month to hit bonus
+		//annual fee
+		((TextView)findViewById(R.id.card_annual_fee)).setText(Integer.toString(card.getNumber("annual_fee").intValue()));
+		//foreign transaction fee
+		((TextView)findViewById(R.id.card_foreign_transaction_fee)).setText(Float.toString(card.getNumber("foreign_transaction_fee").floatValue()));
+		//award notes
+		((TextView)findViewById(R.id.award_notes)).setText(award.getString("notes"));
+		//carrier notes
+		
+		//credit card notes
+		((TextView)findViewById(R.id.notes)).setText(card.getString("notes"));
+		
+		Map<String, String> articleParams = new HashMap<String, String>();
+		articleParams.put("card_name", card.getString("name"));
+//		FlurryAgent.logEvent("Card_selected", articleParams);
+		
+//		TestFlight.log("Card selected is: " + card);
+		
+		//temporary until card_percentage_of_miles is fixed
+//		((TextView)findViewById(R.id.card_percentage_of_miles_text)).setVisibility(View.GONE);
+//		((TextView)findViewById(R.id.card_percentage_of_miles)).setVisibility(View.GONE);
+		
+		url = card.getString("url");
+		if (url != null) {
+			((Button)findViewById(R.id.apply_now_button)).setVisibility(View.VISIBLE);
+			((Button)findViewById(R.id.email_to_self_button)).setVisibility(View.VISIBLE);
+		} else {
+			((Button)findViewById(R.id.apply_now_button)).setVisibility(View.GONE);
+			((Button)findViewById(R.id.email_to_self_button)).setVisibility(View.GONE);
+		}
+		
+		String carrier_notes = null;
+		for (ParseObject carrier : carrierList) {
+			if (carrier.getString("identifier").equals(award.getString("point_program"))) {
+				carrier_notes = carrier.getString("notes");
+			}
+		}
+		if (carrier_notes != null) {
+			((TextView)findViewById(R.id.points_program_notes)).setText(carrier_notes);
+			((TextView)findViewById(R.id.points_program_notes_text)).setVisibility(View.VISIBLE);
+			((TextView)findViewById(R.id.points_program_notes)).setVisibility(View.VISIBLE);
+		} else {
+			((TextView)findViewById(R.id.points_program_notes_text)).setVisibility(View.GONE);
+			((TextView)findViewById(R.id.points_program_notes)).setVisibility(View.GONE);
+		}
+		
+		String award_notes = award.getString("notes");
+		if (award_notes != null) {
+			((TextView)findViewById(R.id.award_notes_text)).setVisibility(View.VISIBLE);
+			((TextView)findViewById(R.id.award_notes)).setVisibility(View.VISIBLE);
+		} else {
+			((TextView)findViewById(R.id.award_notes_text)).setVisibility(View.GONE);
+			((TextView)findViewById(R.id.award_notes)).setVisibility(View.GONE);
+		}
+		
+		System.out.println("Everything is set to visible...");
+	}
+	
+	protected void loadUpCard (ParseObject card, ParseObject partner, ParseObject award) {
+		System.out.println("Loading up partner award card.");
+		
+		//NEW card view data
+		System.out.println("Starting to read data...");
+		((TextView)findViewById(R.id.card_name)).setText(card.getString("name"));
+		System.out.println("Read name.");
+		((TextView)findViewById(R.id.card_issuer)).setText(card.getString("issuer"));
+		System.out.println("Read issuer.");
+				
+		//cost to get from origin to destination in miles
+		//origin
+//		TestFlight.log("Origin is: " + origin);
+		((TextView)findViewById(R.id.card_origin)).setText(award.getString("origin"));
+		System.out.println("Read origin.");
+		//destination
+//		TestFlight.log("Destination is: " + destination);
+		((TextView)findViewById(R.id.card_destination)).setText(award.getString("destination"));
+		//cost in miles
+		((TextView)findViewById(R.id.card_cost_in_miles)).setText(Integer.toString(award.getNumber("cost").intValue()));
+		//on carrier
+		((TextView)findViewById(R.id.card_carrier)).setText(award.getString("point_program"));
+		//miles provided by card bonuses
+//		((TextView)findViewById(R.id.miles_from_card)).setText(calculateBonusPoints(card));
+		//percentage of needed miles earned by signup
+		((TextView)findViewById(R.id.card_percentage_of_miles)).setText(Float.toString(calculateBonusPoints(card, partner)/award.getNumber("cost").floatValue()));
+		//spend per month to hit bonus
+		//annual fee
+		((TextView)findViewById(R.id.card_annual_fee)).setText(Integer.toString(card.getNumber("annual_fee").intValue()));
+		//foreign transaction fee
+		((TextView)findViewById(R.id.card_foreign_transaction_fee)).setText(Float.toString(card.getNumber("foreign_transaction_fee").floatValue()));
+		//award notes
+		((TextView)findViewById(R.id.award_notes)).setText(award.getString("notes"));
+		//carrier notes
+				
+		//credit card notes
+		((TextView)findViewById(R.id.notes)).setText(card.getString("notes"));
+				
+		Map<String, String> articleParams = new HashMap<String, String>();
+		articleParams.put("card_name", card.getString("name"));
+//		FlurryAgent.logEvent("Card_selected", articleParams);
+				
+//		TestFlight.log("Card selected is: " + card);
+				
+		//temporary until card_percentage_of_miles is fixed
+//		((TextView)findViewById(R.id.card_percentage_of_miles_text)).setVisibility(View.GONE);
+//		((TextView)findViewById(R.id.card_percentage_of_miles)).setVisibility(View.GONE);
+				
+		url = card.getString("url");
+		if (url != null) {
+			((Button)findViewById(R.id.apply_now_button)).setVisibility(View.VISIBLE);
+			((Button)findViewById(R.id.email_to_self_button)).setVisibility(View.VISIBLE);
+		} else {
+			((Button)findViewById(R.id.apply_now_button)).setVisibility(View.GONE);
+			((Button)findViewById(R.id.email_to_self_button)).setVisibility(View.GONE);
+		}
+				
+		String carrier_notes = null;
+		for (ParseObject carrier : carrierList) {
+		if (carrier.getString("identifier").equals(award.getString("point_program"))) {
+				carrier_notes = carrier.getString("notes");
+			}
+		}
+		if (carrier_notes != null) {
+			((TextView)findViewById(R.id.points_program_notes)).setText(carrier_notes);
+			((TextView)findViewById(R.id.points_program_notes_text)).setVisibility(View.VISIBLE);
+			((TextView)findViewById(R.id.points_program_notes)).setVisibility(View.VISIBLE);
+		} else {
+			((TextView)findViewById(R.id.points_program_notes_text)).setVisibility(View.GONE);
+			((TextView)findViewById(R.id.points_program_notes)).setVisibility(View.GONE);
+		}
+				
+		String award_notes = award.getString("notes");
+		if (award_notes != null) {
+			((TextView)findViewById(R.id.award_notes_text)).setVisibility(View.VISIBLE);
+			((TextView)findViewById(R.id.award_notes)).setVisibility(View.VISIBLE);
+		} else {
+			((TextView)findViewById(R.id.award_notes_text)).setVisibility(View.GONE);
+			((TextView)findViewById(R.id.award_notes)).setVisibility(View.GONE);
+		}
+				
+		System.out.println("Everything is set to visible...");
+	}
+	
+	protected int calculateBonusPoints (ParseObject card) {
+		return (int)(card.getNumber("first_purchase_bonus").intValue() + card.getNumber("spend_bonus").intValue() + (card.getNumber("spend_bonus").intValue() * card.getNumber("spend_requirement").intValue() * card.getNumber("points_per_dollar_spent_general_spend").floatValue()));
+	}
+	
+	protected int calculateBonusPoints (ParseObject card, ParseObject partner) {
+		return (int)(card.getNumber("first_purchase_bonus").intValue() + card.getNumber("spend_bonus").intValue() + (card.getNumber("spend_bonus").intValue() * card.getNumber("spend_requirement").intValue() * card.getNumber("points_per_dollar_spent_general_spend").floatValue()) * partner.getNumber("transfer_rate").floatValue());
 	}
 	
 	public void sendToURL(View v) {

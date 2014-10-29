@@ -327,8 +327,8 @@ public class NewListOfCards extends Activity implements OnItemClickListener {
 						CardContainer container[] = new CardContainer[] {new CardContainer(card.getString("name"),
 								properName(award.getString("point_program")),
 								calculatePercentage(card, award),
-								origin,
-								destination,
+								award.getString("origin"),
+								award.getString("destination"),
 								service_class,
 								price,
 								card.getObjectId())};
@@ -349,8 +349,8 @@ public class NewListOfCards extends Activity implements OnItemClickListener {
 								CardContainer container[] = new CardContainer[] {new CardContainer(card.getString("name"),
 										properName(award.getString("point_program")),
 										calculatePercentage(card, partner, award),
-										origin,
-										destination,
+										award.getString("origin"),
+										award.getString("destination"),
 										service_class,
 										price,
 										card.getObjectId())};
@@ -446,6 +446,7 @@ public class NewListOfCards extends Activity implements OnItemClickListener {
 				//toDisplay
 				intent.putExtra("card_selected", ((CardContainer[]) (parent.getItemAtPosition(position)))[0].getName());
 				intent.putExtra("compiled_awards_id", ((CardContainer[]) (parent.getItemAtPosition(position)))[0].getSql_id());
+				intent.putExtra("nosql_id", ((CardContainer[]) (parent.getItemAtPosition(position)))[0].getNosql_id());
 				intent.putExtra("origin", ((CardContainer[]) (parent.getItemAtPosition(position)))[0].getOrigin());
 				intent.putExtra("destination", ((CardContainer[]) (parent.getItemAtPosition(position)))[0].getDestination());
 				intent.putExtra("class_of_service", ((CardContainer[]) (parent.getItemAtPosition(position)))[0].getService_class());
@@ -455,6 +456,7 @@ public class NewListOfCards extends Activity implements OnItemClickListener {
 
 				intent.putExtra("card_selected_2", ((CardContainer[]) (parent.getItemAtPosition(position)))[1].getName());
 				intent.putExtra("compiled_awards_id_2", ((CardContainer[]) (parent.getItemAtPosition(position)))[1].getSql_id());
+				intent.putExtra("nosql_id_2", ((CardContainer[]) (parent.getItemAtPosition(position)))[1].getNosql_id());
 				intent.putExtra("award_program_2", ((CardContainer[]) (parent.getItemAtPosition(position)))[1].getAward_program());
 				
 				//intent.putExtra("origin", ((CardContainer[]) (parent.getItemAtPosition(position)))[0].getOrigin());
@@ -494,6 +496,7 @@ public class NewListOfCards extends Activity implements OnItemClickListener {
 			
 			intent.putExtra("card_selected", ((CardContainer[]) (parent.getItemAtPosition(position)))[0].getName());
 			intent.putExtra("compiled_awards_id", ((CardContainer[]) (parent.getItemAtPosition(position)))[0].getSql_id());
+			intent.putExtra("nosql_id", ((CardContainer[]) (parent.getItemAtPosition(position)))[0].getNosql_id());
 			intent.putExtra("origin", ((CardContainer[]) (parent.getItemAtPosition(position)))[0].getOrigin());
 			intent.putExtra("destination", ((CardContainer[]) (parent.getItemAtPosition(position)))[0].getDestination());
 			intent.putExtra("class_of_service", ((CardContainer[]) (parent.getItemAtPosition(position)))[0].getService_class());
