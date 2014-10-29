@@ -30,10 +30,8 @@ public class CardCatalog {
     	    public void done(List<ParseObject> objects, ParseException e) {
     	        if (e == null) {
     	        	//success
-    	            Log.d("name", "Retrieved " + objects.size() + " cards");
-    	            for (int i = 0; i < 10000; i++) {
-    	            	System.out.println("GOT THE OBJECT(S) FROM PARSE!!!");
-    	            }
+    	            Log.d("name", "Retrieved " + objects.size() + " cards from Parse.");
+    	            System.out.println("Got the object(s) from Parse!!!");
     	            cards_parse = objects;
     	        } else {
     	            Log.d("score", "Error: " + e.getMessage());
@@ -79,7 +77,8 @@ public class CardCatalog {
         cards.add(new ThankYouPremierPersonal());
         cards.add(new SouthwestRapidRewardsPremierPersonal());
         cards.add(new ClubCarlsonRewardsBusiness());
-        cards.add(new InkBoldBusiness());
+        //chase killed the card, "simplifying" their product line
+//        cards.add(new InkBoldBusiness());
         cards.add(new GoldDeltaSkymilesBusiness());
         cards.add(new StarwoodPreferredGuestBusiness());
         cards.add(new PlatinumDeltaSkymilesBusiness());

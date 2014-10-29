@@ -21,14 +21,14 @@ public class InkPlusBusiness extends Card {
         this.setAnnual_fee(95);
         this.setFee_waived_first_year(true);
         this.setPoints_program("ur");
-        this.setSpend_bonus(70000);
+        this.setSpend_bonus(50000);
         this.setSpend_requirement(5000);
         this.setTime_to_reach_spend_in_months(3);
         this.setFirst_purchase_bonus(0);
         this.setPoints_per_dollar_spent_general_spend(1);
         this.setForeign_transaction_fee(0);
         this.setChip("No");
-        this.setNotes("Flexible/transferable points, portal bonuses, and 5x category earnings on communication services.");
+        this.setNotes("Flexible/transferable points, portal bonuses, and 5x category earnings on communication services up to $50,000 per year.");
         this.setUrl("http://bit.ly/plus-chase");
         this.setBusiness_personal("business");
         this.setIntended_audience("everyone");

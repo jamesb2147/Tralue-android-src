@@ -18,7 +18,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
 public class OpenHelper extends SQLiteOpenHelper {
-	private static final int DATABASE_VERSION = 59;
+	private static final int DATABASE_VERSION = 60;
 	private static final String DATABASE_NAME = "tralue.db";
 	static final String TABLE_PROVIDERS = "providers";
 	static final String TABLE_VALUES = "point_values";
@@ -361,11 +361,11 @@ public class OpenHelper extends SQLiteOpenHelper {
 		rwdb.execSQL("INSERT INTO " + TABLE_PARTNERS + " (" + KEY_TRANSFERRING_PROGRAM + ", " + KEY_PARTNER_PROGRAM + ", " + KEY_TRANSFER_VALUE + ") VALUES ('" + mr + "', '" + singapore + "', 1.0)");
 		
 		//SPG transfer partners
-		rwdb.execSQL("INSERT INTO " + TABLE_PARTNERS + " (" + KEY_TRANSFERRING_PROGRAM + ", " + KEY_PARTNER_PROGRAM + ", " + KEY_TRANSFER_VALUE + ") VALUES ('" + spg + "', '" + ba + "', 10.0)");
-		rwdb.execSQL("INSERT INTO " + TABLE_PARTNERS + " (" + KEY_TRANSFERRING_PROGRAM + ", " + KEY_PARTNER_PROGRAM + ", " + KEY_TRANSFER_VALUE + ") VALUES ('" + spg + "', '" + delta + "', 10.0)");
-		rwdb.execSQL("INSERT INTO " + TABLE_PARTNERS + " (" + KEY_TRANSFERRING_PROGRAM + ", " + KEY_PARTNER_PROGRAM + ", " + KEY_TRANSFER_VALUE + ") VALUES ('" + spg + "', '" + united + "', 10.0)");
-		rwdb.execSQL("INSERT INTO " + TABLE_PARTNERS + " (" + KEY_TRANSFERRING_PROGRAM + ", " + KEY_PARTNER_PROGRAM + ", " + KEY_TRANSFER_VALUE + ") VALUES ('" + spg + "', '" + american + "', 10.0)");
-		rwdb.execSQL("INSERT INTO " + TABLE_PARTNERS + " (" + KEY_TRANSFERRING_PROGRAM + ", " + KEY_PARTNER_PROGRAM + ", " + KEY_TRANSFER_VALUE + ") VALUES ('" + spg + "', '" + singapore + "', 10.0)");
+		rwdb.execSQL("INSERT INTO " + TABLE_PARTNERS + " (" + KEY_TRANSFERRING_PROGRAM + ", " + KEY_PARTNER_PROGRAM + ", " + KEY_TRANSFER_VALUE + ") VALUES ('" + spg + "', '" + ba + "', 1.0)");
+		rwdb.execSQL("INSERT INTO " + TABLE_PARTNERS + " (" + KEY_TRANSFERRING_PROGRAM + ", " + KEY_PARTNER_PROGRAM + ", " + KEY_TRANSFER_VALUE + ") VALUES ('" + spg + "', '" + delta + "', 1.0)");
+		rwdb.execSQL("INSERT INTO " + TABLE_PARTNERS + " (" + KEY_TRANSFERRING_PROGRAM + ", " + KEY_PARTNER_PROGRAM + ", " + KEY_TRANSFER_VALUE + ") VALUES ('" + spg + "', '" + united + "', 0.5)");
+		rwdb.execSQL("INSERT INTO " + TABLE_PARTNERS + " (" + KEY_TRANSFERRING_PROGRAM + ", " + KEY_PARTNER_PROGRAM + ", " + KEY_TRANSFER_VALUE + ") VALUES ('" + spg + "', '" + american + "', 1.0)");
+		rwdb.execSQL("INSERT INTO " + TABLE_PARTNERS + " (" + KEY_TRANSFERRING_PROGRAM + ", " + KEY_PARTNER_PROGRAM + ", " + KEY_TRANSFER_VALUE + ") VALUES ('" + spg + "', '" + singapore + "', 1.0)");
 		
 		//Thank You transfer partners (Citi program)
 		rwdb.execSQL("INSERT INTO " + TABLE_PARTNERS + " (" + KEY_TRANSFERRING_PROGRAM + ", " + KEY_PARTNER_PROGRAM + ", " + KEY_TRANSFER_VALUE + ") VALUES ('" + ty + "', '" + singapore + "', 1.0)");
@@ -412,6 +412,13 @@ public class OpenHelper extends SQLiteOpenHelper {
 				+ ") VALUES ('" + ba + "', '" + business + "', '" + chi + "', '" + beijing + "', " + 140000 + ")");
 		rwdb.execSQL("INSERT INTO " + TABLE_COMPILED_AWARDS + " (" + COL_AIRLINE + ", " + COL_CLASS + ", " + COL_ORIGIN + ", " + COL_DESTINATION + ", " + COL_COST 
 				+ ") VALUES ('" + ba + "', '" + first + "', '" + chi + "', '" + beijing + "', " + 210000 + ")");
+		//singapore
+		rwdb.execSQL("INSERT INTO " + TABLE_COMPILED_AWARDS + " (" + COL_AIRLINE + ", " + COL_CLASS + ", " + COL_ORIGIN + ", " + COL_DESTINATION + ", " + COL_COST 
+				+ ") VALUES ('" + singapore + "', '" + economy + "', '" + chi + "', '" + beijing + "', " + 90000 + ")");
+		rwdb.execSQL("INSERT INTO " + TABLE_COMPILED_AWARDS + " (" + COL_AIRLINE + ", " + COL_CLASS + ", " + COL_ORIGIN + ", " + COL_DESTINATION + ", " + COL_COST 
+				+ ") VALUES ('" + singapore + "', '" + business + "', '" + chi + "', '" + beijing + "', " + 175000 + ")");
+		rwdb.execSQL("INSERT INTO " + TABLE_COMPILED_AWARDS + " (" + COL_AIRLINE + ", " + COL_CLASS + ", " + COL_ORIGIN + ", " + COL_DESTINATION + ", " + COL_COST 
+				+ ") VALUES ('" + singapore + "', '" + first + "', '" + chi + "', '" + beijing + "', " + 200000 + ")");
 		//...to tokyo
 		//united
 		rwdb.execSQL("INSERT INTO " + TABLE_COMPILED_AWARDS + " (" + COL_AIRLINE + ", " + COL_CLASS + ", " + COL_ORIGIN + ", " + COL_DESTINATION + ", " + COL_COST 
@@ -446,6 +453,13 @@ public class OpenHelper extends SQLiteOpenHelper {
 				+ ") VALUES ('" + ba + "', '" + business + "', '" + chi + "', '" + tokyo + "', " + 120000 + ")");
 		rwdb.execSQL("INSERT INTO " + TABLE_COMPILED_AWARDS + " (" + COL_AIRLINE + ", " + COL_CLASS + ", " + COL_ORIGIN + ", " + COL_DESTINATION + ", " + COL_COST 
 				+ ") VALUES ('" + ba + "', '" + first + "', '" + chi + "', '" + tokyo + "', " + 180000 + ")");
+		//singapore
+		rwdb.execSQL("INSERT INTO " + TABLE_COMPILED_AWARDS + " (" + COL_AIRLINE + ", " + COL_CLASS + ", " + COL_ORIGIN + ", " + COL_DESTINATION + ", " + COL_COST 
+				+ ") VALUES ('" + singapore + "', '" + economy + "', '" + chi + "', '" + tokyo + "', " + 90000 + ")");
+		rwdb.execSQL("INSERT INTO " + TABLE_COMPILED_AWARDS + " (" + COL_AIRLINE + ", " + COL_CLASS + ", " + COL_ORIGIN + ", " + COL_DESTINATION + ", " + COL_COST 
+				+ ") VALUES ('" + singapore + "', '" + business + "', '" + chi + "', '" + tokyo + "', " + 175000 + ")");
+		rwdb.execSQL("INSERT INTO " + TABLE_COMPILED_AWARDS + " (" + COL_AIRLINE + ", " + COL_CLASS + ", " + COL_ORIGIN + ", " + COL_DESTINATION + ", " + COL_COST 
+				+ ") VALUES ('" + singapore + "', '" + first + "', '" + chi + "', '" + tokyo + "', " + 200000 + ")");
 		//...to sydney
 		//united
 		rwdb.execSQL("INSERT INTO " + TABLE_COMPILED_AWARDS + " (" + COL_AIRLINE + ", " + COL_CLASS + ", " + COL_ORIGIN + ", " + COL_DESTINATION + ", " + COL_COST 
@@ -480,6 +494,13 @@ public class OpenHelper extends SQLiteOpenHelper {
 				+ ") VALUES ('" + ba + "', '" + business + "', '" + chi + "', '" + sydney + "', " + 240000 + ")");
 		rwdb.execSQL("INSERT INTO " + TABLE_COMPILED_AWARDS + " (" + COL_AIRLINE + ", " + COL_CLASS + ", " + COL_ORIGIN + ", " + COL_DESTINATION + ", " + COL_COST 
 				+ ") VALUES ('" + ba + "', '" + first + "', '" + chi + "', '" + sydney + "', " + 360000 + ")");
+		//singapore
+		rwdb.execSQL("INSERT INTO " + TABLE_COMPILED_AWARDS + " (" + COL_AIRLINE + ", " + COL_CLASS + ", " + COL_ORIGIN + ", " + COL_DESTINATION + ", " + COL_COST 
+				+ ") VALUES ('" + singapore + "', '" + economy + "', '" + chi + "', '" + sydney + "', " + 110000 + ")");
+		rwdb.execSQL("INSERT INTO " + TABLE_COMPILED_AWARDS + " (" + COL_AIRLINE + ", " + COL_CLASS + ", " + COL_ORIGIN + ", " + COL_DESTINATION + ", " + COL_COST 
+				+ ") VALUES ('" + singapore + "', '" + business + "', '" + chi + "', '" + sydney + "', " + 195000 + ")");
+		rwdb.execSQL("INSERT INTO " + TABLE_COMPILED_AWARDS + " (" + COL_AIRLINE + ", " + COL_CLASS + ", " + COL_ORIGIN + ", " + COL_DESTINATION + ", " + COL_COST 
+				+ ") VALUES ('" + singapore + "', '" + first + "', '" + chi + "', '" + sydney + "', " + 255000 + ")");
 		//...to london
 		//united
 		rwdb.execSQL("INSERT INTO " + TABLE_COMPILED_AWARDS + " (" + COL_AIRLINE + ", " + COL_CLASS + ", " + COL_ORIGIN + ", " + COL_DESTINATION + ", " + COL_COST 
@@ -514,6 +535,13 @@ public class OpenHelper extends SQLiteOpenHelper {
 				+ ") VALUES ('" + ba + "', '" + business + "', '" + chi + "', '" + london + "', " + 80000 + ")");
 		rwdb.execSQL("INSERT INTO " + TABLE_COMPILED_AWARDS + " (" + COL_AIRLINE + ", " + COL_CLASS + ", " + COL_ORIGIN + ", " + COL_DESTINATION + ", " + COL_COST 
 				+ ") VALUES ('" + ba + "', '" + first + "', '" + chi + "', '" + london + "', " + 120000 + ")");
+		//singapore
+		rwdb.execSQL("INSERT INTO " + TABLE_COMPILED_AWARDS + " (" + COL_AIRLINE + ", " + COL_CLASS + ", " + COL_ORIGIN + ", " + COL_DESTINATION + ", " + COL_COST 
+				+ ") VALUES ('" + singapore + "', '" + economy + "', '" + chi + "', '" + london + "', " + 55000 + ")");
+		rwdb.execSQL("INSERT INTO " + TABLE_COMPILED_AWARDS + " (" + COL_AIRLINE + ", " + COL_CLASS + ", " + COL_ORIGIN + ", " + COL_DESTINATION + ", " + COL_COST 
+				+ ") VALUES ('" + singapore + "', '" + business + "', '" + chi + "', '" + london + "', " + 130000 + ")");
+		rwdb.execSQL("INSERT INTO " + TABLE_COMPILED_AWARDS + " (" + COL_AIRLINE + ", " + COL_CLASS + ", " + COL_ORIGIN + ", " + COL_DESTINATION + ", " + COL_COST 
+				+ ") VALUES ('" + singapore + "', '" + first + "', '" + chi + "', '" + london + "', " + 160000 + ")");
 		//...to paris
 		//united
 		rwdb.execSQL("INSERT INTO " + TABLE_COMPILED_AWARDS + " (" + COL_AIRLINE + ", " + COL_CLASS + ", " + COL_ORIGIN + ", " + COL_DESTINATION + ", " + COL_COST 
@@ -548,6 +576,13 @@ public class OpenHelper extends SQLiteOpenHelper {
 				+ ") VALUES ('" + ba + "', '" + business + "', '" + chi + "', '" + paris + "', " + 100000 + ")");
 		rwdb.execSQL("INSERT INTO " + TABLE_COMPILED_AWARDS + " (" + COL_AIRLINE + ", " + COL_CLASS + ", " + COL_ORIGIN + ", " + COL_DESTINATION + ", " + COL_COST 
 				+ ") VALUES ('" + ba + "', '" + first + "', '" + chi + "', '" + paris + "', " + 150000 + ")");
+		//singapore
+		rwdb.execSQL("INSERT INTO " + TABLE_COMPILED_AWARDS + " (" + COL_AIRLINE + ", " + COL_CLASS + ", " + COL_ORIGIN + ", " + COL_DESTINATION + ", " + COL_COST 
+				+ ") VALUES ('" + singapore + "', '" + economy + "', '" + chi + "', '" + paris + "', " + 55000 + ")");
+		rwdb.execSQL("INSERT INTO " + TABLE_COMPILED_AWARDS + " (" + COL_AIRLINE + ", " + COL_CLASS + ", " + COL_ORIGIN + ", " + COL_DESTINATION + ", " + COL_COST 
+				+ ") VALUES ('" + singapore + "', '" + business + "', '" + chi + "', '" + paris + "', " + 130000 + ")");
+		rwdb.execSQL("INSERT INTO " + TABLE_COMPILED_AWARDS + " (" + COL_AIRLINE + ", " + COL_CLASS + ", " + COL_ORIGIN + ", " + COL_DESTINATION + ", " + COL_COST 
+				+ ") VALUES ('" + singapore + "', '" + first + "', '" + chi + "', '" + paris + "', " + 160000 + ")");
 		//...to hong kong
 		//united
 		rwdb.execSQL("INSERT INTO " + TABLE_COMPILED_AWARDS + " (" + COL_AIRLINE + ", " + COL_CLASS + ", " + COL_ORIGIN + ", " + COL_DESTINATION + ", " + COL_COST 
@@ -582,6 +617,13 @@ public class OpenHelper extends SQLiteOpenHelper {
 				+ ") VALUES ('" + ba + "', '" + business + "', '" + chi + "', '" + hong_kong + "', " + 140000 + ")");
 		rwdb.execSQL("INSERT INTO " + TABLE_COMPILED_AWARDS + " (" + COL_AIRLINE + ", " + COL_CLASS + ", " + COL_ORIGIN + ", " + COL_DESTINATION + ", " + COL_COST 
 				+ ") VALUES ('" + ba + "', '" + first + "', '" + chi + "', '" + hong_kong + "', " + 210000 + ")");
+		//singapore
+		rwdb.execSQL("INSERT INTO " + TABLE_COMPILED_AWARDS + " (" + COL_AIRLINE + ", " + COL_CLASS + ", " + COL_ORIGIN + ", " + COL_DESTINATION + ", " + COL_COST 
+				+ ") VALUES ('" + ba + "', '" + economy + "', '" + chi + "', '" + hong_kong + "', " + 90000 + ")");
+		rwdb.execSQL("INSERT INTO " + TABLE_COMPILED_AWARDS + " (" + COL_AIRLINE + ", " + COL_CLASS + ", " + COL_ORIGIN + ", " + COL_DESTINATION + ", " + COL_COST 
+				+ ") VALUES ('" + ba + "', '" + business + "', '" + chi + "', '" + hong_kong + "', " + 175000 + ")");
+		rwdb.execSQL("INSERT INTO " + TABLE_COMPILED_AWARDS + " (" + COL_AIRLINE + ", " + COL_CLASS + ", " + COL_ORIGIN + ", " + COL_DESTINATION + ", " + COL_COST 
+				+ ") VALUES ('" + ba + "', '" + first + "', '" + chi + "', '" + hong_kong + "', " + 200000 + ")");
 		//...to managua
 		//united
 		rwdb.execSQL("INSERT INTO " + TABLE_COMPILED_AWARDS + " (" + COL_AIRLINE + ", " + COL_CLASS + ", " + COL_ORIGIN + ", " + COL_DESTINATION + ", " + COL_COST 
@@ -618,14 +660,14 @@ public class OpenHelper extends SQLiteOpenHelper {
 				+ ") VALUES ('" + ba + "', '" + first + "', '" + chi + "', '" + managua + "', " + 105000 + ")");
 		//spirit
 		rwdb.execSQL("INSERT INTO " + TABLE_COMPILED_AWARDS + " (" + COL_AIRLINE + ", " + COL_CLASS + ", " + COL_ORIGIN + ", " + COL_DESTINATION + ", " + COL_COST + ", " + COL_AWARD_NOTES
-				+ ") VALUES ('" + spirit + "', '" + economy + "', '" + chi + "', '" + managua + "', " + 10000 + ", 'Price out and book each segment separately. The connection is in Miami. The cost is 10,000 miles booked separately and 15,000 miles if booked together.')");
-		//singapore (FAKE AND MADE UP)
+				+ ") VALUES ('" + spirit + "', '" + economy + "', '" + chi + "', '" + managua + "', " + 10000 + ", 'Price out and book each segment separately. The connection is in Miami. The cost is 10,000 miles booked separately and 15,000 miles if booked together. Booked separately, however, you will have to pay baggage fees for each segment.')");
+		//singapore
 		rwdb.execSQL("INSERT INTO " + TABLE_COMPILED_AWARDS + " (" + COL_AIRLINE + ", " + COL_CLASS + ", " + COL_ORIGIN + ", " + COL_DESTINATION + ", " + COL_COST 
 				+ ") VALUES ('" + singapore + "', '" + economy + "', '" + chi + "', '" + managua + "', " + 35000 + ")");
 		rwdb.execSQL("INSERT INTO " + TABLE_COMPILED_AWARDS + " (" + COL_AIRLINE + ", " + COL_CLASS + ", " + COL_ORIGIN + ", " + COL_DESTINATION + ", " + COL_COST 
-				+ ") VALUES ('" + singapore + "', '" + business + "', '" + chi + "', '" + managua + "', " + 45000 + ")");
+				+ ") VALUES ('" + singapore + "', '" + business + "', '" + chi + "', '" + managua + "', " + 60000 + ")");
 		rwdb.execSQL("INSERT INTO " + TABLE_COMPILED_AWARDS + " (" + COL_AIRLINE + ", " + COL_CLASS + ", " + COL_ORIGIN + ", " + COL_DESTINATION + ", " + COL_COST 
-				+ ") VALUES ('" + singapore + "', '" + first + "', '" + chi + "', '" + managua + "', " + 65000 + ")");
+				+ ") VALUES ('" + singapore + "', '" + first + "', '" + chi + "', '" + managua + "', " + 80000 + ")");
 		//...to delhi
 				//united
 				rwdb.execSQL("INSERT INTO " + TABLE_COMPILED_AWARDS + " (" + COL_AIRLINE + ", " + COL_CLASS + ", " + COL_ORIGIN + ", " + COL_DESTINATION + ", " + COL_COST 
@@ -660,6 +702,13 @@ public class OpenHelper extends SQLiteOpenHelper {
 						+ ") VALUES ('" + ba + "', '" + business + "', '" + chi + "', '" + delhi + "', " + 180000 + ")");
 				rwdb.execSQL("INSERT INTO " + TABLE_COMPILED_AWARDS + " (" + COL_AIRLINE + ", " + COL_CLASS + ", " + COL_ORIGIN + ", " + COL_DESTINATION + ", " + COL_COST 
 						+ ") VALUES ('" + ba + "', '" + first + "', '" + chi + "', '" + delhi + "', " + 270000 + ")");
+				//singapore
+				rwdb.execSQL("INSERT INTO " + TABLE_COMPILED_AWARDS + " (" + COL_AIRLINE + ", " + COL_CLASS + ", " + COL_ORIGIN + ", " + COL_DESTINATION + ", " + COL_COST 
+						+ ") VALUES ('" + singapore + "', '" + economy + "', '" + chi + "', '" + delhi + "', " + 105000 + ")");
+				rwdb.execSQL("INSERT INTO " + TABLE_COMPILED_AWARDS + " (" + COL_AIRLINE + ", " + COL_CLASS + ", " + COL_ORIGIN + ", " + COL_DESTINATION + ", " + COL_COST 
+						+ ") VALUES ('" + singapore + "', '" + business + "', '" + chi + "', '" + delhi + "', " + 195000 + ")");
+				rwdb.execSQL("INSERT INTO " + TABLE_COMPILED_AWARDS + " (" + COL_AIRLINE + ", " + COL_CLASS + ", " + COL_ORIGIN + ", " + COL_DESTINATION + ", " + COL_COST 
+						+ ") VALUES ('" + singapore + "', '" + first + "', '" + chi + "', '" + delhi + "', " + 265000 + ")");
 		
 		
 		//NEW YORK
@@ -697,6 +746,13 @@ public class OpenHelper extends SQLiteOpenHelper {
 						+ ") VALUES ('" + ba + "', '" + business + "', '" + nyc + "', '" + beijing + "', " + 180000 + ")");
 				rwdb.execSQL("INSERT INTO " + TABLE_COMPILED_AWARDS + " (" + COL_AIRLINE + ", " + COL_CLASS + ", " + COL_ORIGIN + ", " + COL_DESTINATION + ", " + COL_COST 
 						+ ") VALUES ('" + ba + "', '" + first + "', '" + nyc + "', '" + beijing + "', " + 270000 + ")");
+				//singapore
+				rwdb.execSQL("INSERT INTO " + TABLE_COMPILED_AWARDS + " (" + COL_AIRLINE + ", " + COL_CLASS + ", " + COL_ORIGIN + ", " + COL_DESTINATION + ", " + COL_COST 
+						+ ") VALUES ('" + singapore + "', '" + economy + "', '" + nyc + "', '" + beijing + "', " + 90000 + ")");
+				rwdb.execSQL("INSERT INTO " + TABLE_COMPILED_AWARDS + " (" + COL_AIRLINE + ", " + COL_CLASS + ", " + COL_ORIGIN + ", " + COL_DESTINATION + ", " + COL_COST 
+						+ ") VALUES ('" + singapore + "', '" + business + "', '" + nyc + "', '" + beijing + "', " + 175000 + ")");
+				rwdb.execSQL("INSERT INTO " + TABLE_COMPILED_AWARDS + " (" + COL_AIRLINE + ", " + COL_CLASS + ", " + COL_ORIGIN + ", " + COL_DESTINATION + ", " + COL_COST 
+						+ ") VALUES ('" + singapore + "', '" + first + "', '" + nyc + "', '" + beijing + "', " + 200000 + ")");
 				//...to tokyo
 				//united
 				rwdb.execSQL("INSERT INTO " + TABLE_COMPILED_AWARDS + " (" + COL_AIRLINE + ", " + COL_CLASS + ", " + COL_ORIGIN + ", " + COL_DESTINATION + ", " + COL_COST 
@@ -731,6 +787,13 @@ public class OpenHelper extends SQLiteOpenHelper {
 						+ ") VALUES ('" + ba + "', '" + business + "', '" + nyc + "', '" + tokyo + "', " + 140000 + ")");
 				rwdb.execSQL("INSERT INTO " + TABLE_COMPILED_AWARDS + " (" + COL_AIRLINE + ", " + COL_CLASS + ", " + COL_ORIGIN + ", " + COL_DESTINATION + ", " + COL_COST 
 						+ ") VALUES ('" + ba + "', '" + first + "', '" + nyc + "', '" + tokyo + "', " + 210000 + ")");
+				//singapore
+				rwdb.execSQL("INSERT INTO " + TABLE_COMPILED_AWARDS + " (" + COL_AIRLINE + ", " + COL_CLASS + ", " + COL_ORIGIN + ", " + COL_DESTINATION + ", " + COL_COST 
+						+ ") VALUES ('" + singapore + "', '" + economy + "', '" + nyc + "', '" + tokyo + "', " + 90000 + ")");
+				rwdb.execSQL("INSERT INTO " + TABLE_COMPILED_AWARDS + " (" + COL_AIRLINE + ", " + COL_CLASS + ", " + COL_ORIGIN + ", " + COL_DESTINATION + ", " + COL_COST 
+						+ ") VALUES ('" + singapore + "', '" + business + "', '" + nyc + "', '" + tokyo + "', " + 175000 + ")");
+				rwdb.execSQL("INSERT INTO " + TABLE_COMPILED_AWARDS + " (" + COL_AIRLINE + ", " + COL_CLASS + ", " + COL_ORIGIN + ", " + COL_DESTINATION + ", " + COL_COST 
+						+ ") VALUES ('" + singapore + "', '" + first + "', '" + nyc + "', '" + tokyo + "', " + 200000 + ")");
 				//...to sydney
 				//united
 				rwdb.execSQL("INSERT INTO " + TABLE_COMPILED_AWARDS + " (" + COL_AIRLINE + ", " + COL_CLASS + ", " + COL_ORIGIN + ", " + COL_DESTINATION + ", " + COL_COST 
@@ -765,6 +828,13 @@ public class OpenHelper extends SQLiteOpenHelper {
 						+ ") VALUES ('" + ba + "', '" + business + "', '" + nyc + "', '" + sydney + "', " + 200000 + ")");
 				rwdb.execSQL("INSERT INTO " + TABLE_COMPILED_AWARDS + " (" + COL_AIRLINE + ", " + COL_CLASS + ", " + COL_ORIGIN + ", " + COL_DESTINATION + ", " + COL_COST 
 						+ ") VALUES ('" + ba + "', '" + first + "', '" + nyc + "', '" + sydney + "', " + 300000 + ")");
+				//singapore
+				rwdb.execSQL("INSERT INTO " + TABLE_COMPILED_AWARDS + " (" + COL_AIRLINE + ", " + COL_CLASS + ", " + COL_ORIGIN + ", " + COL_DESTINATION + ", " + COL_COST 
+						+ ") VALUES ('" + singapore + "', '" + economy + "', '" + nyc + "', '" + sydney + "', " + 110000 + ")");
+				rwdb.execSQL("INSERT INTO " + TABLE_COMPILED_AWARDS + " (" + COL_AIRLINE + ", " + COL_CLASS + ", " + COL_ORIGIN + ", " + COL_DESTINATION + ", " + COL_COST 
+						+ ") VALUES ('" + singapore + "', '" + business + "', '" + nyc + "', '" + sydney + "', " + 195000 + ")");
+				rwdb.execSQL("INSERT INTO " + TABLE_COMPILED_AWARDS + " (" + COL_AIRLINE + ", " + COL_CLASS + ", " + COL_ORIGIN + ", " + COL_DESTINATION + ", " + COL_COST 
+						+ ") VALUES ('" + singapore + "', '" + first + "', '" + nyc + "', '" + sydney + "', " + 255000 + ")");
 				//...to london
 				//united
 				rwdb.execSQL("INSERT INTO " + TABLE_COMPILED_AWARDS + " (" + COL_AIRLINE + ", " + COL_CLASS + ", " + COL_ORIGIN + ", " + COL_DESTINATION + ", " + COL_COST 
@@ -799,6 +869,13 @@ public class OpenHelper extends SQLiteOpenHelper {
 						+ ") VALUES ('" + ba + "', '" + business + "', '" + nyc + "', '" + london + "', " + 80000 + ")");
 				rwdb.execSQL("INSERT INTO " + TABLE_COMPILED_AWARDS + " (" + COL_AIRLINE + ", " + COL_CLASS + ", " + COL_ORIGIN + ", " + COL_DESTINATION + ", " + COL_COST 
 						+ ") VALUES ('" + ba + "', '" + first + "', '" + nyc + "', '" + london + "', " + 120000 + ")");
+				//singapore
+				rwdb.execSQL("INSERT INTO " + TABLE_COMPILED_AWARDS + " (" + COL_AIRLINE + ", " + COL_CLASS + ", " + COL_ORIGIN + ", " + COL_DESTINATION + ", " + COL_COST 
+						+ ") VALUES ('" + singapore + "', '" + economy + "', '" + nyc + "', '" + london + "', " + 55000 + ")");
+				rwdb.execSQL("INSERT INTO " + TABLE_COMPILED_AWARDS + " (" + COL_AIRLINE + ", " + COL_CLASS + ", " + COL_ORIGIN + ", " + COL_DESTINATION + ", " + COL_COST 
+						+ ") VALUES ('" + singapore + "', '" + business + "', '" + nyc + "', '" + london + "', " + 130000 + ")");
+				rwdb.execSQL("INSERT INTO " + TABLE_COMPILED_AWARDS + " (" + COL_AIRLINE + ", " + COL_CLASS + ", " + COL_ORIGIN + ", " + COL_DESTINATION + ", " + COL_COST 
+						+ ") VALUES ('" + singapore + "', '" + first + "', '" + nyc + "', '" + london + "', " + 160000 + ")");
 				//...to paris
 				//united
 				rwdb.execSQL("INSERT INTO " + TABLE_COMPILED_AWARDS + " (" + COL_AIRLINE + ", " + COL_CLASS + ", " + COL_ORIGIN + ", " + COL_DESTINATION + ", " + COL_COST 
@@ -833,6 +910,13 @@ public class OpenHelper extends SQLiteOpenHelper {
 						+ ") VALUES ('" + ba + "', '" + business + "', '" + nyc + "', '" + paris + "', " + 80000 + ")");
 				rwdb.execSQL("INSERT INTO " + TABLE_COMPILED_AWARDS + " (" + COL_AIRLINE + ", " + COL_CLASS + ", " + COL_ORIGIN + ", " + COL_DESTINATION + ", " + COL_COST 
 						+ ") VALUES ('" + ba + "', '" + first + "', '" + nyc + "', '" + paris + "', " + 120000 + ")");
+				//singapore
+				rwdb.execSQL("INSERT INTO " + TABLE_COMPILED_AWARDS + " (" + COL_AIRLINE + ", " + COL_CLASS + ", " + COL_ORIGIN + ", " + COL_DESTINATION + ", " + COL_COST 
+						+ ") VALUES ('" + singapore + "', '" + economy + "', '" + nyc + "', '" + paris + "', " + 55000 + ")");
+				rwdb.execSQL("INSERT INTO " + TABLE_COMPILED_AWARDS + " (" + COL_AIRLINE + ", " + COL_CLASS + ", " + COL_ORIGIN + ", " + COL_DESTINATION + ", " + COL_COST 
+						+ ") VALUES ('" + singapore + "', '" + business + "', '" + nyc + "', '" + paris + "', " + 130000 + ")");
+				rwdb.execSQL("INSERT INTO " + TABLE_COMPILED_AWARDS + " (" + COL_AIRLINE + ", " + COL_CLASS + ", " + COL_ORIGIN + ", " + COL_DESTINATION + ", " + COL_COST 
+						+ ") VALUES ('" + singapore + "', '" + first + "', '" + nyc + "', '" + paris + "', " + 160000 + ")");
 				//...to hong kong
 				//united
 				rwdb.execSQL("INSERT INTO " + TABLE_COMPILED_AWARDS + " (" + COL_AIRLINE + ", " + COL_CLASS + ", " + COL_ORIGIN + ", " + COL_DESTINATION + ", " + COL_COST 
@@ -867,6 +951,13 @@ public class OpenHelper extends SQLiteOpenHelper {
 						+ ") VALUES ('" + ba + "', '" + business + "', '" + nyc + "', '" + hong_kong + "', " + 140000 + ")");
 				rwdb.execSQL("INSERT INTO " + TABLE_COMPILED_AWARDS + " (" + COL_AIRLINE + ", " + COL_CLASS + ", " + COL_ORIGIN + ", " + COL_DESTINATION + ", " + COL_COST 
 						+ ") VALUES ('" + ba + "', '" + first + "', '" + nyc + "', '" + hong_kong + "', " + 210000 + ")");
+				//singapore
+				rwdb.execSQL("INSERT INTO " + TABLE_COMPILED_AWARDS + " (" + COL_AIRLINE + ", " + COL_CLASS + ", " + COL_ORIGIN + ", " + COL_DESTINATION + ", " + COL_COST 
+						+ ") VALUES ('" + ba + "', '" + economy + "', '" + nyc + "', '" + hong_kong + "', " + 90000 + ")");
+				rwdb.execSQL("INSERT INTO " + TABLE_COMPILED_AWARDS + " (" + COL_AIRLINE + ", " + COL_CLASS + ", " + COL_ORIGIN + ", " + COL_DESTINATION + ", " + COL_COST 
+						+ ") VALUES ('" + ba + "', '" + business + "', '" + nyc + "', '" + hong_kong + "', " + 175000 + ")");
+				rwdb.execSQL("INSERT INTO " + TABLE_COMPILED_AWARDS + " (" + COL_AIRLINE + ", " + COL_CLASS + ", " + COL_ORIGIN + ", " + COL_DESTINATION + ", " + COL_COST 
+						+ ") VALUES ('" + ba + "', '" + first + "', '" + nyc + "', '" + hong_kong + "', " + 200000 + ")");
 				//...to managua
 				//united
 				rwdb.execSQL("INSERT INTO " + TABLE_COMPILED_AWARDS + " (" + COL_AIRLINE + ", " + COL_CLASS + ", " + COL_ORIGIN + ", " + COL_DESTINATION + ", " + COL_COST 
@@ -904,6 +995,13 @@ public class OpenHelper extends SQLiteOpenHelper {
 				//spirit
 				rwdb.execSQL("INSERT INTO " + TABLE_COMPILED_AWARDS + " (" + COL_AIRLINE + ", " + COL_CLASS + ", " + COL_ORIGIN + ", " + COL_DESTINATION + ", " + COL_COST 
 						+ ") VALUES ('" + spirit + "', '" + economy + "', '" + nyc + "', '" + managua + "', " + 15000 + ")");
+				//singapore
+				rwdb.execSQL("INSERT INTO " + TABLE_COMPILED_AWARDS + " (" + COL_AIRLINE + ", " + COL_CLASS + ", " + COL_ORIGIN + ", " + COL_DESTINATION + ", " + COL_COST 
+						+ ") VALUES ('" + singapore + "', '" + economy + "', '" + nyc + "', '" + managua + "', " + 35000 + ")");
+				rwdb.execSQL("INSERT INTO " + TABLE_COMPILED_AWARDS + " (" + COL_AIRLINE + ", " + COL_CLASS + ", " + COL_ORIGIN + ", " + COL_DESTINATION + ", " + COL_COST 
+						+ ") VALUES ('" + singapore + "', '" + business + "', '" + nyc + "', '" + managua + "', " + 60000 + ")");
+				rwdb.execSQL("INSERT INTO " + TABLE_COMPILED_AWARDS + " (" + COL_AIRLINE + ", " + COL_CLASS + ", " + COL_ORIGIN + ", " + COL_DESTINATION + ", " + COL_COST 
+						+ ") VALUES ('" + singapore + "', '" + first + "', '" + nyc + "', '" + managua + "', " + 80000 + ")");
 				//...to delhi
 				//united
 				rwdb.execSQL("INSERT INTO " + TABLE_COMPILED_AWARDS + " (" + COL_AIRLINE + ", " + COL_CLASS + ", " + COL_ORIGIN + ", " + COL_DESTINATION + ", " + COL_COST 
@@ -938,6 +1036,13 @@ public class OpenHelper extends SQLiteOpenHelper {
 						+ ") VALUES ('" + ba + "', '" + business + "', '" + nyc + "', '" + delhi + "', " + 180000 + ")");
 				rwdb.execSQL("INSERT INTO " + TABLE_COMPILED_AWARDS + " (" + COL_AIRLINE + ", " + COL_CLASS + ", " + COL_ORIGIN + ", " + COL_DESTINATION + ", " + COL_COST 
 						+ ") VALUES ('" + ba + "', '" + first + "', '" + nyc + "', '" + delhi + "', " + 270000 + ")");
+				//singapore
+				rwdb.execSQL("INSERT INTO " + TABLE_COMPILED_AWARDS + " (" + COL_AIRLINE + ", " + COL_CLASS + ", " + COL_ORIGIN + ", " + COL_DESTINATION + ", " + COL_COST 
+						+ ") VALUES ('" + singapore + "', '" + economy + "', '" + nyc + "', '" + delhi + "', " + 105000 + ")");
+				rwdb.execSQL("INSERT INTO " + TABLE_COMPILED_AWARDS + " (" + COL_AIRLINE + ", " + COL_CLASS + ", " + COL_ORIGIN + ", " + COL_DESTINATION + ", " + COL_COST 
+						+ ") VALUES ('" + singapore + "', '" + business + "', '" + nyc + "', '" + delhi + "', " + 195000 + ")");
+				rwdb.execSQL("INSERT INTO " + TABLE_COMPILED_AWARDS + " (" + COL_AIRLINE + ", " + COL_CLASS + ", " + COL_ORIGIN + ", " + COL_DESTINATION + ", " + COL_COST 
+						+ ") VALUES ('" + singapore + "', '" + first + "', '" + nyc + "', '" + delhi + "', " + 265000 + ")");
 				
 				
 				
@@ -976,6 +1081,13 @@ public class OpenHelper extends SQLiteOpenHelper {
 						+ ") VALUES ('" + ba + "', '" + business + "', '" + lax + "', '" + beijing + "', " + 200000 + ")");
 				rwdb.execSQL("INSERT INTO " + TABLE_COMPILED_AWARDS + " (" + COL_AIRLINE + ", " + COL_CLASS + ", " + COL_ORIGIN + ", " + COL_DESTINATION + ", " + COL_COST 
 						+ ") VALUES ('" + ba + "', '" + first + "', '" + lax + "', '" + beijing + "', " + 300000 + ")");
+				//singapore
+				rwdb.execSQL("INSERT INTO " + TABLE_COMPILED_AWARDS + " (" + COL_AIRLINE + ", " + COL_CLASS + ", " + COL_ORIGIN + ", " + COL_DESTINATION + ", " + COL_COST 
+						+ ") VALUES ('" + singapore + "', '" + economy + "', '" + lax + "', '" + beijing + "', " + 90000 + ")");
+				rwdb.execSQL("INSERT INTO " + TABLE_COMPILED_AWARDS + " (" + COL_AIRLINE + ", " + COL_CLASS + ", " + COL_ORIGIN + ", " + COL_DESTINATION + ", " + COL_COST 
+						+ ") VALUES ('" + singapore + "', '" + business + "', '" + lax + "', '" + beijing + "', " + 175000 + ")");
+				rwdb.execSQL("INSERT INTO " + TABLE_COMPILED_AWARDS + " (" + COL_AIRLINE + ", " + COL_CLASS + ", " + COL_ORIGIN + ", " + COL_DESTINATION + ", " + COL_COST 
+						+ ") VALUES ('" + singapore + "', '" + first + "', '" + lax + "', '" + beijing + "', " + 200000 + ")");
 				//...to tokyo
 				//united
 				rwdb.execSQL("INSERT INTO " + TABLE_COMPILED_AWARDS + " (" + COL_AIRLINE + ", " + COL_CLASS + ", " + COL_ORIGIN + ", " + COL_DESTINATION + ", " + COL_COST 
@@ -1010,6 +1122,13 @@ public class OpenHelper extends SQLiteOpenHelper {
 						+ ") VALUES ('" + ba + "', '" + business + "', '" + lax + "', '" + tokyo + "', " + 100000 + ")");
 				rwdb.execSQL("INSERT INTO " + TABLE_COMPILED_AWARDS + " (" + COL_AIRLINE + ", " + COL_CLASS + ", " + COL_ORIGIN + ", " + COL_DESTINATION + ", " + COL_COST 
 						+ ") VALUES ('" + ba + "', '" + first + "', '" + lax + "', '" + tokyo + "', " + 150000 + ")");
+				//singapore
+				rwdb.execSQL("INSERT INTO " + TABLE_COMPILED_AWARDS + " (" + COL_AIRLINE + ", " + COL_CLASS + ", " + COL_ORIGIN + ", " + COL_DESTINATION + ", " + COL_COST 
+						+ ") VALUES ('" + singapore + "', '" + economy + "', '" + lax + "', '" + tokyo + "', " + 90000 + ")");
+				rwdb.execSQL("INSERT INTO " + TABLE_COMPILED_AWARDS + " (" + COL_AIRLINE + ", " + COL_CLASS + ", " + COL_ORIGIN + ", " + COL_DESTINATION + ", " + COL_COST 
+						+ ") VALUES ('" + singapore + "', '" + business + "', '" + lax + "', '" + tokyo + "', " + 175000 + ")");
+				rwdb.execSQL("INSERT INTO " + TABLE_COMPILED_AWARDS + " (" + COL_AIRLINE + ", " + COL_CLASS + ", " + COL_ORIGIN + ", " + COL_DESTINATION + ", " + COL_COST 
+						+ ") VALUES ('" + singapore + "', '" + first + "', '" + lax + "', '" + tokyo + "', " + 200000 + ")");
 				//...to sydney
 				//united
 				rwdb.execSQL("INSERT INTO " + TABLE_COMPILED_AWARDS + " (" + COL_AIRLINE + ", " + COL_CLASS + ", " + COL_ORIGIN + ", " + COL_DESTINATION + ", " + COL_COST 
@@ -1037,6 +1156,13 @@ public class OpenHelper extends SQLiteOpenHelper {
 						+ ") VALUES ('" + alaska + "', '" + business + "', '" + lax + "', '" + sydney + "', " + 110000 + ")");
 				rwdb.execSQL("INSERT INTO " + TABLE_COMPILED_AWARDS + " (" + COL_AIRLINE + ", " + COL_CLASS + ", " + COL_ORIGIN + ", " + COL_DESTINATION + ", " + COL_COST 
 						+ ") VALUES ('" + alaska + "', '" + first + "', '" + lax + "', '" + sydney + "', " + 140000 + ")");
+				//singapore
+				rwdb.execSQL("INSERT INTO " + TABLE_COMPILED_AWARDS + " (" + COL_AIRLINE + ", " + COL_CLASS + ", " + COL_ORIGIN + ", " + COL_DESTINATION + ", " + COL_COST 
+						+ ") VALUES ('" + singapore + "', '" + economy + "', '" + lax + "', '" + sydney + "', " + 110000 + ")");
+				rwdb.execSQL("INSERT INTO " + TABLE_COMPILED_AWARDS + " (" + COL_AIRLINE + ", " + COL_CLASS + ", " + COL_ORIGIN + ", " + COL_DESTINATION + ", " + COL_COST 
+						+ ") VALUES ('" + singapore + "', '" + business + "', '" + lax + "', '" + sydney + "', " + 195000 + ")");
+				rwdb.execSQL("INSERT INTO " + TABLE_COMPILED_AWARDS + " (" + COL_AIRLINE + ", " + COL_CLASS + ", " + COL_ORIGIN + ", " + COL_DESTINATION + ", " + COL_COST 
+						+ ") VALUES ('" + singapore + "', '" + first + "', '" + lax + "', '" + sydney + "', " + 255000 + ")");
 				//ba
 				rwdb.execSQL("INSERT INTO " + TABLE_COMPILED_AWARDS + " (" + COL_AIRLINE + ", " + COL_CLASS + ", " + COL_ORIGIN + ", " + COL_DESTINATION + ", " + COL_COST 
 						+ ") VALUES ('" + ba + "', '" + economy + "', '" + lax + "', '" + sydney + "', " + 100000 + ")");
@@ -1078,6 +1204,13 @@ public class OpenHelper extends SQLiteOpenHelper {
 						+ ") VALUES ('" + ba + "', '" + business + "', '" + lax + "', '" + london + "', " + 100000 + ")");
 				rwdb.execSQL("INSERT INTO " + TABLE_COMPILED_AWARDS + " (" + COL_AIRLINE + ", " + COL_CLASS + ", " + COL_ORIGIN + ", " + COL_DESTINATION + ", " + COL_COST 
 						+ ") VALUES ('" + ba + "', '" + first + "', '" + lax + "', '" + london + "', " + 150000 + ")");
+				//singapore
+				rwdb.execSQL("INSERT INTO " + TABLE_COMPILED_AWARDS + " (" + COL_AIRLINE + ", " + COL_CLASS + ", " + COL_ORIGIN + ", " + COL_DESTINATION + ", " + COL_COST 
+						+ ") VALUES ('" + singapore + "', '" + economy + "', '" + lax + "', '" + london + "', " + 55000 + ")");
+				rwdb.execSQL("INSERT INTO " + TABLE_COMPILED_AWARDS + " (" + COL_AIRLINE + ", " + COL_CLASS + ", " + COL_ORIGIN + ", " + COL_DESTINATION + ", " + COL_COST 
+						+ ") VALUES ('" + singapore + "', '" + business + "', '" + lax + "', '" + london + "', " + 130000 + ")");
+				rwdb.execSQL("INSERT INTO " + TABLE_COMPILED_AWARDS + " (" + COL_AIRLINE + ", " + COL_CLASS + ", " + COL_ORIGIN + ", " + COL_DESTINATION + ", " + COL_COST 
+						+ ") VALUES ('" + singapore + "', '" + first + "', '" + lax + "', '" + london + "', " + 160000 + ")");
 				//...to paris
 				//united
 				rwdb.execSQL("INSERT INTO " + TABLE_COMPILED_AWARDS + " (" + COL_AIRLINE + ", " + COL_CLASS + ", " + COL_ORIGIN + ", " + COL_DESTINATION + ", " + COL_COST 
@@ -1112,6 +1245,13 @@ public class OpenHelper extends SQLiteOpenHelper {
 						+ ") VALUES ('" + ba + "', '" + business + "', '" + lax + "', '" + paris + "', " + 118000 + ")");
 				rwdb.execSQL("INSERT INTO " + TABLE_COMPILED_AWARDS + " (" + COL_AIRLINE + ", " + COL_CLASS + ", " + COL_ORIGIN + ", " + COL_DESTINATION + ", " + COL_COST 
 						+ ") VALUES ('" + ba + "', '" + first + "', '" + lax + "', '" + paris + "', " + 177000 + ")");
+				//singapore
+				rwdb.execSQL("INSERT INTO " + TABLE_COMPILED_AWARDS + " (" + COL_AIRLINE + ", " + COL_CLASS + ", " + COL_ORIGIN + ", " + COL_DESTINATION + ", " + COL_COST 
+						+ ") VALUES ('" + singapore + "', '" + economy + "', '" + lax + "', '" + paris + "', " + 55000 + ")");
+				rwdb.execSQL("INSERT INTO " + TABLE_COMPILED_AWARDS + " (" + COL_AIRLINE + ", " + COL_CLASS + ", " + COL_ORIGIN + ", " + COL_DESTINATION + ", " + COL_COST 
+						+ ") VALUES ('" + singapore + "', '" + business + "', '" + lax + "', '" + paris + "', " + 130000 + ")");
+				rwdb.execSQL("INSERT INTO " + TABLE_COMPILED_AWARDS + " (" + COL_AIRLINE + ", " + COL_CLASS + ", " + COL_ORIGIN + ", " + COL_DESTINATION + ", " + COL_COST 
+						+ ") VALUES ('" + singapore + "', '" + first + "', '" + lax + "', '" + paris + "', " + 160000 + ")");
 				//...to hong kong
 				//united
 				rwdb.execSQL("INSERT INTO " + TABLE_COMPILED_AWARDS + " (" + COL_AIRLINE + ", " + COL_CLASS + ", " + COL_ORIGIN + ", " + COL_DESTINATION + ", " + COL_COST 
@@ -1146,6 +1286,13 @@ public class OpenHelper extends SQLiteOpenHelper {
 						+ ") VALUES ('" + ba + "', '" + business + "', '" + lax + "', '" + hong_kong + "', " + 140000 + ")");
 				rwdb.execSQL("INSERT INTO " + TABLE_COMPILED_AWARDS + " (" + COL_AIRLINE + ", " + COL_CLASS + ", " + COL_ORIGIN + ", " + COL_DESTINATION + ", " + COL_COST 
 						+ ") VALUES ('" + ba + "', '" + first + "', '" + lax + "', '" + hong_kong + "', " + 210000 + ")");
+				//singapore
+				rwdb.execSQL("INSERT INTO " + TABLE_COMPILED_AWARDS + " (" + COL_AIRLINE + ", " + COL_CLASS + ", " + COL_ORIGIN + ", " + COL_DESTINATION + ", " + COL_COST 
+						+ ") VALUES ('" + ba + "', '" + economy + "', '" + lax + "', '" + hong_kong + "', " + 90000 + ")");
+				rwdb.execSQL("INSERT INTO " + TABLE_COMPILED_AWARDS + " (" + COL_AIRLINE + ", " + COL_CLASS + ", " + COL_ORIGIN + ", " + COL_DESTINATION + ", " + COL_COST 
+						+ ") VALUES ('" + ba + "', '" + business + "', '" + lax + "', '" + hong_kong + "', " + 175000 + ")");
+				rwdb.execSQL("INSERT INTO " + TABLE_COMPILED_AWARDS + " (" + COL_AIRLINE + ", " + COL_CLASS + ", " + COL_ORIGIN + ", " + COL_DESTINATION + ", " + COL_COST 
+						+ ") VALUES ('" + ba + "', '" + first + "', '" + lax + "', '" + hong_kong + "', " + 200000 + ")");
 				//...to managua
 				//united
 				rwdb.execSQL("INSERT INTO " + TABLE_COMPILED_AWARDS + " (" + COL_AIRLINE + ", " + COL_CLASS + ", " + COL_ORIGIN + ", " + COL_DESTINATION + ", " + COL_COST 
@@ -1183,6 +1330,13 @@ public class OpenHelper extends SQLiteOpenHelper {
 				//spirit
 				rwdb.execSQL("INSERT INTO " + TABLE_COMPILED_AWARDS + " (" + COL_AIRLINE + ", " + COL_CLASS + ", " + COL_ORIGIN + ", " + COL_DESTINATION + ", " + COL_COST 
 						+ ") VALUES ('" + spirit + "', '" + economy + "', '" + lax + "', '" + managua + "', " + 90000 + ")");
+				//singapore
+				rwdb.execSQL("INSERT INTO " + TABLE_COMPILED_AWARDS + " (" + COL_AIRLINE + ", " + COL_CLASS + ", " + COL_ORIGIN + ", " + COL_DESTINATION + ", " + COL_COST 
+						+ ") VALUES ('" + singapore + "', '" + economy + "', '" + lax + "', '" + managua + "', " + 35000 + ")");
+				rwdb.execSQL("INSERT INTO " + TABLE_COMPILED_AWARDS + " (" + COL_AIRLINE + ", " + COL_CLASS + ", " + COL_ORIGIN + ", " + COL_DESTINATION + ", " + COL_COST 
+						+ ") VALUES ('" + singapore + "', '" + business + "', '" + lax + "', '" + managua + "', " + 60000 + ")");
+				rwdb.execSQL("INSERT INTO " + TABLE_COMPILED_AWARDS + " (" + COL_AIRLINE + ", " + COL_CLASS + ", " + COL_ORIGIN + ", " + COL_DESTINATION + ", " + COL_COST 
+						+ ") VALUES ('" + singapore + "', '" + first + "', '" + lax + "', '" + managua + "', " + 80000 + ")");
 				//...to delhi
 				//united
 				rwdb.execSQL("INSERT INTO " + TABLE_COMPILED_AWARDS + " (" + COL_AIRLINE + ", " + COL_CLASS + ", " + COL_ORIGIN + ", " + COL_DESTINATION + ", " + COL_COST 
@@ -1217,6 +1371,13 @@ public class OpenHelper extends SQLiteOpenHelper {
 						+ ") VALUES ('" + ba + "', '" + business + "', '" + lax + "', '" + delhi + "', " + 200000 + ")");
 				rwdb.execSQL("INSERT INTO " + TABLE_COMPILED_AWARDS + " (" + COL_AIRLINE + ", " + COL_CLASS + ", " + COL_ORIGIN + ", " + COL_DESTINATION + ", " + COL_COST 
 						+ ") VALUES ('" + ba + "', '" + first + "', '" + lax + "', '" + delhi + "', " + 300000 + ")");
+				//singapore
+				rwdb.execSQL("INSERT INTO " + TABLE_COMPILED_AWARDS + " (" + COL_AIRLINE + ", " + COL_CLASS + ", " + COL_ORIGIN + ", " + COL_DESTINATION + ", " + COL_COST 
+						+ ") VALUES ('" + singapore + "', '" + economy + "', '" + lax + "', '" + delhi + "', " + 105000 + ")");
+				rwdb.execSQL("INSERT INTO " + TABLE_COMPILED_AWARDS + " (" + COL_AIRLINE + ", " + COL_CLASS + ", " + COL_ORIGIN + ", " + COL_DESTINATION + ", " + COL_COST 
+						+ ") VALUES ('" + singapore + "', '" + business + "', '" + lax + "', '" + delhi + "', " + 195000 + ")");
+				rwdb.execSQL("INSERT INTO " + TABLE_COMPILED_AWARDS + " (" + COL_AIRLINE + ", " + COL_CLASS + ", " + COL_ORIGIN + ", " + COL_DESTINATION + ", " + COL_COST 
+						+ ") VALUES ('" + singapore + "', '" + first + "', '" + lax + "', '" + delhi + "', " + 265000 + ")");
 				
 				rwdb.setTransactionSuccessful();
 				rwdb.endTransaction();
@@ -1650,77 +1811,77 @@ public class OpenHelper extends SQLiteOpenHelper {
 				*/
 		
 		
-		ParseQuery<ParseObject> parseQuery = ParseQuery.getQuery("Cards");
-		parseQuery.findInBackground(new FindCallback<ParseObject>() {
-			public void done(List<ParseObject> cardList, ParseException e) {
-				if (e == null) {
-					System.out.println("GOT CARDS IN OpenHelper.");
-					
-					db.beginTransaction();
-					
-					for (ParseObject card : cardList) {
-						ContentValues values = new ContentValues();
-						
-						values.put(KEY_NAME, card.getString("name"));
-						values.put(KEY_ISSUER, card.getString("issuer"));
-						values.put(KEY_ANNUAL_FEE, (card.getNumber("annual_fee")).intValue());
-						values.put(KEY_FEE_WAIVED_FIRST_YEAR, card.getBoolean("fee_waived_first_year"));
-						values.put(KEY_POINTS_PROGRAM, card.getString("points_program"));
-						values.put(KEY_SPEND_BONUS, (card.getNumber("spend_bonus")).intValue());
-						values.put(KEY_SPEND_REQUIREMENT, (card.getNumber("spend_requirement")).intValue());
-						values.put(KEY_TIME_TO_REACH_SPEND_IN_MONTHS, (card.getNumber("time_to_reach_spend_in_months")).intValue());
-						values.put(KEY_FIRST_PURCHASE_BONUS, (card.getNumber("first_purchase_bonus")).intValue());
-						values.put(KEY_POINTS_PER_DOLLAR_SPENT_GENERAL_SPEND, (card.getNumber("points_per_dollar_spent_general_spend")).floatValue());
-						values.put(KEY_FOREIGN_TRANSACTION_FEE, (card.getNumber("foreign_transaction_fee")).floatValue());
-						values.put(KEY_CHIP, card.getString("chip"));
-						values.put(KEY_NOTES, card.getString("notes"));
-						values.put(KEY_URL, card.getString("url"));
-						values.put(KEY_BUSINESS_PERSONAL, card.getString("business_personal"));
-						values.put(KEY_INTENDED_AUDIENCE, card.getString("intended_audience"));
-						values.put(KEY_IMAGE, (card.getNumber("image")).intValue());
-						
-						NewListOfCards.update();
-						
-						db.insert(TABLE_PROVIDERS, null, values);
-					}
-					
-					db.setTransactionSuccessful();
-					db.endTransaction();
-					
-//					notifyDataSetChanged();
-//					this.refreshDataSet();
-				} else {
-					Log.d("getCardsList","Error: " + e.getMessage());
-				}
-			}
-		});
+//		ParseQuery<ParseObject> parseQuery = ParseQuery.getQuery("Cards");
+//		parseQuery.findInBackground(new FindCallback<ParseObject>() {
+//			public void done(List<ParseObject> cardList, ParseException e) {
+//				if (e == null) {
+//					System.out.println("GOT CARDS IN OpenHelper.");
+//					
+//					db.beginTransaction();
+//					
+//					for (ParseObject card : cardList) {
+//						ContentValues values = new ContentValues();
+//						
+//						values.put(KEY_NAME, card.getString("name"));
+//						values.put(KEY_ISSUER, card.getString("issuer"));
+//						values.put(KEY_ANNUAL_FEE, (card.getNumber("annual_fee")).intValue());
+//						values.put(KEY_FEE_WAIVED_FIRST_YEAR, card.getBoolean("fee_waived_first_year"));
+//						values.put(KEY_POINTS_PROGRAM, card.getString("points_program"));
+//						values.put(KEY_SPEND_BONUS, (card.getNumber("spend_bonus")).intValue());
+//						values.put(KEY_SPEND_REQUIREMENT, (card.getNumber("spend_requirement")).intValue());
+//						values.put(KEY_TIME_TO_REACH_SPEND_IN_MONTHS, (card.getNumber("time_to_reach_spend_in_months")).intValue());
+//						values.put(KEY_FIRST_PURCHASE_BONUS, (card.getNumber("first_purchase_bonus")).intValue());
+//						values.put(KEY_POINTS_PER_DOLLAR_SPENT_GENERAL_SPEND, (card.getNumber("points_per_dollar_spent_general_spend")).floatValue());
+//						values.put(KEY_FOREIGN_TRANSACTION_FEE, (card.getNumber("foreign_transaction_fee")).floatValue());
+//						values.put(KEY_CHIP, card.getString("chip"));
+//						values.put(KEY_NOTES, card.getString("notes"));
+//						values.put(KEY_URL, card.getString("url"));
+//						values.put(KEY_BUSINESS_PERSONAL, card.getString("business_personal"));
+//						values.put(KEY_INTENDED_AUDIENCE, card.getString("intended_audience"));
+//						values.put(KEY_IMAGE, (card.getNumber("image")).intValue());
+//						
+//						NewListOfCards.update();
+//						
+//						db.insert(TABLE_PROVIDERS, null, values);
+//					}
+//					
+//					db.setTransactionSuccessful();
+//					db.endTransaction();
+//					
+////					notifyDataSetChanged();
+////					this.refreshDataSet();
+//				} else {
+//					Log.d("getCardsList","Error: " + e.getMessage());
+//				}
+//			}
+//		});
 
         //SQLiteDatabase rwdb = this.getWritableDatabase();
 		db.beginTransaction();
 		
-//        for (Card c : cat.getCards()) {
-//            ContentValues values = new ContentValues();
-//
-//            values.put(KEY_NAME, c.getName());
-//            values.put(KEY_ISSUER, c.getIssuer());
-//            values.put(KEY_ANNUAL_FEE, c.getAnnual_fee());
-//            values.put(KEY_FEE_WAIVED_FIRST_YEAR, c.isFee_waived_first_year());
-//            values.put(KEY_POINTS_PROGRAM, c.getPoints_program());
-//            values.put(KEY_SPEND_BONUS, c.getSpend_bonus());
-//            values.put(KEY_SPEND_REQUIREMENT, c.getSpend_requirement());
-//            values.put(KEY_TIME_TO_REACH_SPEND_IN_MONTHS, c.getTime_to_reach_spend_in_months());
-//            values.put(KEY_FIRST_PURCHASE_BONUS, c.getFirst_purchase_bonus());
-//            values.put(KEY_POINTS_PER_DOLLAR_SPENT_GENERAL_SPEND, c.getPoints_per_dollar_spent_general_spend());
-//            values.put(KEY_FOREIGN_TRANSACTION_FEE, c.getForeign_transaction_fee());
-//            values.put(KEY_CHIP, c.getChip());
-//            values.put(KEY_NOTES, c.getNotes());
-//            values.put(KEY_URL, c.getUrl());
-//            values.put(KEY_BUSINESS_PERSONAL, c.getBusiness_personal());
-//            values.put(KEY_INTENDED_AUDIENCE, c.getIntended_audience());
-//            values.put(KEY_IMAGE, c.getImage());
-//
-//            db.insert(TABLE_PROVIDERS, null, values);
-//        }
+        for (Card c : cat.getCards()) {
+            ContentValues values = new ContentValues();
+
+            values.put(KEY_NAME, c.getName());
+            values.put(KEY_ISSUER, c.getIssuer());
+            values.put(KEY_ANNUAL_FEE, c.getAnnual_fee());
+            values.put(KEY_FEE_WAIVED_FIRST_YEAR, c.isFee_waived_first_year());
+            values.put(KEY_POINTS_PROGRAM, c.getPoints_program());
+            values.put(KEY_SPEND_BONUS, c.getSpend_bonus());
+            values.put(KEY_SPEND_REQUIREMENT, c.getSpend_requirement());
+            values.put(KEY_TIME_TO_REACH_SPEND_IN_MONTHS, c.getTime_to_reach_spend_in_months());
+            values.put(KEY_FIRST_PURCHASE_BONUS, c.getFirst_purchase_bonus());
+            values.put(KEY_POINTS_PER_DOLLAR_SPENT_GENERAL_SPEND, c.getPoints_per_dollar_spent_general_spend());
+            values.put(KEY_FOREIGN_TRANSACTION_FEE, c.getForeign_transaction_fee());
+            values.put(KEY_CHIP, c.getChip());
+            values.put(KEY_NOTES, c.getNotes());
+            values.put(KEY_URL, c.getUrl());
+            values.put(KEY_BUSINESS_PERSONAL, c.getBusiness_personal());
+            values.put(KEY_INTENDED_AUDIENCE, c.getIntended_audience());
+            values.put(KEY_IMAGE, c.getImage());
+
+            db.insert(TABLE_PROVIDERS, null, values);
+        }
         
         db.setTransactionSuccessful();
         db.endTransaction();
