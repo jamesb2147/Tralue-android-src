@@ -19,11 +19,14 @@ import android.app.Activity;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.opengl.Visibility;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.widget.SimpleCursorAdapter;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
@@ -36,6 +39,7 @@ public class NewListOfCards extends Activity implements OnItemClickListener {
 	ListView listView;
 	static NewListAdapter adapter;
 	List<ParseObject> cardList, partnerList, awardList, carrierList;
+	ProgressBar progressBar;
 	
 	public void onCreate(Bundle savedInstanceState) {
 //		TestFlight.passCheckpoint("Loaded the new list of cards.");
@@ -46,7 +50,9 @@ public class NewListOfCards extends Activity implements OnItemClickListener {
 		
 		//listview id is lv
 		OpenHelper oh = new OpenHelper(this);
-		rodb = oh.getReadableDatabase();
+		//rodb = oh.getReadableDatabase();
+		
+		progressBar = (ProgressBar)findViewById(R.id.progress_bar_1);
 		
 		ParseQuery<ParseObject> parseQuery = ParseQuery.getQuery("Cards");
 		parseQuery.findInBackground(new FindCallback<ParseObject>() {
@@ -290,8 +296,12 @@ public class NewListOfCards extends Activity implements OnItemClickListener {
 	
 	protected void checkList() {
 		if (cardList != null && partnerList != null && awardList != null && carrierList != null) {
+			progressBar.incrementProgressBy(25);
+			progressBar.setVisibility(View.GONE);
 			generateList();
 		} else {
+			//increment progress bar by 25(%)
+			progressBar.incrementProgressBy(25);
 			System.out.println("Nope, a list was null.");
 //			Log.d("Something was null.");
 		}

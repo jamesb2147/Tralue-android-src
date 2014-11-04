@@ -5,7 +5,16 @@
         AppBaseTheme from res/values/styles.xml on API 11+ devices.
     -->
     <style name="AppBaseTheme" parent="android:Theme.Holo">
-        <!-- API 11 theme customizations can go here. -->
+        <!-- API 11 theme customizations can go here. 
+        <item name="android:progressBarHorizontalStyle">@android:style/Widget.Holo.ProgressBarHorizontal</item>
+        -->
+        
     </style>
-
+	
+    <!-- Progress Bar theme option -->
+    <style name="AdjustingProgressBarOnVersion" parent="@android:style/Widget.Holo.ProgressBar.Horizontal">
+            <!-- 
+            	Ewww! Do I have to code this for realz??
+             -->
+    </style>
 </resources>

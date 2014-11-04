@@ -8,10 +8,19 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     android:orientation="vertical"
     >
-    <ListView 
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+    <ProgressBar
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         style="@style/AdjustingProgressBarOnVersion"
+         android:layout_marginRight="5dp"
+         android:id="@+id/progress_bar_1"
+         android:progress="0"
+         />
+
+    <ListView
         android:id="@+id/lv"
-        >
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
     </ListView>
+
 </LinearLayout>

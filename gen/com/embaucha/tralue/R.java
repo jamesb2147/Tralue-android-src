@@ -58,107 +58,126 @@ public final class R {
         public static final int thank_you_premier=0x7f020022;
     }
     public static final class id {
-        public static final int about_us=0x7f080064;
-        public static final int alphabetical_radio=0x7f08005f;
-        public static final int annual_value_of_keeping_card_radio=0x7f08005e;
+        public static final int about_us=0x7f080077;
+        public static final int alphabetical_radio=0x7f080072;
+        public static final int annual_value_of_keeping_card_radio=0x7f080071;
         public static final int apply_now_button=0x7f08000f;
-        public static final int award_notes=0x7f08001d;
-        public static final int award_notes_text=0x7f08001c;
-        public static final int business=0x7f080028;
-        public static final int card_2_text=0x7f080020;
-        public static final int card_annual_fee=0x7f080019;
-        public static final int card_carrier=0x7f080018;
-        public static final int card_cost_in_miles=0x7f080015;
-        public static final int card_destination=0x7f080014;
+        public static final int award_disclaimer_text=0x7f08001e;
+        public static final int award_notes=0x7f08002f;
+        public static final int award_notes_text=0x7f08002e;
+        public static final int business=0x7f08003b;
+        public static final int card_2_text=0x7f080033;
+        public static final int card_annual_fee=0x7f080027;
+        public static final int card_annual_fee_text=0x7f080026;
+        public static final int card_carrier=0x7f080020;
+        public static final int card_carrier_text=0x7f08001f;
+        public static final int card_cost_in_miles=0x7f08001b;
+        public static final int card_cost_in_miles_text=0x7f08001a;
+        public static final int card_destination=0x7f080019;
+        public static final int card_destination_text=0x7f080018;
         public static final int card_first_purchase_bonus=0x7f080008;
+        public static final int card_first_purchase_bonus_text=0x7f080023;
         public static final int card_foreign_transaction_fee=0x7f08000b;
+        public static final int card_foreign_transaction_fee_text=0x7f080028;
         public static final int card_image=0x7f080003;
         public static final int card_issuer=0x7f080005;
+        public static final int card_issuer_text=0x7f080013;
         public static final int card_name=0x7f080004;
         public static final int card_net_bonus=0x7f080006;
-        public static final int card_origin=0x7f080013;
-        public static final int card_percentage_of_miles=0x7f080017;
-        public static final int card_percentage_of_miles_text=0x7f080016;
+        public static final int card_net_bonus_text=0x7f080021;
+        public static final int card_notes_text=0x7f080030;
+        public static final int card_origin=0x7f080017;
+        public static final int card_origin_text=0x7f080016;
+        public static final int card_percentage_of_miles=0x7f08001d;
+        public static final int card_percentage_of_miles_text=0x7f08001c;
         public static final int card_spend_bonus_value=0x7f080009;
+        public static final int card_spend_bonus_value_text=0x7f080024;
+        public static final int card_spend_per_month_for_bonus_text=0x7f080025;
         public static final int card_text=0x7f080011;
-        public static final int card_text_2=0x7f080022;
-        public static final int card_text_3=0x7f080023;
+        public static final int card_text_2=0x7f080035;
+        public static final int card_text_3=0x7f080036;
         public static final int card_total_bonus=0x7f080007;
-        public static final int destination=0x7f080025;
-        public static final int economy=0x7f080027;
+        public static final int card_total_bonus_text=0x7f080022;
+        public static final int card_value_of_keeping_card_text=0x7f08002b;
+        public static final int card_value_with_manufactured_spend_text=0x7f08002a;
+        public static final int destination=0x7f080038;
+        public static final int economy=0x7f08003a;
         public static final int email_to_self_button=0x7f080010;
-        public static final int equals_sign=0x7f080021;
-        public static final int et_alaska=0x7f08003c;
-        public static final int et_american=0x7f08003e;
-        public static final int et_amtrak=0x7f080050;
-        public static final int et_arrival=0x7f080052;
-        public static final int et_ba=0x7f08004a;
-        public static final int et_carlson=0x7f08004e;
-        public static final int et_delta=0x7f08003a;
-        public static final int et_discover=0x7f080056;
-        public static final int et_frontier=0x7f08004c;
-        public static final int et_jetblue=0x7f080044;
-        public static final int et_lossrate=0x7f08002e;
-        public static final int et_monthlyspend=0x7f08002c;
-        public static final int et_mr=0x7f080038;
-        public static final int et_singapore=0x7f080058;
-        public static final int et_southwest=0x7f080048;
-        public static final int et_spg=0x7f080034;
-        public static final int et_spirit=0x7f080046;
-        public static final int et_ty=0x7f08005a;
-        public static final int et_united=0x7f080040;
-        public static final int et_ur=0x7f080036;
-        public static final int et_usair=0x7f080042;
-        public static final int et_usbank=0x7f080054;
-        public static final int first=0x7f080029;
-        public static final int first_purchase_bonus_value_radio=0x7f080060;
-        public static final int foreign_transaction_fee_radio=0x7f080062;
+        public static final int equals_sign=0x7f080034;
+        public static final int et_alaska=0x7f08004f;
+        public static final int et_american=0x7f080051;
+        public static final int et_amtrak=0x7f080063;
+        public static final int et_arrival=0x7f080065;
+        public static final int et_ba=0x7f08005d;
+        public static final int et_carlson=0x7f080061;
+        public static final int et_delta=0x7f08004d;
+        public static final int et_discover=0x7f080069;
+        public static final int et_frontier=0x7f08005f;
+        public static final int et_jetblue=0x7f080057;
+        public static final int et_lossrate=0x7f080041;
+        public static final int et_monthlyspend=0x7f08003f;
+        public static final int et_mr=0x7f08004b;
+        public static final int et_singapore=0x7f08006b;
+        public static final int et_southwest=0x7f08005b;
+        public static final int et_spg=0x7f080047;
+        public static final int et_spirit=0x7f080059;
+        public static final int et_ty=0x7f08006d;
+        public static final int et_united=0x7f080053;
+        public static final int et_ur=0x7f080049;
+        public static final int et_usair=0x7f080055;
+        public static final int et_usbank=0x7f080067;
+        public static final int first=0x7f08003c;
+        public static final int first_purchase_bonus_value_radio=0x7f080073;
+        public static final int foreign_transaction_fee_radio=0x7f080075;
         public static final int listview=0x7f080002;
-        public static final int lv=0x7f08001e;
-        public static final int manual_mode=0x7f080066;
-        public static final int miles_from_card=0x7f080012;
-        public static final int net_bonus_value_radio=0x7f08005d;
-        public static final int net_bonus_value_with_manufactured_spend_radio=0x7f080063;
+        public static final int lv=0x7f080031;
+        public static final int manual_mode=0x7f080079;
+        public static final int miles_from_card=0x7f080015;
+        public static final int miles_from_card_text=0x7f080014;
+        public static final int net_bonus_value_radio=0x7f080070;
+        public static final int net_bonus_value_with_manufactured_spend_radio=0x7f080076;
         public static final int notes=0x7f08000e;
-        public static final int origin=0x7f080024;
+        public static final int origin=0x7f080037;
         public static final int pager=0x7f080000;
         public static final int pager_title_strip=0x7f080001;
-        public static final int plus_sign=0x7f08001f;
-        public static final int points_program_notes=0x7f08001b;
-        public static final int points_program_notes_text=0x7f08001a;
-        public static final int price=0x7f08002a;
-        public static final int rg=0x7f080026;
-        public static final int rg_business_personal=0x7f08002f;
-        public static final int rg_sort=0x7f08005b;
-        public static final int show_business_and_personal_cards=0x7f080032;
-        public static final int show_business_cards=0x7f080031;
-        public static final int show_personal_cards=0x7f080030;
-        public static final int simple_mode=0x7f080065;
+        public static final int percent_text=0x7f080029;
+        public static final int plus_sign=0x7f080032;
+        public static final int points_program_notes=0x7f08002d;
+        public static final int points_program_notes_text=0x7f08002c;
+        public static final int price=0x7f08003d;
+        public static final int progress_bar_1=0x7f080012;
+        public static final int rg=0x7f080039;
+        public static final int rg_business_personal=0x7f080042;
+        public static final int rg_sort=0x7f08006e;
+        public static final int show_business_and_personal_cards=0x7f080045;
+        public static final int show_business_cards=0x7f080044;
+        public static final int show_personal_cards=0x7f080043;
+        public static final int simple_mode=0x7f080078;
         public static final int spend_per_month_for_bonus=0x7f08000a;
-        public static final int spend_per_month_for_bonus_radio=0x7f080061;
-        public static final int total_bonus_value_radio=0x7f08005c;
-        public static final int tv_alaska=0x7f08003b;
-        public static final int tv_american=0x7f08003d;
-        public static final int tv_amtrak=0x7f08004f;
-        public static final int tv_arrival=0x7f080051;
-        public static final int tv_ba=0x7f080049;
-        public static final int tv_carlson=0x7f08004d;
-        public static final int tv_delta=0x7f080039;
-        public static final int tv_discover=0x7f080055;
-        public static final int tv_frontier=0x7f08004b;
-        public static final int tv_jetblue=0x7f080043;
-        public static final int tv_lossrate=0x7f08002d;
-        public static final int tv_monthlyspend=0x7f08002b;
-        public static final int tv_mr=0x7f080037;
-        public static final int tv_singapore=0x7f080057;
-        public static final int tv_southwest=0x7f080047;
-        public static final int tv_spg=0x7f080033;
-        public static final int tv_spirit=0x7f080045;
-        public static final int tv_ty=0x7f080059;
-        public static final int tv_united=0x7f08003f;
-        public static final int tv_ur=0x7f080035;
-        public static final int tv_usair=0x7f080041;
-        public static final int tv_usbank=0x7f080053;
+        public static final int spend_per_month_for_bonus_radio=0x7f080074;
+        public static final int total_bonus_value_radio=0x7f08006f;
+        public static final int tv_alaska=0x7f08004e;
+        public static final int tv_american=0x7f080050;
+        public static final int tv_amtrak=0x7f080062;
+        public static final int tv_arrival=0x7f080064;
+        public static final int tv_ba=0x7f08005c;
+        public static final int tv_carlson=0x7f080060;
+        public static final int tv_delta=0x7f08004c;
+        public static final int tv_discover=0x7f080068;
+        public static final int tv_frontier=0x7f08005e;
+        public static final int tv_jetblue=0x7f080056;
+        public static final int tv_lossrate=0x7f080040;
+        public static final int tv_monthlyspend=0x7f08003e;
+        public static final int tv_mr=0x7f08004a;
+        public static final int tv_singapore=0x7f08006a;
+        public static final int tv_southwest=0x7f08005a;
+        public static final int tv_spg=0x7f080046;
+        public static final int tv_spirit=0x7f080058;
+        public static final int tv_ty=0x7f08006c;
+        public static final int tv_united=0x7f080052;
+        public static final int tv_ur=0x7f080048;
+        public static final int tv_usair=0x7f080054;
+        public static final int tv_usbank=0x7f080066;
         public static final int value_of_keeping_card=0x7f08000d;
         public static final int value_with_manufactured_spend=0x7f08000c;
     }
@@ -246,6 +265,18 @@ public final class R {
         public static final int value_hint=0x7f050022;
     }
     public static final class style {
+        /**  
+            	Ewww! Do I have to code this for realz??
+             
+ Progress Bar theme option 
+ 
+            	Ewww! Do I have to code this for realz??
+             
+ 
+            	Ewww! Do I have to code this for realz??
+             
+         */
+        public static final int AdjustingProgressBarOnVersion=0x7f060002;
         /** 
         Base application theme, dependent on API level. This theme is replaced
         by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
@@ -260,12 +291,16 @@ public final class R {
         AppBaseTheme from res/values/styles.xml on API 11+ devices.
     
  API 11 theme customizations can go here. 
+        <item name="android:progressBarHorizontalStyle">@android:style/Widget.Holo.ProgressBarHorizontal</item>
+        
 
         Base application theme for API 14+. This theme completely replaces
         AppBaseTheme from BOTH res/values/styles.xml and
         res/values-v11/styles.xml on API 14+ devices.
     
  API 14 theme customizations can go here. 
+        <item name="android:progressBarHorizontalStyle">@android:style/Widget.Holo.ProgressBarHorizontal</item>
+        
          */
         public static final int AppBaseTheme=0x7f060000;
         /**  Application theme. 

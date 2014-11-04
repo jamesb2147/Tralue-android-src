@@ -6,6 +6,14 @@
     android:layout_height="wrap_content"
     android:orientation="vertical"
     >
+    <ProgressBar
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         style="@style/AdjustingProgressBarOnVersion"
+         android:layout_marginRight="5dp"
+         android:id="@+id/progress_bar_1"
+         android:progress="0"
+         />
     <ImageView 
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -28,6 +36,7 @@
         	android:layout_height="wrap_content"
         	android:padding="1dp"
         	android:text="@string/by"
+        	android:id="@+id/card_issuer_text"
         	/>
     	<TextView 
         	android:layout_width="wrap_content"
@@ -46,6 +55,7 @@
         	android:layout_height="wrap_content"
         	android:padding="1dp"
         	android:text="Miles from card sign-up: "
+        	android:id="@+id/miles_from_card_text"
         	/>
     	<TextView 
         	android:layout_width="wrap_content"
@@ -64,6 +74,7 @@
         	android:layout_height="wrap_content"
         	android:padding="1dp"
         	android:text="Cost to get from "
+        	android:id="@+id/card_origin_text"
         	/>
     	<TextView 
         	android:layout_width="wrap_content"
@@ -83,6 +94,7 @@
         	android:layout_height="wrap_content"
         	android:padding="1dp"
         	android:text=" to "
+        	android:id="@+id/card_destination_text"
         	/>
     	<TextView 
         	android:layout_width="wrap_content"
@@ -95,6 +107,7 @@
         	android:layout_height="wrap_content"
         	android:padding="1dp"
         	android:text=" in miles: "
+        	android:id="@+id/card_cost_in_miles_text"
         	/>
     	<TextView 
         	android:layout_width="wrap_content"
@@ -128,6 +141,7 @@
         android:layout_height="wrap_content"
         android:padding="1dp"
         android:text="@string/inline_award_disclaimer"
+        android:id="@+id/award_disclaimer_text"
         />
     
     	<LinearLayout
@@ -140,6 +154,7 @@
         	android:layout_height="wrap_content"
         	android:padding="1dp"
         	android:text="Carrier: "
+        	android:id="@+id/card_carrier_text"
         	/>
     	<TextView 
         	android:layout_width="wrap_content"
@@ -158,6 +173,7 @@
         	android:layout_height="wrap_content"
         	android:padding="1dp"
         	android:text="@string/card_net_bonus_text"
+        	android:id="@+id/card_net_bonus_text"
         	android:visibility="gone"
         	/>
     	<TextView 
@@ -178,6 +194,7 @@
         	android:layout_height="wrap_content"
         	android:padding="1dp"
         	android:text="@string/card_total_bonus_text"
+        	android:id="@+id/card_total_bonus_text"
         	android:visibility="gone"
         	/>
     	<TextView 
@@ -198,6 +215,7 @@
         	android:layout_height="wrap_content"
         	android:padding="1dp"
         	android:text="@string/card_first_purchase_bonus_text"
+        	android:id="@+id/card_first_purchase_bonus_text"
         	android:visibility="gone"
         	/>
     	<TextView 
@@ -218,6 +236,7 @@
         	android:layout_height="wrap_content"
         	android:padding="1dp"
         	android:text="@string/card_spend_bonus_value_text"
+        	android:id="@+id/card_spend_bonus_value_text"
         	android:visibility="gone"
         	/>
     	<TextView 
@@ -238,6 +257,7 @@
         	android:layout_height="wrap_content"
         	android:padding="1dp"
         	android:text="@string/spend_per_month_for_bonus_text"
+        	android:id="@+id/card_spend_per_month_for_bonus_text"
         	android:visibility="gone"
         	/>
     	<TextView 
@@ -258,6 +278,7 @@
         	android:layout_height="wrap_content"
         	android:padding="1dp"
         	android:text="@string/card_annual_fee_text"
+        	android:id="@+id/card_annual_fee_text"
         	android:visibility="visible"
         	/>
     	<TextView 
@@ -278,6 +299,7 @@
         	android:layout_height="wrap_content"
         	android:padding="1dp"
         	android:text="@string/card_foreign_transaction_fee_text"
+        	android:id="@+id/card_foreign_transaction_fee_text"
         	android:visibility="visible"
         	/>
     	<TextView 
@@ -292,6 +314,7 @@
         	android:layout_height="wrap_content"
         	android:text="%"
         	android:visibility="visible"
+        	android:id="@+id/percent_text"
         	/>
     </LinearLayout>
     <LinearLayout
@@ -304,6 +327,7 @@
         	android:layout_height="wrap_content"
         	android:padding="1dp"
         	android:text="@string/card_value_with_manufactured_spend_text"
+        	android:id="@+id/card_value_with_manufactured_spend_text"
         	android:visibility="gone"
         	/>
     	<TextView 
@@ -324,6 +348,7 @@
         	android:layout_height="wrap_content"
         	android:padding="1dp"
         	android:text="@string/card_value_of_keeping_card_text"
+        	android:id="@+id/card_value_of_keeping_card_text"
         	android:visibility="gone"
         	/>
     	<TextView 
@@ -382,6 +407,7 @@
         	android:layout_height="wrap_content"
         	android:padding="1dp"
         	android:text="@string/notes_text"
+        	android:id="@+id/card_notes_text"
         	/>
     	<TextView 
         	android:layout_width="wrap_content"
