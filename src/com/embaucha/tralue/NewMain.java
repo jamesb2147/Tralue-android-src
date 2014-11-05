@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.opengl.Visibility;
 import android.os.Bundle;
 import android.text.InputType;
 import android.view.Menu;
@@ -14,9 +15,11 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 import com.parse.Parse;
 import com.parse.ParseAnalytics;
@@ -34,6 +37,7 @@ public class NewMain extends Activity implements OnClickListener {
 	String buttonChecked;
 	float price;
 	EditText price_btn;
+	int taps;
 	
 	public void onCreate (Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -53,6 +57,10 @@ public class NewMain extends Activity implements OnClickListener {
 		PushService.setDefaultPushCallback(this, NewMain.class);
 		
 		setUpDB();
+		
+//		setOldElementsToInvisible();
+		((Button)findViewById(R.id.secretButton)).setVisibility(View.INVISIBLE);
+		taps = 0;
 		
 		orig_airports = new String[] {OpenHelper.chi, OpenHelper.lax, OpenHelper.nyc};
 		dest_airports = new String[] {OpenHelper.tokyo, OpenHelper.beijing, OpenHelper.sydney, OpenHelper.london, OpenHelper.paris, OpenHelper.hong_kong, OpenHelper.managua, OpenHelper.delhi};
@@ -212,6 +220,37 @@ public class NewMain extends Activity implements OnClickListener {
 		//email.putExtra(Intent.EXTRA_TEXT, url);
 		email.setType("message/rfc822");
 		startActivity(Intent.createChooser(email, "Choose an Email client :"));
+	}
+	
+	public void revealOldLayout(View v) {
+		taps++;
+		if (taps >= 5) {
+			setOldElementsToVisible();
+		}
+	}
+	
+	protected void setOldElementsToInvisible() {
+		((TextView)findViewById(R.id.origin_airport)).setVisibility(View.GONE);
+		((TextView)findViewById(R.id.origin_hint)).setVisibility(View.GONE);
+		((TextView)findViewById(R.id.origin)).setVisibility(View.GONE);
+		((TextView)findViewById(R.id.destination_airport)).setVisibility(View.GONE);
+		((TextView)findViewById(R.id.destination_hint)).setVisibility(View.GONE);
+		((TextView)findViewById(R.id.destination)).setVisibility(View.GONE);
+		((TextView)findViewById(R.id.class_of_service_text)).setVisibility(View.GONE);
+		((RadioGroup)findViewById(R.id.rg)).setVisibility(View.GONE);
+		((TextView)findViewById(R.id.how_do_i_get_there_button)).setVisibility(View.GONE);
+	}
+	
+	protected void setOldElementsToVisible() {
+		((TextView)findViewById(R.id.origin_airport)).setVisibility(View.VISIBLE);
+		((TextView)findViewById(R.id.origin_hint)).setVisibility(View.VISIBLE);
+		((TextView)findViewById(R.id.origin)).setVisibility(View.VISIBLE);
+		((TextView)findViewById(R.id.destination_airport)).setVisibility(View.VISIBLE);
+		((TextView)findViewById(R.id.destination_hint)).setVisibility(View.VISIBLE);
+		((TextView)findViewById(R.id.destination)).setVisibility(View.VISIBLE);
+		((TextView)findViewById(R.id.class_of_service_text)).setVisibility(View.VISIBLE);
+		((View)findViewById(R.id.rg)).setVisibility(View.VISIBLE);
+		((TextView)findViewById(R.id.how_do_i_get_there_button)).setVisibility(View.VISIBLE);
 	}
 	
 	//menu creation
