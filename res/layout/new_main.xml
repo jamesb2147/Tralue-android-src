@@ -15,6 +15,37 @@
         android:orientation="vertical"
         android:id="@+id/main_linear_layout_old"
         >
+        <LinearLayout 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        >
+        <TextView 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/aa_values"
+            android:id="@+id/aa_values"
+            />
+        <EditText 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/aa_points_needed"
+            android:id="@+id/aa_points_needed"
+            />
+        <EditText 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/aa_cash_needed"
+            android:id="@+id/aa_cash_needed"
+            />
+        <EditText 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/aa_point_balance"
+            android:id="@+id/aa_point_balance"
+            />
+        </LinearLayout>
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

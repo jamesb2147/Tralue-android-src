@@ -72,4 +72,8 @@
     <string name="destination_airport">Destination airport:</string>
     <string name="destination_airport_hint">Sydney, New Delhi, Hong Kong, Tokyo, Beijing, London, Paris, or Managua</string>
     
+    <string name="aa_values">AA:</string>
+    <string name="aa_points_needed"></string>
+    <string name="aa_cash_needed"></string>
+    <string name="aa_point_balance"></string>
 </resources>
